@@ -1,4 +1,5 @@
 void Draw(){
+  frame.setTitle(getSettings());
   
   //Draw
   background(0);
@@ -30,8 +31,24 @@ void Draw(){
                vertex(x * scale, (y + 1) * scale);
           }
           else if(renderMode == 2){
-               vertex(x * scale, y * scale, heightMap[x][y]);
-              vertex(x * scale, (y + 1) * scale, heightMap[x][y+1]);
+            float z = 0;
+             if (heightMap[x][y] > waterlvl){
+                  z = heightMap[x][y];
+              }
+            else{
+                  z = waterlvl;
+            }
+            
+            float z1 = 0;
+            if (heightMap[x][y+1] > waterlvl){
+                  z1 = heightMap[x][y+1];
+              }
+            else{
+                  z1 = waterlvl;
+            }
+            
+              vertex(x * scale, y * scale, z);
+              vertex(x * scale, (y + 1) * scale, z1);
           }
       }
       endShape();
