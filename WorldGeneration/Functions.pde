@@ -1,0 +1,56 @@
+String getSettings(){
+  String settings = "Settings: ";
+   settings = settings + "| Wireframe: " + wireFrame;
+   settings = settings + "| RenderMode: " + renderMode;
+   settings = settings + "| Scale: " + scale;
+   settings = settings + "| Intensity: " + intensity;
+   
+  return settings;
+}
+
+void NewSeed(){
+  seed = random(-1000, 1000);
+}
+
+int[] getColor(float terrainHeight){
+  int[] rgb = new int[3];
+  if(terrainHeight < 70){
+    rgb[0] = 30;
+    rgb[1] = 144;
+    rgb[2] = 255;
+    return rgb;
+  }
+  else if(terrainHeight < 80){
+    rgb[0] = 76;
+    rgb[1] = 70;
+    rgb[2] = 50;
+    return rgb;
+  }
+  else if(terrainHeight < 110){
+    rgb[0] = 0;
+    rgb[1] = 204;
+    rgb[2] = 0;
+    return rgb;
+  }
+  else if(terrainHeight < 140){
+    rgb[0] = 0;
+    rgb[1] = 51;
+    rgb[2] = 25;
+    return rgb;
+  }
+  else if(terrainHeight < 180){
+    rgb[0] = 128;
+    rgb[1] = 128;
+    rgb[2] = 128;
+    return rgb;
+  }
+  else if(terrainHeight < 255){
+    rgb[0] = 255;
+    rgb[1] = 255;
+    rgb[2] = 255;
+    return rgb;
+  }
+  else{
+    return rgb;
+  }
+}
