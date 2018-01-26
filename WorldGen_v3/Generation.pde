@@ -11,10 +11,12 @@
             if (edge){
               pheight -= falloff(w, h);
             }
+            
+            
            
             //println(pheight);
             if (pheight > (cutoff / 100.0f)){
-              pixels[h * 1000 + w] = color(255);
+              pixels[h * 1000 + w] = color(map(pheight, cutoff, 1 , cutoff * 255 , 255));
             }
             else{
               pixels[h * 1000 + w] = color(0);
@@ -34,8 +36,8 @@ public float falloff(int w, int h){
     int wCoord = w - (width / 2);
     int hCoord = h - (height / 2);
     
-    float edgeFalloff = (abs(wCoord) + abs(hCoord)) / 1000;
-    println (edgeFalloff);
+    float edgeFalloff = (abs(wCoord) + abs(hCoord)) / 1000.0;
+    //println (edgeFalloff);
     return edgeFalloff;
 }
 int offset;

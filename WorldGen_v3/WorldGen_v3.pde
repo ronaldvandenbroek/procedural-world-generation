@@ -1,11 +1,11 @@
 PFont font;
 float[][] heightMap;
-int intensity = 4;
+int intensity = 3;
 long seed;
-int octaves = 4;
-int falloff = 5;
-int cutoff = 50;
-boolean edge = false;
+int octaves = 8;
+int falloff = 7;
+int cutoff = 41;
+boolean edge = true;
 
 public void setup() {
     size(1000, 1000);
