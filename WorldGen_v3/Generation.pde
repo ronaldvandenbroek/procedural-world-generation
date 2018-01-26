@@ -16,10 +16,10 @@
            
             //println(pheight);
             if (pheight > (cutoff / 100.0f)){
-              pixels[h * 1000 + w] = color(map(pheight, cutoff, 1 , cutoff * 255 , 255));
+              pixels[h * 1000 + w] = getColor(pheight);
             }
             else{
-              pixels[h * 1000 + w] = color(0);
+              pixels[h * 1000 + w] = seaC;
             }
             xoff += (intensity / 1000.0f);
         }

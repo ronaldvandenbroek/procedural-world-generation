@@ -1,6 +1,6 @@
 public void information(){
   textFont(font);       
-  fill(255, 0, 0);
+  fill(textC);
 
   textAlign(LEFT);
   offset = 0;
