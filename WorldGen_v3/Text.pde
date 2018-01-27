@@ -12,6 +12,7 @@ public void information(){
   writeTextLeft("A| Egde:" + edge);
   writeTextLeft("Z| GreyScale:" + greyScale);
   writeTextLeft("X| Debug:" + debug);
+  writeTextLeft("C| Terrain Curving:" + terrainCurving);
   
   if(debug){
       textAlign(RIGHT);

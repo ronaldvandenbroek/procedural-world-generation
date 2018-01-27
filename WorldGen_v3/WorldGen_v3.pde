@@ -7,15 +7,16 @@ float[][][] terrainMap;
 PFont font;
 
 //Default starting values
-long seed = 9514;
+long seed = 3045;
 int intensity = 3;
 int octaves = 8;
 int falloff = 7;
-int cutoff = 41;
+int cutoff = 21;
 
 boolean edge = true;
 boolean greyScale = false;
 boolean debug = false;
+boolean terrainCurving = true;
 
 int displayType = 1;
 //1 = heightmap
@@ -48,6 +49,9 @@ public void keyPressed(){
             break; 
        case 'x': //Renew
             debug = !debug;        
+            break;   
+      case 'c': //Renew
+            terrainCurving = !terrainCurving;        
             break;        
       case 'z': //Renew
             greyScale = !greyScale;        

@@ -1,8 +1,14 @@
-float maxHeight = 0.5;
-float minHeight = 0.5;
-float maxTemp = 0.5;
-float minTemp = 0.5;
+float maxHeight;
+float minHeight;
+float maxTemp;
+float minTemp;
 
+void debugReset(){
+ maxHeight = 0.5;
+ minHeight = 0.5;
+ maxTemp = 0.5;
+ minTemp = 0.5;
+}
 
 void debugHeightRange(float z){
   if(z > maxHeight){

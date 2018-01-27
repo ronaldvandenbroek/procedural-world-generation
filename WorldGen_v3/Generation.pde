@@ -2,6 +2,7 @@
     noiseSeed(seed);
     noiseDetail(octaves, falloff / 10.0f);
     terrainMap = new float[height][width][2];
+    debugReset();
     
     float yoff = 0;
     for (int h = 0; h < height; h++) {
@@ -12,6 +13,9 @@
             if (edge){
               pheight -= diamondFalloff(w, h);
             }
+            if(terrainCurving){
+              pheight = pow((pheight - 0.09), 5) + 0.2;
+           } 
             if (pheight > (cutoff / 100.0f)){
               terrainMap[h][w][0] = pheight;
             }
