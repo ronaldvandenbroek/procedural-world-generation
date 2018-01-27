@@ -1,0 +1,24 @@
+void drawMap(){
+    loadPixels();
+    if (displayType == 1){ //Height map
+      for (int h = 0; h < height; h++) {
+        for (int w = 0; w < width; w++) {
+            if (terrainMap[h][w][0] > (cutoff / 100.0f)){
+              pixels[h * 1000 + w] = getColor(terrainMap[h][w][0]);
+            }
+            else{
+              pixels[h * 1000 + w] = seaC;
+            }
+        }
+    }
+    }
+    else if (displayType == 2){//Temp map
+       for (int h = 0; h < height; h++) {
+        for (int w = 0; w < width; w++) {
+              pixels[h * 1000 + w] = getColor(terrainMap[h][w][1]);
+        }
+      }
+    }
+
+    updatePixels();
+}

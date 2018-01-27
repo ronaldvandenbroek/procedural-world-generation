@@ -1,43 +1,48 @@
    public void generate(){
     noiseSeed(seed);
     noiseDetail(octaves, falloff / 10.0f);
+    terrainMap = new float[height][width][2];
     
-    loadPixels();
     float yoff = 0;
     for (int h = 0; h < height; h++) {
         float xoff = 0;
         for (int w = 0; w < width; w++) {
-            float pheight = noise(xoff, yoff);
+            //Heightcalculation
+           float pheight = noise(xoff, yoff);
             if (edge){
-              pheight -= falloff(w, h);
+              pheight -= diamondFalloff(w, h);
             }
-            
-            
-           
-            //println(pheight);
             if (pheight > (cutoff / 100.0f)){
-              pixels[h * 1000 + w] = getColor(pheight);
+              terrainMap[h][w][0] = pheight;
             }
             else{
-              pixels[h * 1000 + w] = seaC;
+              terrainMap[h][w][0] = cutoff / 100.0f;
             }
+            
+            //Tempcalculation
+            terrainMap[h][w][1] = (horizontalFalloff(h) /2) - (pheight); //Hotter at the equator but gets colder the higher altitude you get
+            
+            //Debug logging
+            debugHeightRange(terrainMap[h][w][0]);
+            debugTempRange(terrainMap[h][w][1]);
+            
             xoff += (intensity / 1000.0f);
         }
         yoff += (intensity / 1000.0f);
     }
-    updatePixels();
 }
 
 public void seed(){
    seed = (long)random(0, 10000);
 }
 
-public float falloff(int w, int h){
+public float diamondFalloff(int w, int h){
     int wCoord = w - (width / 2);
     int hCoord = h - (height / 2);
-    
-    float edgeFalloff = (abs(wCoord) + abs(hCoord)) / 1000.0;
-    //println (edgeFalloff);
-    return edgeFalloff;
+    return (abs(wCoord) + abs(hCoord)) / 1000.0;
 }
-int offset;
+
+public float horizontalFalloff(int h){
+    int hCoord = h - (height / 2);
+    return abs(hCoord) / 1000.0;
+}
