@@ -72,7 +72,8 @@ public void simulateRainHorizontally(){
             else if (terrainMap[h][w][0] >= (cutoff / 100.0f)){//If is land and humidity isn't already 0
                 if(terrainMap[h][w][2] > 0.00f){
                   //Code for humidity decrease
-                  terrainMap[h][w + 1][2] = terrainMap[h][w][2] - 0.001f; //Decrease humidty in the tile to the right
+                  terrainMap[h][w + 1][2] = terrainMap[h][w][2] - (0.001f * (terrainMap[h][w][0] * 2 +  (1- terrainMap[h][w][1]) * 4)); //Decrease humidty in the tile to the right
+                                                                  //Base *   terrainheight       modif  invertet terrain temp    modif
                 }
                 else{
                   //println(w);
