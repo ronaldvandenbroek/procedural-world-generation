@@ -93,3 +93,7 @@ void refresh(){
       drawMap();
       information();
 }
+
+void mousePressed(){
+  pixelInfo();
+}

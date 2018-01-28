@@ -20,6 +20,7 @@ public void information(){
       writeTextRight("Seed:" + seed);
       writeTextRight("HeightRange:[" + minHeight + "][" + maxHeight + "]");
       writeTextRight("TempRange:[" + minTemp + "][" + maxTemp + "]");
+      writeTextRight("HumRange:[" + minHum + "][" + maxHum + "]");
   }
 }
 
@@ -31,4 +32,16 @@ public void writeTextLeft(String string){
 public void writeTextRight(String string){
   offset += 20;
   text(string,1000,offset);
+}
+
+public void pixelInfo(){
+  
+  textFont(font);       
+  fill(textC);
+  int xM = mouseX;
+  int yM = mouseY;
+
+  ellipse( xM, yM, 2, 2 );
+  textAlign(LEFT);
+  text( "x: " + xM + " y: " + yM + " z:" + terrainMap[yM][xM][0]+ " t:" + terrainMap[yM][xM][1] + " h:" + terrainMap[yM][xM][2], xM + 2, yM );
 }

@@ -78,6 +78,7 @@ public void simulateRainHorizontally(){
                   terrainMap[h][w + 1][2] = 0.00; //Set min humidty in the tile to the right
                 }
             }
+            debugHumRange(terrainMap[h][w][2]);
         }
     }
 }
