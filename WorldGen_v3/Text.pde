@@ -36,12 +36,12 @@ public void writeTextRight(String string){
 
 public void pixelInfo(){
   
-  textFont(font);       
+  textFont(fontSmall);       
   fill(textC);
   int xM = mouseX;
   int yM = mouseY;
 
   ellipse( xM, yM, 2, 2 );
   textAlign(LEFT);
-  text( "x: " + xM + " y: " + yM + " z:" + terrainMap[yM][xM][0]+ " t:" + terrainMap[yM][xM][1] + " h:" + terrainMap[yM][xM][2], xM + 2, yM );
+  text( "x: " + xM + " y: " + yM + " z:" + nf(terrainMap[yM][xM][0],1,2)+ " t:" + nf(terrainMap[yM][xM][1],1,2) + " h:" + nf(terrainMap[yM][xM][2],1,2) + " b:" + terrainMap[yM][xM][3], xM + 2, yM );
 }

@@ -79,7 +79,7 @@ public void simulateRainHorizontally(){
             else if (terrainMap[h][w][0] >= (cutoff / 100.0f)){//If is land and humidity isn't already 0
                 if(terrainMap[h][w][2] > 0.00f){
                   //Code for humidity decrease
-                  terrainMap[h][w + 1][2] = terrainMap[h][w][2] - (0.001f * (terrainMap[h][w][0] * 2 +  (1- terrainMap[h][w][1]) * 4)); //Decrease humidty in the tile to the right
+                  terrainMap[h][w + 1][2] = terrainMap[h][w][2] - (0.002f * (terrainMap[h][w][0] * 4 +  (1- terrainMap[h][w][1]) * 1)); //Decrease humidty in the tile to the right
                                                                   //Base *   terrainheight       modif  invertet terrain temp    modif
                 }
                 else{
@@ -110,7 +110,7 @@ public void calculateBiomes(){
                 else if (terrainMap[h][w][2] > 0.3){    //Average
                    terrainMap[h][w][3] = 4;}              //Savanna
                 else{                                  //Dry
-                  terrainMap[h][w][3] = 4;}               //Desert
+                  terrainMap[h][w][3] = 7;}               //Desert
             }
             else if (terrainMap[h][w][1] > 0.3){      //Temperate
                 if(terrainMap[h][w][2] > 0.7){          //Wet
@@ -118,13 +118,13 @@ public void calculateBiomes(){
                 else if (terrainMap[h][w][2] > 0.3){    //Average
                    terrainMap[h][w][3] = 5;}              //Temperate forest
                 else{                                  //Dry
-                  terrainMap[h][w][3] = 8;}              //Plaines
+                  terrainMap[h][w][3] = 8;}              //Plains
             }
             else{                                     //Cold
                if(terrainMap[h][w][2] > 0.7){          //Wet
                   terrainMap[h][w][3] = 3;}                //Artic
                 else if (terrainMap[h][w][2] > 0.3){    //Average
-                   terrainMap[h][w][3] = 5;}              //Tundra
+                   terrainMap[h][w][3] = 6;}              //Tundra
                 else{                                  //Dry
                   terrainMap[h][w][3] = 9;}              //Wasteland
             }

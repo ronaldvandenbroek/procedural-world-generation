@@ -6,6 +6,8 @@ float[][][] terrainMap;
 //      3 = biome
 
 PFont font;
+PFont fontSmall;
+PImage biomes;
 
 //Default starting values
 long seed = 3045;
@@ -28,6 +30,9 @@ int displayType = 1;
 public void setup() {
     size(1000, 1000);
     font = createFont("Arial",22,true);
+    fontSmall = createFont("Arial",12,true);
+    biomes = loadImage("Biomes.bmp");
+    biomes.loadPixels();
     //seed(); //Not needed if there is a default seed
     refresh();
 }
