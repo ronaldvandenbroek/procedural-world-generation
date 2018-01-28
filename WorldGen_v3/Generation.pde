@@ -1,10 +1,32 @@
    public void generate(){
     noiseSeed(seed);
     noiseDetail(octaves, falloff / 10.0f);
-    terrainMap = new float[height][width][3];
+    terrainMap = new float[height][width][4];
     debugReset();
     
-    float yoff = 0;
+    calculateHeightAndTemp();
+    simulateRainHorizontally();
+    calculateBiomes();
+}
+
+public void seed(){
+   seed = (long)random(0, 10000);
+}
+
+public float diamondFalloff(int w, int h){
+    int wCoord = w - (width / 2);
+    int hCoord = h - (height / 2);
+    return (abs(wCoord) + abs(hCoord)) / 1000.0;
+}
+
+public float horizontalFalloff(int h){
+    int hCoord = h - (height / 2);
+    return abs(hCoord) / 180.0;
+}
+
+
+public void calculateHeightAndTemp() {
+float yoff = 0;
     for (int h = 0; h < height; h++) {
         float xoff = 0;
         for (int w = 0; w < width; w++) {
@@ -34,23 +56,8 @@
         }
         yoff += (intensity / 1000.0f);
     }
-    simulateRainHorizontally();
 }
 
-public void seed(){
-   seed = (long)random(0, 10000);
-}
-
-public float diamondFalloff(int w, int h){
-    int wCoord = w - (width / 2);
-    int hCoord = h - (height / 2);
-    return (abs(wCoord) + abs(hCoord)) / 1000.0;
-}
-
-public float horizontalFalloff(int h){
-    int hCoord = h - (height / 2);
-    return abs(hCoord) / 180.0;
-}
 
 public void simulateRainHorizontally(){
     //Set initial humidity
@@ -81,6 +88,47 @@ public void simulateRainHorizontally(){
                 }
             }
             debugHumRange(terrainMap[h][w][2]);
+        }
+    }
+}
+
+public void calculateBiomes(){
+    //get Temp
+    //get Hum
+    //set Biome
+  
+    //Move humidity from left to right
+    for (int h = 0; h < (height - 1); h++) {
+        for (int w = 0; w < (width - 1); w++) {
+          if(terrainMap[h][w][0] == cutoff / 100.0f){
+            terrainMap[h][w][3] = 0;                   //Sea
+          }
+          else{
+            if(terrainMap[h][w][1] > 0.7){            //Hot
+                if(terrainMap[h][w][2] > 0.7){          //Wet
+                  terrainMap[h][w][3] = 1;}                //Rainforest
+                else if (terrainMap[h][w][2] > 0.3){    //Average
+                   terrainMap[h][w][3] = 4;}              //Savanna
+                else{                                  //Dry
+                  terrainMap[h][w][3] = 4;}               //Desert
+            }
+            else if (terrainMap[h][w][1] > 0.3){      //Temperate
+                if(terrainMap[h][w][2] > 0.7){          //Wet
+                  terrainMap[h][w][3] = 2;}                //Swamp
+                else if (terrainMap[h][w][2] > 0.3){    //Average
+                   terrainMap[h][w][3] = 5;}              //Temperate forest
+                else{                                  //Dry
+                  terrainMap[h][w][3] = 8;}              //Plaines
+            }
+            else{                                     //Cold
+               if(terrainMap[h][w][2] > 0.7){          //Wet
+                  terrainMap[h][w][3] = 3;}                //Artic
+                else if (terrainMap[h][w][2] > 0.3){    //Average
+                   terrainMap[h][w][3] = 5;}              //Tundra
+                else{                                  //Dry
+                  terrainMap[h][w][3] = 9;}              //Wasteland
+            }
+          }
         }
     }
 }

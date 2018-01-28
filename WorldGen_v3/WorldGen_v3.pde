@@ -3,6 +3,7 @@ float[][][] terrainMap;
 //      0 = height
 //      1 = temperature
 //      2 = humidity
+//      3 = biome
 
 PFont font;
 
@@ -22,6 +23,7 @@ int displayType = 1;
 //1 = heightmap
 //2 = tempmap
 //3 = humiditymap
+//4 = biome
 
 public void setup() {
     size(1000, 1000);
@@ -45,6 +47,9 @@ public void keyPressed(){
         case '3': //Renew
             displayType = 3;
             break;
+         case '4': //Renew
+            displayType = 4;
+            break;           
         case 'q': //Renew
             seed();
             break;
