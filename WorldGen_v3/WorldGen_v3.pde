@@ -10,7 +10,7 @@ PFont fontSmall;
 PImage biomes;
 
 //Default starting values
-long seed = 3045;
+long seed = 2254;
 int intensity = 3;
 int octaves = 8;
 int falloff = 7;
