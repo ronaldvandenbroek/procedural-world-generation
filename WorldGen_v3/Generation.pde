@@ -12,6 +12,12 @@ public void seed(){
    seed = (long)random(0, 10000);
 }
 
+public float circularFalloff(int w, int h){
+    int wCoord = w - (width / 2);
+    int hCoord = h - (height / 2);
+    return sqrt(sq(wCoord) + sq(hCoord)) / 800.0;
+}
+
 public float diamondFalloff(int w, int h){
     int wCoord = w - (width / 2);
     int hCoord = h - (height / 2);
@@ -32,7 +38,7 @@ float yoff = 0;
             //Heightcalculation
            float pheight = noise(xoff, yoff);
             if (edge){
-              pheight -= diamondFalloff(w, h);
+              pheight -= circularFalloff(w, h);
             }
             if(terrainCurving){
               pheight = pow((pheight - 0.09), 5) + 0.2;
