@@ -1,12 +1,11 @@
    public void generate(){
     noiseSeed(seed);
     noiseDetail(octaves, falloff / 10.0f);
-    terrainMap = new float[height][width][4];
+    terrainMap = new float[height][width][3];
     debugReset();
     
     calculateHeightAndTemp();
     simulateRainHorizontally();
-    calculateBiomes();
 }
 
 public void seed(){
@@ -88,47 +87,6 @@ public void simulateRainHorizontally(){
                 }
             }
             debugHumRange(terrainMap[h][w][2]);
-        }
-    }
-}
-
-public void calculateBiomes(){
-    //get Temp
-    //get Hum
-    //set Biome
-  
-    //Move humidity from left to right
-    for (int h = 0; h < (height - 1); h++) {
-        for (int w = 0; w < (width - 1); w++) {
-          if(terrainMap[h][w][0] == cutoff / 100.0f){
-            terrainMap[h][w][3] = 0;                   //Sea
-          }
-          else{
-            if(terrainMap[h][w][1] > 0.7){            //Hot
-                if(terrainMap[h][w][2] > 0.7){          //Wet
-                  terrainMap[h][w][3] = 1;}                //Rainforest
-                else if (terrainMap[h][w][2] > 0.3){    //Average
-                   terrainMap[h][w][3] = 4;}              //Savanna
-                else{                                  //Dry
-                  terrainMap[h][w][3] = 7;}               //Desert
-            }
-            else if (terrainMap[h][w][1] > 0.3){      //Temperate
-                if(terrainMap[h][w][2] > 0.7){          //Wet
-                  terrainMap[h][w][3] = 2;}                //Swamp
-                else if (terrainMap[h][w][2] > 0.3){    //Average
-                   terrainMap[h][w][3] = 5;}              //Temperate forest
-                else{                                  //Dry
-                  terrainMap[h][w][3] = 8;}              //Plains
-            }
-            else{                                     //Cold
-               if(terrainMap[h][w][2] > 0.7){          //Wet
-                  terrainMap[h][w][3] = 3;}                //Artic
-                else if (terrainMap[h][w][2] > 0.3){    //Average
-                   terrainMap[h][w][3] = 6;}              //Tundra
-                else{                                  //Dry
-                  terrainMap[h][w][3] = 9;}              //Wasteland
-            }
-          }
         }
     }
 }
