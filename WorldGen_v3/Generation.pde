@@ -62,20 +62,21 @@ public void simulateRainHorizontally(){
     for (int h = 0; h < (height - 1); h++) {
         for (int w = 0; w < (width - 1); w++) {
             if(terrainMap[h][w][0] <= (cutoff / 100.0f)){//If is water and humidity isn't already max
-                if(terrainMap[h][w][2] < 1.00){
-                  terrainMap[h][w + 1][2] += 0.01; //Increase humidty in the tile to the right
+                if(terrainMap[h][w][2] < 1.00f){
+                  terrainMap[h][w + 1][2] = terrainMap[h][w][2] + 0.001f; //Increase humidty in the tile to the right
                 }
                 else{
-                  terrainMap[h][w + 1][2] = 1.00; //Set max humidty in the tile to the right
+                  terrainMap[h][w + 1][2] = terrainMap[h][w][2]; //Set max humidty in the tile to the right
                 }
             }
             else if (terrainMap[h][w][0] >= (cutoff / 100.0f)){//If is land and humidity isn't already 0
-                if(terrainMap[h][w][2] > 0.00){
+                if(terrainMap[h][w][2] > 0.00f){
                   //Code for humidity decrease
-                  terrainMap[h][w + 1][2] -= 0.01; //Decrease humidty in the tile to the right
+                  terrainMap[h][w + 1][2] = terrainMap[h][w][2] - 0.001f; //Decrease humidty in the tile to the right
                 }
                 else{
-                  terrainMap[h][w + 1][2] = 0.00; //Set min humidty in the tile to the right
+                  //println(w);
+                  terrainMap[h][w + 1][2] = terrainMap[h][w][2]; //Set min humidty in the tile to the right
                 }
             }
             debugHumRange(terrainMap[h][w][2]);

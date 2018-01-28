@@ -3,7 +3,7 @@ color topHeight = color(55, 58, 58);
 color baseTemp = color(151, 237, 252);
 color topTemp = color(255, 161, 0);
 color baseHum = color(151, 237, 252);
-color topHum = color(232, 237, 252);
+color topHum = color(0, 60, 242);
 
 color seaC = color(85, 155, 168);
 color textC = color(0);
