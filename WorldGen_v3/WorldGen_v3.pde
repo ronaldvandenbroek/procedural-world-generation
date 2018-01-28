@@ -21,6 +21,7 @@ boolean terrainCurving = true;
 int displayType = 1;
 //1 = heightmap
 //2 = tempmap
+//3 = humiditymap
 
 public void setup() {
     size(1000, 1000);
@@ -40,6 +41,9 @@ public void keyPressed(){
             break;
         case '2': //Renew
             displayType = 2;
+            break;
+        case '3': //Renew
+            displayType = 3;
             break;
         case 'q': //Renew
             seed();
