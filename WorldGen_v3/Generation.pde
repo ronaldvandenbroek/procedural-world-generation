@@ -1,11 +1,16 @@
    public void generate(){
 
-    terrainMap = new float[height][width][3];
+    terrainMap = new float[height][width][4];
     debugReset();
     
+    println("Ridges");
     calculateRidges();
+    println("Height + Temp");
     calculateHeightAndTemp();
-    simulateRainHorizontally();
+    println("Humidity");
+    simulateRain();
+    println("Pressure");
+    simulatePressure();
 }
 
 public void seed(){
@@ -89,7 +94,7 @@ float yoff = 0;
 }
 
 
-public void simulateRainHorizontally(){
+public void simulateRain(){
     //Set initial humidity
     for (int h = 0; h < (height); h++) {
          terrainMap[h][0][2] = 1.00;
@@ -211,4 +216,50 @@ boolean isAtEndWidth(int w, int wStart){
     }
     return false;
   }
+}
+
+public void simulatePressure(){
+    //Set initial humidity
+    for (int h = 0; h < (height); h++) {
+         terrainMap[h][0][3] = 0.50;
+    }
+    
+    for (int h = 0; h < height -1; h +=1) {
+      
+        for (int w = 0; w < width - 1; w +=1) {
+          //println(h + " " + w);
+          //Normalising only for every other row
+        if(h % 2 == 0 && h != 0 && h != 999){
+            float pTop = terrainMap[h - 1][w][3];
+            float pMid = terrainMap[h][w][3];
+            float pBot = terrainMap[h + 1][w][3];
+            
+            float flowTopMid = (pTop - pMid) * 0.50;
+            float flowBotMid = (pBot - pMid) * 0.50;
+            //println(flowTopMid + " " + flowBotMid);
+            pTop -= flowTopMid;
+            pMid += flowTopMid;
+            pBot -= flowBotMid;
+            pMid += flowBotMid;
+            
+            terrainMap[h - 1][w + 1][3] = pTop;
+            terrainMap[h][w + 1][3] = pMid;
+            terrainMap[h + 1][w + 1][3] = pBot;
+          }
+          
+          //Height/Pressure Distortion for all rows
+          //float pTop = terrainMap[h - 1][w][3];
+          float pMid = terrainMap[h][w][3];
+          //float pBot = terrainMap[h + 1][w][3];
+          
+          if(terrainMap[h + 1][w][0] > 0.8){
+             if(h != 999 && w != 0 && terrainMap[h + 1][w - 1][0] < 0.8){
+                  terrainMap[h + 1][w - 1][3] += pMid/2;
+              }
+             if(h != 0 && w != 0 && terrainMap[h - 1][w + 1][0] < 0.8){
+                  terrainMap[h - 1][w + 1][3] += pMid/2;
+              }
+          }
+    }
+    }
 }

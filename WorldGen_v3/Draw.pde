@@ -39,5 +39,12 @@ void drawMap(){
             }
         }
       }
+      else if (displayType == 5){//Pressure map
+       for (int h = 0; h < height; h++) {
+        for (int w = 0; w < width; w++) {
+              pixels[h * 1000 + w] = getColorTemp(terrainMap[h][w][3]);
+            }
+        }
+      }
     updatePixels();
 }
