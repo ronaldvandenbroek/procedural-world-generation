@@ -1,6 +1,6 @@
    public void generate(){
 
-    terrainMap = new float[height][width][4];
+    terrainMap = new float[height][width][8];
     debugReset();
     
     println("Ridges");
@@ -8,9 +8,12 @@
     println("Height + Temp");
     calculateHeightAndTemp();
     println("Humidity");
-    simulateRain();
-    println("Pressure");
-    simulatePressure();
+    simulateRain(windDir,  5);
+    simulateRain(remove(windDir, 1, 1, 8), 6);
+    simulateRain(add(windDir, 1, 1, 8), 7);
+    calculateHumidity();
+    //println("Pressure");
+    //simulatePressure();
 }
 
 public void seed(){
@@ -75,11 +78,11 @@ float yoff = 0;
            
             if (pheight > (cutoff / 100.0f)){
               terrainMap[h][w][0] = pheight;
-              terrainMap[h][w][1] = 1.1 - (lerp(horizontalFalloff(h, equatorOffset), pheight, 0.65)); //Hotter at the equator but gets colder the higher altitude you get
+              terrainMap[h][w][1] = 1.1 - (lerp(horizontalFalloff(h, equatorOffset), pheight * 1.2, 0.65)); //Hotter at the equator but gets colder the higher altitude you get
             }
             else{
               terrainMap[h][w][0] = cutoff / 100.0f;
-              terrainMap[h][w][1] = 0.8 - (lerp(horizontalFalloff(h, equatorOffset), pheight, 0.7)); //Water temp (not important for calculations, just used for visual
+              terrainMap[h][w][1] = 0.8 - (lerp(horizontalFalloff(h, equatorOffset), pheight * 1.2, 0.7)); //Water temp (not important for calculations, just used for visual
             }
          
             
@@ -94,15 +97,23 @@ float yoff = 0;
 }
 
 
-public void simulateRain(){
+public void simulateRain(int dir, int pass){
     //Set initial humidity
     for (int h = 0; h < (height); h++) {
-         terrainMap[h][0][2] = 1.00;
-         terrainMap[h][999][2] = 1.00;
+         terrainMap[h][0][5] = 1.00;
+         terrainMap[h][999][5] = 1.00;
+         terrainMap[h][0][6] = 1.00;
+         terrainMap[h][999][6] = 1.00;
+         terrainMap[h][0][7] = 1.00;
+         terrainMap[h][999][7] = 1.00;
     }
     for (int w = 0; w < (width); w++) {
-            terrainMap[0][w][2] = 1.00;
-            terrainMap[999][w][2] = 1.00;
+         terrainMap[0]  [w][5] = 1.00;
+         terrainMap[999][w][5] = 1.00;
+         terrainMap[0]  [w][6] = 1.00;
+         terrainMap[999][w][6] = 1.00;
+         terrainMap[0]  [w][7] = 1.00;
+         terrainMap[999][w][7] = 1.00;
     }
     
     int wDir = 0;
@@ -111,7 +122,7 @@ public void simulateRain(){
     int hCount = 1;
     int wStart = 0;
     int hStart = 0;
-    switch(windDir){
+    switch(dir){
         case 1:
           wDir = 1;
           break;
@@ -157,7 +168,7 @@ public void simulateRain(){
     
     //println("int h = " + hStart + "; h = h +" + hCount);
     //println("int w = " + wStart + "; w = w +" + wCount);
-    //println("hDir = " + hDir + "; wDir = " + wDir);
+   println("dir = " + dir + "; hDir = " + hDir + "; wDir = " + wDir + "; cutoff = " + cutoff / 100.0f);
     
     //Move humidity from left to right
     for (int h = hStart; isAtEndHeight(h, hStart); h = h + hCount) {
@@ -165,25 +176,24 @@ public void simulateRain(){
         for (int w = wStart; isAtEndWidth(w, wStart); w = w + wCount) {
           //println("w = " + w);
             if(terrainMap[h][w][0] <= (cutoff / 100.0f)){//If is water and humidity isn't already max
-                if(terrainMap[h][w][2] < 1.00f){
-                  terrainMap[h + hDir][w + wDir][2] = terrainMap[h][w][2] + 0.001f; //Increase humidty in the tile to the right
+                if(terrainMap[h][w][pass] < (1.00f)){
+                  terrainMap[h + hDir][w + wDir][pass] = terrainMap[h][w][pass] + (0.0005f); //Increase humidty in the tile to the right
                 }
                 else{
-                  terrainMap[h + hDir][w + wDir][2] = terrainMap[h][w][2]; //Set max humidty in the tile to the right
+                  terrainMap[h + hDir][w + wDir][pass] = terrainMap[h][w][pass]; //Set max humidty in the tile to the right
                 }
             }
             else if (terrainMap[h][w][0] >= (cutoff / 100.0f)){//If is land and humidity isn't already 0
-                if(terrainMap[h][w][2] > 0.00f){
+                if(terrainMap[h][w][pass] > 0.00f){
                   //Code for humidity decrease
-                  terrainMap[h + hDir][w + wDir][2] = terrainMap[h][w][2] - (0.002f * (terrainMap[h][w][0] * 4 +  (1- terrainMap[h][w][1]) * 1)); //Decrease humidty in the tile to the right
+                  terrainMap[h + hDir][w + wDir][pass] = terrainMap[h][w][pass] - ((0.0025f * (terrainMap[h][w][0] * 4 +  (1- terrainMap[h][w][1]) * 1))); //Decrease humidty in the tile to the right
                                                                   //Base *   terrainheight       modif  invertet terrain temp    modif
                 }
                 else{
-                  //println(w);
-                  terrainMap[h + hDir][w + wDir][2] = terrainMap[h][w][2]; //Set min humidty in the tile to the right
+                  terrainMap[h + hDir][w + wDir][pass] = terrainMap[h][w][pass]; //Set min humidty in the tile to the right
                 }
             }
-            debugHumRange(terrainMap[h][w][2]);
+            //debugHumRange(terrainMap[h][w][2]);
         }
     }
 }
@@ -216,6 +226,32 @@ boolean isAtEndWidth(int w, int wStart){
     }
     return false;
   }
+}
+
+void calculateHumidity(){
+    noiseDetail(octavesRidge, falloffRidge / 10.0f);
+    float yoff = 0;
+    for (int h = 0; h < height -1; h +=1) {
+      float xoff = 0;
+      for (int w = 0; w < width - 1; w +=1) {
+        float total = (terrainMap[h][w][5] * 0.60) + (terrainMap[h][w][6] * 0.20) + (terrainMap[h][w][7] * 0.20);
+        if(rainSmoothing){
+           total = lerp(total, noise(xoff, yoff), 0.30);
+        }
+        if(total > 0.99){
+          terrainMap[h][w][2] = 0.99;
+        }
+        else if(total < 0.00){
+          terrainMap[h][w][2] = 0.00;
+        }
+        else{
+          terrainMap[h][w][2] = total;
+        }
+        xoff += (intensity / 1000.0f);
+      }
+      yoff += (intensity / 1000.0f);
+    }
+ 
 }
 
 public void simulatePressure(){

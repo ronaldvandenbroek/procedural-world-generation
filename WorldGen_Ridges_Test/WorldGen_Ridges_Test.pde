@@ -1,7 +1,7 @@
 float[][] terrainMap; 
 int intensity = 3;
-int octaves = 3;
-int falloff = 7;
+int octaves = 4;
+int falloff = 3;
 
 public void setup() {
     size(1000, 1000);
@@ -18,6 +18,11 @@ public void keyPressed(){
       switch (key) {
         case '1': //Renew
         gen_ridges();
+        break;  
+      }
+      switch (key) {
+        case '2': //Renew
+        gen_smooth_perlin();
         break;  
       }
 }

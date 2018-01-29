@@ -2,9 +2,12 @@ float[][][] terrainMap;
 //y, x, type
 //      0 = height
 //      1 = temperature
-//      2 = humidity
+//      2 = humidityFinal
 //      3 = biome
-//      4 = humidity/wind v2
+//      4 = humidity/wind v2]
+//      5 = humidityPass1
+//      6 = humidityPass2
+//      7 = humidityPass3
 
 PFont font;
 PFont fontSmall;
@@ -27,6 +30,7 @@ boolean edge = true;
 boolean greyScale = false;
 boolean debug = false;
 boolean terrainCurving = true;
+boolean rainSmoothing = false;
 
 int displayType = 1;
 //1 = heightmap
@@ -34,6 +38,7 @@ int displayType = 1;
 //3 = humiditymap
 //4 = biome
 //5 = humidity/wind v2
+//6 = 
 
 public void setup() {
     size(1000, 1000);
@@ -66,6 +71,15 @@ public void keyPressed(){
         case '5': //Renew
             displayType = 5;
             break;       
+        case '6': //Renew
+            displayType = 6;
+            break;  
+       case '7': //Renew
+            displayType = 7;
+            break;  
+       case '8': //Renew
+            displayType = 8;
+            break;
         case 'q': //Renew
             seed();
             break;
@@ -81,6 +95,9 @@ public void keyPressed(){
       case 'z': //Renew
             greyScale = !greyScale;        
             break;
+     case 'v': //Renew
+            rainSmoothing = !rainSmoothing;        
+            break;          
        case 'w': //Renew
             intensity = add(intensity, 1);
             break;
@@ -135,4 +152,8 @@ void refresh(){
 
 void mousePressed(){
   pixelInfo();
+}
+
+void mouseMoved(){
+  pixelInfoLive();
 }

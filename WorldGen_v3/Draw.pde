@@ -46,5 +46,26 @@ void drawMap(){
             }
         }
       }
+         else if (displayType == 6){//Hum map
+       for (int h = 0; h < height; h++) {
+        for (int w = 0; w < width; w++) {
+              pixels[h * 1000 + w] = getColorHum(terrainMap[h][w][5]);
+        }
+      }
+    }
+       else if (displayType == 7){//Hum map
+       for (int h = 0; h < height; h++) {
+        for (int w = 0; w < width; w++) {
+              pixels[h * 1000 + w] = getColorHum(terrainMap[h][w][6]);
+        }
+      }
+    }
+       else if (displayType == 8){//Hum map
+       for (int h = 0; h < height; h++) {
+        for (int w = 0; w < width; w++) {
+              pixels[h * 1000 + w] = getColorHum(terrainMap[h][w][7]);
+        }
+      }
+    }
     updatePixels();
 }
