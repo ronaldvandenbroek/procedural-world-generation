@@ -9,6 +9,8 @@ public void information(){
   writeTextLeft("E/D| Octaves:" + octaves);
   writeTextLeft("R/F| Falloff:" + falloff / 10.0f);
   writeTextLeft("T/G| Cutoff:" + cutoff / 100.0f);
+  writeTextLeft("Y/H| WindDir:" + windDir);
+  writeTextLeft("U/J| EquatorOffset:" + equatorOffset);
   writeTextLeft("A| Egde:" + edge);
   writeTextLeft("Z| GreyScale:" + greyScale);
   writeTextLeft("X| Debug:" + debug);
@@ -25,12 +27,12 @@ public void information(){
 }
 
 public void writeTextLeft(String string){
-  offset += 20;
+  offset += 18;
   text(string,0,offset);
 }
 
 public void writeTextRight(String string){
-  offset += 20;
+  offset += 18;
   text(string,1000,offset);
 }
 

@@ -10,11 +10,13 @@ PFont fontSmall;
 PImage biomes;
 
 //Default starting values
-long seed = 2254;
+long seed = 4648;
 int intensity = 3;
 int octaves = 8;
 int falloff = 7;
 int cutoff = 21;
+int windDir = 8;
+int equatorOffset = 0;
 
 boolean edge = true;
 boolean greyScale = false;
@@ -29,7 +31,7 @@ int displayType = 1;
 
 public void setup() {
     size(1000, 1000);
-    font = createFont("Arial",22,true);
+    font = createFont("Arial",18,true);
     fontSmall = createFont("Arial",12,true);
     biomes = loadImage("Biomes.bmp");
     biomes.loadPixels();
@@ -93,7 +95,19 @@ public void keyPressed(){
             break;
       case 'g': //Renew
             cutoff = remove(cutoff, 1, 1);        
-            break;            
+            break;
+      case 'y': //Renew
+            windDir = add(windDir, 1, 1, 8);      
+            break;
+     case 'h': //Renew
+            windDir = remove(windDir, 1, 1, 8);           
+            break;     
+      case 'u': //Renew
+            equatorOffset += 10;  
+            break;
+     case 'j': //Renew
+            equatorOffset -= 10;          
+            break;     
       }
       refresh();
 }
