@@ -12,6 +12,7 @@ float[][][] terrainMap;
 PFont font;
 PFont fontSmall;
 PImage biomes;
+PImage[] biomeIcons = new PImage[8];
 
 //Default starting values
 long seed = 4648;
@@ -35,16 +36,20 @@ boolean rainSmoothing = false;
 int displayType = 1;
 //1 = heightmap
 //2 = tempmap
-//3 = humiditymap
+//3 = total humiditymap
 //4 = biome
 //5 = humidity/wind v2
-//6 = 
+//6 = primary humiditymap
+//7 = secondary left humiditymap
+//8 = secondary right humiditymap
+//9 = icon
 
 public void setup() {
     size(1000, 1000);
     font = createFont("Arial",18,true);
     fontSmall = createFont("Arial",12,true);
-    biomes = loadImage("Biomes.bmp");
+    biomeIcons[0] = loadImage("Jungle_Tree_Color_50.png");
+    biomes = loadImage("BiomesV2.bmp");
     biomes.loadPixels();
     //seed(); //Not needed if there is a default seed
     refresh();
@@ -56,88 +61,91 @@ public void draw() {
 
 public void keyPressed(){
       switch (key) {
-        case '1': //Renew
+        case '1': 
             displayType = 1;
             break;
-        case '2': //Renew
+        case '2': 
             displayType = 2;
             break;
-        case '3': //Renew
+        case '3': 
             displayType = 3;
             break;
-         case '4': //Renew
+         case '4': 
             displayType = 4;
             break;  
-        case '5': //Renew
+        case '5': 
             displayType = 5;
             break;       
-        case '6': //Renew
+        case '6': 
             displayType = 6;
             break;  
-       case '7': //Renew
+       case '7': 
             displayType = 7;
             break;  
-       case '8': //Renew
+       case '8': 
             displayType = 8;
             break;
-        case 'q': //Renew
+       case '9': 
+            displayType = 9;
+            break;     
+        case 'q': 
             seed();
             break;
-      case 'a': //Renew
+      case 'a': 
             edge = !edge;        
             break; 
-       case 'x': //Renew
+       case 'x': 
             debug = !debug;        
             break;   
-      case 'c': //Renew
+      case 'c': 
             terrainCurving = !terrainCurving;        
             break;        
-      case 'z': //Renew
+      case 'z': 
             greyScale = !greyScale;        
             break;
-     case 'v': //Renew
+     case 'v': 
             rainSmoothing = !rainSmoothing;        
             break;          
-       case 'w': //Renew
+       case 'w': 
             intensity = add(intensity, 1);
             break;
-       case 's': //Renew
+       case 's': 
             intensity = remove(intensity, 1, 1);        
             break;
-      case 'e': //Renew
+      case 'e': 
             octaves = add(octaves, 1);
             break;
-       case 'd': //Renew
+       case 'd': 
             octaves = remove(octaves, 1, 1);           
             break;
-      case 'r': //Renew
+      case 'r': 
             falloff = add(falloff, 1);
             break;
-      case 'f': //Renew
+      case 'f': 
             falloff = remove(falloff, 1, 1);        
             break;    
-      case 't': //Renew
+      case 't': 
             cutoff = add(cutoff, 1);
             break;
-      case 'g': //Renew
+      case 'g': 
             cutoff = remove(cutoff, 1, 1);        
             break;
-      case 'y': //Renew
+      case 'y': 
             windDir = add(windDir, 1, 1, 8);      
             break;
-     case 'h': //Renew
+     case 'h': 
             windDir = remove(windDir, 1, 1, 8);           
             break;     
-      case 'u': //Renew
+      case 'u': 
             equatorOffset += 10;  
             break;
-     case 'j': //Renew
+     case 'j': 
             equatorOffset -= 10;          
             break;     
-     case 'i': //Renew
+     case 'i': 
             ridgeFactor += 1;  
             break;
-     case 'k': //Renew
+     case 'k': 
             ridgeFactor -= 1;          
             break;            
       }

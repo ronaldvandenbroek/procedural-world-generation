@@ -58,8 +58,8 @@ public void calculateRidges() {
 }
 
 public void calculateHeightAndTemp() {
-      noiseSeed(seed);
-    noiseDetail(octaves, falloff / 10.0f);
+noiseSeed(seed);
+noiseDetail(octaves, falloff / 10.0f);
 float yoff = 0;
     for (int h = 0; h < height; h++) {
         float xoff = 0;
