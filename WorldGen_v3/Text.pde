@@ -11,6 +11,7 @@ public void information(){
   writeTextLeft("T/G| Cutoff:" + cutoff / 100.0f);
   writeTextLeft("Y/H| WindDir:" + windDir);
   writeTextLeft("U/J| EquatorOffset:" + equatorOffset);
+  writeTextLeft("I/K| RidgeFactor:" + ridgeFactor);
   writeTextLeft("A| Egde:" + edge);
   writeTextLeft("Z| GreyScale:" + greyScale);
   writeTextLeft("X| Debug:" + debug);

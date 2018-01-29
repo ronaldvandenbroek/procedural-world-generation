@@ -1,9 +1,9 @@
    public void generate(){
-    noiseSeed(seed);
-    noiseDetail(octaves, falloff / 10.0f);
+
     terrainMap = new float[height][width][3];
     debugReset();
     
+    calculateRidges();
     calculateHeightAndTemp();
     simulateRainHorizontally();
 }
@@ -29,20 +29,45 @@ public float horizontalFalloff(int h, int offset){
     return abs(hCoord) / 180.0;
 }
 
+public void calculateRidges() {
+    noiseSeed(seed);
+    noiseDetail(octavesRidge, falloffRidge / 10.0f);
+     float yoff = 0;
+    for (int h = 0; h < height; h++) {
+        float xoff = 0;
+        for (int w = 0; w < width; w++) {
+            //Ridgescalculation
+            
+             float pheight = 1 - abs((noise(xoff, yoff) - 0.7) * -1);
+             pheight -= circularFalloff(w, h);
+             pheight = pow((pheight - 0.09), 5) + 0.2;
+              terrainMap[h][w][0] = pheight;
+            
+            xoff += (intensityRidge / 1000.0f);
+        }
+        yoff += (intensityRidge / 1000.0f);
+    }
+}
 
 public void calculateHeightAndTemp() {
+      noiseSeed(seed);
+    noiseDetail(octaves, falloff / 10.0f);
 float yoff = 0;
     for (int h = 0; h < height; h++) {
         float xoff = 0;
         for (int w = 0; w < width; w++) {
             //Heightcalculation
            float pheight = noise(xoff, yoff);
+           //pheight = pheight + (terrainMap[h][w][0] * (ridgeFactor/10.0));
+           //pheight = lerp(pheight, terrainMap[h][w][0], ridgeFactor/10.0);
             if (edge){
               pheight -= circularFalloff(w, h);
             }
             if(terrainCurving){
               pheight = pow((pheight - 0.09), 5) + 0.2;
            } 
+             pheight = lerp(pheight, terrainMap[h][w][0], ridgeFactor/10.0);
+           
             if (pheight > (cutoff / 100.0f)){
               terrainMap[h][w][0] = pheight;
               terrainMap[h][w][1] = 1.1 - (lerp(horizontalFalloff(h, equatorOffset), pheight, 0.65)); //Hotter at the equator but gets colder the higher altitude you get

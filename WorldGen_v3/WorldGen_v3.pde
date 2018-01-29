@@ -14,9 +14,13 @@ long seed = 4648;
 int intensity = 3;
 int octaves = 8;
 int falloff = 7;
+int intensityRidge = 3;
+int octavesRidge = 3;
+int falloffRidge = 7;
 int cutoff = 21;
 int windDir = 8;
 int equatorOffset = 0;
+int ridgeFactor = 28;
 
 boolean edge = true;
 boolean greyScale = false;
@@ -108,6 +112,12 @@ public void keyPressed(){
      case 'j': //Renew
             equatorOffset -= 10;          
             break;     
+     case 'i': //Renew
+            ridgeFactor += 1;  
+            break;
+     case 'k': //Renew
+            ridgeFactor -= 1;          
+            break;            
       }
       refresh();
 }
