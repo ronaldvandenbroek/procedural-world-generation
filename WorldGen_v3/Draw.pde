@@ -33,15 +33,7 @@ void drawMap(){
             pixels[h * 1000 + w] = seaC;
           }
           else{
-              float fHum = terrainMap[h][w][2];
-              float fTem = terrainMap[h][w][1];
-              if(fHum < 0){fHum = 0;};
-              if(fHum > 1){fHum = 1;};
-              if(fTem < 0){fTem = 0;};
-              if(fTem > 1){fTem = 1;};
-              int hum = (int)map(fHum, 0, 1, 0, 50);
-              int tem = (int)map(fTem, 0, 1, 0, 50);
-              pixels[h * 1000 + w] = biomes.get(tem, hum);
+              pixels[h * 1000 + w] = getColorBiome(terrainMap[h][w][1],terrainMap[h][w][2]);
           }
 
             }
