@@ -35,8 +35,7 @@ void drawMap(){
           else{
               pixels[h * 1000 + w] = getColorBiome(terrainMap[h][w][1],terrainMap[h][w][2]);
           }
-
-            }
+          }
         }
       }
       else if (displayType == 5){//Pressure map
@@ -67,5 +66,19 @@ void drawMap(){
         }
       }
     }
+    else if (displayType == 9){//Icon test
+      for (int h = 0; h < height; h++) {
+        for (int w = 0; w < width; w++) {
+          if(terrainMap[h][w][0] == cutoff / 100.0f){
+            pixels[h * 1000 + w] = seaC;
+          }
+          else{
+              pixels[h * 1000 + w] = getColorBiome(terrainMap[h][w][1],terrainMap[h][w][2]);
+          }
+          }
+        }
+      }
     updatePixels();
+    
+
 }

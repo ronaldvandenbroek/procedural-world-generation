@@ -32,6 +32,7 @@ boolean greyScale = false;
 boolean debug = false;
 boolean terrainCurving = true;
 boolean rainSmoothing = false;
+boolean runOnce = false;
 
 int displayType = 1;
 //1 = heightmap
@@ -48,15 +49,41 @@ public void setup() {
     size(1000, 1000);
     font = createFont("Arial",18,true);
     fontSmall = createFont("Arial",12,true);
-    biomeIcons[0] = loadImage("Jungle_Tree_Color_50.png");
-    biomes = loadImage("BiomesV2.bmp");
+    biomeIcons[0] = loadImage("Icons\\Grass.png");
+    biomes = loadImage("Color\\BiomesV2.bmp");
     biomes.loadPixels();
     //seed(); //Not needed if there is a default seed
     refresh();
+    
 }
 
 public void draw() {
-    //
+  //println("?");
+  //background(0);
+    //Grass
+    
+    if(runOnce){
+      
+    for (int h = 0; h < height; h += 40) {
+      for (int w = 0; w < width; w += 40) {
+            if (w < width && h < height){
+              if(terrainMap[h][w][0] > (cutoff / 100.0f)){
+               color biome = getColorBiome(terrainMap[h][w][1],terrainMap[h][w][2]);
+               String bHex = hex(biome);
+               if (bHex.equals("FFC4D888")){
+                   int rh = (int)random(-20, 20);
+                   int rw = (int)random(-20, 20);
+                   if (terrainMap[h + rh][w + rw + 20][0] > cutoff / 100.0f && bHex.equals(hex(getColorBiome(terrainMap[h + rh][w + rw + 20][1],terrainMap[h + rh][w + rw + 20][2])))){
+                       image(biomeIcons[0], w + rw, h + rh);
+                   }
+                }
+              }
+            }
+         }
+    }
+        
+        runOnce = false;
+    }
 }
 
 public void keyPressed(){
@@ -150,6 +177,7 @@ public void keyPressed(){
             break;            
       }
       refresh();
+      runOnce = true;
 }
 
 void refresh(){
