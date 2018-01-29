@@ -12,6 +12,7 @@ float[][][] terrainMap;
 PFont font;
 PFont fontSmall;
 PImage biomes;
+PImage biomesShader;
 PImage[] biomeIcons = new PImage[8];
 
 //Default starting values
@@ -51,6 +52,7 @@ public void setup() {
     fontSmall = createFont("Arial",12,true);
     biomeIcons[0] = loadImage("Icons\\Grass.png");
     biomes = loadImage("Color\\BiomesV2.bmp");
+    biomesShader = loadImage("Color\\BiomesMapShade.bmp");
     biomes.loadPixels();
     //seed(); //Not needed if there is a default seed
     refresh();

@@ -73,7 +73,7 @@ void drawMap(){
             pixels[h * 1000 + w] = seaC;
           }
           else{
-              pixels[h * 1000 + w] = getColorBiome(terrainMap[h][w][1],terrainMap[h][w][2]);
+              pixels[h * 1000 + w] = getColorBiomeShader(terrainMap[h][w][1],terrainMap[h][w][2]);
           }
           }
         }
