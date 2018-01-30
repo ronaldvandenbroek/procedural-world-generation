@@ -35,7 +35,7 @@ boolean greyScale = false;
 boolean debug = false;
 boolean terrainCurving = true;
 boolean rainSmoothing = false;
-boolean runOnce = false;
+boolean runOnce = true;
 
 int displayType = 1;
 //1 = heightmap
@@ -136,9 +136,16 @@ public void draw() {
                     }
                 }
             }
-            runOnce = false;
         }
     }
+    else if (displayType == 0){
+      PImage sea = prep_biome_texture(biomeBlends[0], true, "00000000");
+      PImage grass = prep_biome_texture(biomeBlends[1], false, "FF8DB360");
+      background(255);
+      image(sea,0,0);
+      image(grass,0,0);
+     }
+    runOnce = false;
 }
 
                
