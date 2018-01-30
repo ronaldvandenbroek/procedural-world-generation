@@ -62,6 +62,8 @@ public void setup() {
     biomeIcons[7] = loadImage("Icons\\Cactus.png");
     biomeBlends[0] = createBaseTileFloor(loadImage("Blend\\Water.png"));
     biomeBlends[1] = createBaseTileFloor(loadImage("Blend\\Grass.png"));
+    biomeBlends[2] = createBaseTileFloor(loadImage("Blend\\TempForest.png"));
+    biomeBlends[3] = createBaseTileFloor(loadImage("Blend\\Savanna.png"));
     biomes = loadImage("Color\\BiomesV2.bmp");
     biomesShader = loadImage("Color\\BiomesMapShade.bmp");
     biomes.loadPixels();
@@ -139,11 +141,11 @@ public void draw() {
         }
     }
     else if (displayType == 0){
-      PImage sea = prep_biome_texture(biomeBlends[0], true, "00000000");
-      PImage grass = prep_biome_texture(biomeBlends[1], false, "FF8DB360");
       background(255);
-      image(sea,0,0);
-      image(grass,0,0);
+      image(prep_biome_texture(biomeBlends[0], true, "00000000"),0,0);//Sea
+      image(prep_biome_texture(biomeBlends[1], false, "FF8DB360"),0,0);//Grassland
+      image(prep_biome_texture(biomeBlends[2], false, "FF537B09"),0,0);//Tempforest
+      image(prep_biome_texture(biomeBlends[3], false, "FFBDB25F"),0,0);//Savanna
      }
     runOnce = false;
 }
