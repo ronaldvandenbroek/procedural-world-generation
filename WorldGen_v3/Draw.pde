@@ -79,6 +79,4 @@ void drawMap(){
         }
       }
     updatePixels();
-    
-
 }
