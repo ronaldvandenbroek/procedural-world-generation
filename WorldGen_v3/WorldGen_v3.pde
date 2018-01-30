@@ -14,6 +14,8 @@ PFont fontSmall;
 PImage biomes;
 PImage biomesShader;
 PImage[] biomeIcons = new PImage[8];
+PImage[] biomeBlends = new PImage[8];
+PImage blendBiomes;
 
 //Default starting values
 long seed = 4648;
@@ -58,6 +60,7 @@ public void setup() {
     biomeIcons[5] = loadImage("Icons\\Jungle_Tree.png");
     biomeIcons[6] = loadImage("Icons\\Mediteranian_Tree.png");
     biomeIcons[7] = loadImage("Icons\\Cactus.png");
+    biomeBlends[0] = createBaseTileFloor(loadImage("Blend\\Water.png"));
     biomes = loadImage("Color\\BiomesV2.bmp");
     biomesShader = loadImage("Color\\BiomesMapShade.bmp");
     biomes.loadPixels();
@@ -135,15 +138,29 @@ public void draw() {
                    int rh = (int)random(-20, 20);
                    int rw = (int)random(-20, 20);
                    if (terrainMap[h + rh][w + rw + 20][0] > cutoff / 100.0f && bHex.equals(hex(getColorBiome(terrainMap[h + rh][w + rw + 20][1],terrainMap[h + rh][w + rw + 20][2])))){
-                       image(biomeIcons[6], w + rw, h + rh);
+                       image(biomeIcons[5], w + rw, h + rh);
                    }
                 }
               }
             }
          }
+      }
     }
+    else if (displayType == 0){
+      PImage blendTest = new PImage(width,height);
+      blendTest.loadPixels();
+      for (int h = 0; h < height; h++) {
+        for (int w = 0; w < width; w++) {
+          if(terrainMap[h][w][0] == cutoff / 100.0f){
+            blendTest.pixels[h * 1000 + w] = color(seaC); 
+          }
+          }
+        }
+        blendTest.updatePixels();
+        blendTest.blend(biomeBlends[0],0,0,1000,1000,0,0,1000,1000,DARKEST);
+        image(blendTest,0,0);
+      }
     runOnce = false;
-    }
 }
 
 public void keyPressed(){
@@ -174,7 +191,10 @@ public void keyPressed(){
             break;
        case '9': 
             displayType = 9;
-            break;     
+            break; 
+       case '0': 
+            displayType = 0;
+            break;              
         case 'q': 
             seed();
             break;
