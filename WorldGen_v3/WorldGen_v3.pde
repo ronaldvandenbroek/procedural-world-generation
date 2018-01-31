@@ -14,7 +14,7 @@ PFont fontSmall;
 PImage biomes;
 PImage biomesShader;
 PImage[] biomeIcons = new PImage[8];
-PImage[] biomeBlends = new PImage[8];
+PImage[] biomeBlends = new PImage[12];
 PImage blendBiomes;
 
 //Default starting values
@@ -62,7 +62,7 @@ public void draw() {
   if (runOnce && (displayType == 9 || displayType == 1)) {
     addIcons();
   }
-  else if (displayType == 0){
+  else if (runOnce && displayType == 0){
     drawBiomeTextureMap();
   }
   runOnce = false;
