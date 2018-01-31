@@ -1,7 +1,6 @@
-void drawBiomeTextureMap(boolean newMaps){
-       background(255);
-       if(newMaps){
+void drawBiomeTextureMap(){
           biomeMaps = new PImage[14];
+          biomeMap = new PImage(1000,1000,ARGB);
           println("Loading Sea");
           biomeMaps[0] = prep_biome_texture(biomeBlends[0], true, "00000000");//Sea
           println("Loading Desert");
@@ -31,11 +30,10 @@ void drawBiomeTextureMap(boolean newMaps){
           println("Loading Tundra");
           biomeMaps[13] = prep_biome_texture(biomeBlends[11], false, "FFDDFFF7");//Tundra
           println("Loading Done");
+          for(int i = 0; i < biomeMaps.length; i++){
+             biomeMap.blend(biomeMaps[i], 0, 0, 1000, 1000, 0, 0, 1000, 1000, LIGHTEST);
+          }
        }
-       for(int i = 0; i < biomeMaps.length; i++){
-         image(biomeMaps[i],0,0);
-       }
-}
 
 PImage prep_biome_texture(PImage biomeBlend, boolean sea, String hex){
       //println(hex);

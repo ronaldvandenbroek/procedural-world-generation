@@ -53,6 +53,6 @@ public void pixelInfo(){
 void pixelInfoLive(){
     int xM = mouseX;
     int yM = mouseY;
-    String output = "x: " + xM + " y: " + yM + " z:" + nf(terrainMap[yM][xM][0],1,2)+ " t:" + nf(terrainMap[yM][xM][1],1,2) + " hTot:" + nf(terrainMap[yM][xM][2],1,2) + " h1:" + nf(terrainMap[yM][xM][5],1,2)+ " h2:" + nf(terrainMap[yM][xM][6],1,2)+ " h3:" + nf(terrainMap[yM][xM][7],1,2) + " b:" + hex(getColorBiome(terrainMap[yM][xM][1],terrainMap[yM][xM][2]));
+    String output = "Seed: " + seed + " x: " + xM + " y: " + yM + " xo:" + xo + " yo:" + yo +" zoom: " + zoom +" z:" + nf(terrainMap[yM][xM][0],1,2)+ " t:" + nf(terrainMap[yM][xM][1],1,2) + " hTot:" + nf(terrainMap[yM][xM][2],1,2) + " h1:" + nf(terrainMap[yM][xM][5],1,2)+ " h2:" + nf(terrainMap[yM][xM][6],1,2)+ " h3:" + nf(terrainMap[yM][xM][7],1,2) + " b:" + hex(getColorBiome(terrainMap[yM][xM][1],terrainMap[yM][xM][2])) ;
     surface.setTitle(output);
 }

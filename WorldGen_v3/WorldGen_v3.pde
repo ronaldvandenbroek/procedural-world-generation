@@ -17,6 +17,7 @@ PImage[] biomeIcons = new PImage[8];
 PImage[] biomeBlends = new PImage[12];
 PImage[] biomeMaps = new PImage[14];
 PImage blendBiomes;
+PImage biomeMap;
 
 //Default starting values
 long seed = 4648;
@@ -61,40 +62,44 @@ public void setup() {
   biomes.loadPixels();
   refresh();
     
-  xo = width/2;
-  yo = height/2;
-  smooth();
-  noStroke();
+  xo = 0;
+  yo = 0;
+  noSmooth();
+  //noStroke();
 }
 
 public void draw() {
-  if (runOnce && (displayType == 9 || displayType == 1)) {
+  if (runOnce && displayType == 9) {
     addIcons();
   }
   else if (runOnce && displayType == 0){
-    drawBiomeTextureMap(true);
+    drawBiomeTextureMap();
   }
   runOnce = false;
   if(displayType == 0){
-    translate(xo,yo);
+    translate(width/2, height/2);
     scale(zoom);
-    drawBiomeTextureMap(false);
+    background(255);
+    image(biomeMap,xo -width/2 ,yo-height/2);
   }
 }
  
 public void keyPressed(){
   keyPressedHandling(key);
-  refresh();
 }
 
 void refresh(){
   generate();
   drawMap();
-  information();
+  if(displayType != 0){
+    information();
+  }
 }
 
 void mousePressed(){
-  pixelInfo();
+    if(displayType != 0){
+        pixelInfo();
+    }
 }
 
 void mouseMoved(){
@@ -102,6 +107,13 @@ void mouseMoved(){
 }
 
 void mouseDragged(){
-  xo = xo + (mouseX - pmouseX);
-  yo = yo + (mouseY - pmouseY);
+  xo = xo + ((mouseX - pmouseX) / zoom);
+  yo = yo + ((mouseY - pmouseY)/ zoom);
+}
+
+void mouseWheel(MouseEvent event) {
+  zoom -= event.getCount() / 2.00;
+  if (zoom < 1.00){
+    zoom = 1;
+  }
 }

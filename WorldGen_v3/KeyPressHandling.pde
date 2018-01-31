@@ -1,14 +1,5 @@
 void keyPressedHandling(char pressedKey){
-  if (key == CODED){
-    if (keyCode == UP){
-      zoom += 0.03;
-    }
-    else if (keyCode == DOWN){
-      zoom += 0.03;
-    }
-  }
-  else{
-    switch (pressedKey) {
+switch (pressedKey) {
         case ' ': 
             zoom = 1;
             xo = width/2;
@@ -106,6 +97,5 @@ void keyPressedHandling(char pressedKey){
             break;            
       }
       runOnce = true;
-  }
-  
+      refresh();
 }
