@@ -39,7 +39,7 @@ boolean terrainCurving = true;
 boolean rainSmoothing = false;
 boolean runOnce = true;
 
-int displayType = 1;
+int displayType = 0;
 //1 = heightmap
 //2 = tempmap
 //3 = total humiditymap
