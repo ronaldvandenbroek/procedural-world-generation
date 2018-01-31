@@ -15,6 +15,7 @@ PImage biomes;
 PImage biomesShader;
 PImage[] biomeIcons = new PImage[8];
 PImage[] biomeBlends = new PImage[12];
+PImage[] biomeMaps = new PImage[14];
 PImage blendBiomes;
 
 //Default starting values
@@ -48,6 +49,10 @@ int displayType = 1;
 //8 = secondary right humiditymap
 //9 = icon
 
+float xo;
+float yo;
+float zoom = 1;
+
 public void setup() {
   size(1000, 1000);
   font = createFont("Arial",18,true);
@@ -56,6 +61,10 @@ public void setup() {
   biomes.loadPixels();
   refresh();
     
+  xo = width/2;
+  yo = height/2;
+  smooth();
+  noStroke();
 }
 
 public void draw() {
@@ -63,15 +72,19 @@ public void draw() {
     addIcons();
   }
   else if (runOnce && displayType == 0){
-    drawBiomeTextureMap();
+    drawBiomeTextureMap(true);
   }
   runOnce = false;
+  if(displayType == 0){
+    translate(xo,yo);
+    scale(zoom);
+    drawBiomeTextureMap(false);
+  }
 }
  
 public void keyPressed(){
   keyPressedHandling(key);
   refresh();
-  runOnce = true;
 }
 
 void refresh(){
@@ -86,4 +99,9 @@ void mousePressed(){
 
 void mouseMoved(){
   pixelInfoLive();
+}
+
+void mouseDragged(){
+  xo = xo + (mouseX - pmouseX);
+  yo = yo + (mouseY - pmouseY);
 }
