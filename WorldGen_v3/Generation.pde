@@ -3,17 +3,16 @@
     terrainMap = new float[height][width][8];
     debugReset();
     
-    println("Ridges");
+    println("Calculating Ridges");
     calculateRidges();
-    println("Height + Temp");
+    println("Calculating Height and Temperature");
     calculateHeightAndTemp();
-    println("Humidity");
+    println("Simulating Rain");
     simulateRain(windDir,  5);
     simulateRain(remove(windDir, 1, 1, 8), 6);
     simulateRain(add(windDir, 1, 1, 8), 7);
+    println("Calculating Humidity");
     calculateHumidity();
-    //println("Pressure");
-    //simulatePressure();
 }
 
 public void seed(){
@@ -168,7 +167,7 @@ public void simulateRain(int dir, int pass){
     
     //println("int h = " + hStart + "; h = h +" + hCount);
     //println("int w = " + wStart + "; w = w +" + wCount);
-   println("dir = " + dir + "; hDir = " + hDir + "; wDir = " + wDir + "; cutoff = " + cutoff / 100.0f);
+   //println("dir = " + dir + "; hDir = " + hDir + "; wDir = " + wDir + "; cutoff = " + cutoff / 100.0f);
     
     //Move humidity from left to right
     for (int h = hStart; isAtEndHeight(h, hStart); h = h + hCount) {

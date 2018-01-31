@@ -1,4 +1,5 @@
 void drawMap(){
+    println("Drawing biomes");
     loadPixels();
     if (displayType == 1){ //Height map
       for (int h = 0; h < height; h++) {

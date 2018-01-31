@@ -1,4 +1,5 @@
 void addIcons(){
+  println("Loading Icons"); 
   for (int h = 0; h < height; h += 40) {
             for (int w = 0; w < width; w += 40) {
                 if (w < width && h < height) {
