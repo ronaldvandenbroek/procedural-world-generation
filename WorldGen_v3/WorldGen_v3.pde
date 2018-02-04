@@ -38,6 +38,7 @@ boolean debug = false;
 boolean terrainCurving = true;
 boolean rainSmoothing = false;
 boolean runOnce = true;
+boolean shaderHeight = true;
 
 int displayType = 0;
 //1 = heightmap

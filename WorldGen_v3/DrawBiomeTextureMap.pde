@@ -47,12 +47,21 @@ PImage prep_biome_texture(PImage biomeBlend, boolean sea, String hex){
               biomeTexture.pixels[h * 1000 + w] = color(seaC); 
             }
             else if(terrainMap[h][w][0] > cutoff / 100.0f   && pHex.equals(hex)){
-              float tHeight = terrainMap[h][w][0];
-               if(tHeight > 0.99){
-                 tHeight = 0.99;
-               }
-               color bcolor = lerpColor(getColorBiome(terrainMap[h][w][1], terrainMap[h][w][2]), color(0), tHeight);
-               biomeTexture.pixels[h * 1000 + w] = bcolor;
+              if(shaderHeight){
+                //if(terrainMap[h][w][0] < 1.0f){
+                  float tHeight = terrainMap[h][w][0];
+                 if(tHeight > 0.99){
+                   tHeight = 0.99;
+                 }
+                 color bcolor = lerpColor(getColorBiome(terrainMap[h][w][1], terrainMap[h][w][2]), color(0), tHeight * 0.8);
+                 biomeTexture.pixels[h * 1000 + w] = bcolor;
+                //}
+              }
+              else{
+                biomeTexture.pixels[h * 1000 + w] = getColorBiome(terrainMap[h][w][1], terrainMap[h][w][2]); 
+              }
+              
+
               //if(terrainMap[h][w][0] > 40 / 100.0f){//Hills
               //  color bcolor = lerpColor(getColorBiome(terrainMap[h][w][1], terrainMap[h][w][2]), color(0), terrainMap[h][w][0]);
               //  biomeTexture.pixels[h * 1000 + w] = bcolor;
