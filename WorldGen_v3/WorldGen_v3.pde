@@ -37,17 +37,20 @@ String textureSaveLocation = "C:/Users/ronald/Documents/GitHub/Processing-WorldG
 
 //Settings
 //For heightmap generation set greyscale to true and displaytype to 1
+//boolean greyScale = false;
+//boolean terrainCurving = true;
+//int displayType = 0;
 //For demo set greyscale to false and displaytype to 0
+boolean greyScale = true;
+boolean terrainCurving = false;
+int displayType = 1;
 
 boolean edge = true;
-boolean greyScale = true;
 boolean debug = false;
-boolean terrainCurving = true;
 boolean rainSmoothing = false;
 boolean runOnce = true;
 boolean shaderHeight = true;
 
-int displayType = 1;
 //0 = complete map
 //1 = heightmap
 //2 = tempmap
