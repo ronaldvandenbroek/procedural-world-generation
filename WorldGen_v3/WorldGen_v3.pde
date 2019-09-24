@@ -20,8 +20,6 @@ PImage blendBiomes;
 PImage biomeMap;
 
 //Default starting values
-//long seed = 4648; //Default seed
-long seed = 3033; //VCC seed
 int intensity = 3;
 int octaves = 8;
 int falloff = 7;
@@ -40,10 +38,12 @@ String textureSaveLocation = "C:/Users/ronald/Documents/GitHub/Processing-WorldG
 //boolean greyScale = false;
 //boolean terrainCurving = true;
 //int displayType = 0;
+//long seed = 4648; //Default seed
 //For demo set greyscale to false and displaytype to 0
 boolean greyScale = true;
 boolean terrainCurving = false;
 int displayType = 1;
+long seed = 3033; //VCC seed //1065
 
 boolean edge = true;
 boolean debug = false;
