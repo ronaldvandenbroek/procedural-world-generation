@@ -72,8 +72,8 @@ float yoff = 0;
             }
             if(terrainCurving){
               pheight = pow((pheight - 0.09), 5) + 0.2;
-           } 
-             pheight = lerp(pheight, terrainMap[h][w][0], ridgeFactor/10.0);
+              pheight = lerp(pheight, terrainMap[h][w][0], ridgeFactor/10.0);
+            }
            
             if (pheight > (cutoff / 100.0f)){
               terrainMap[h][w][0] = pheight;
