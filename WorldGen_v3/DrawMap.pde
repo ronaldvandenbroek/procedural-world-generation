@@ -4,12 +4,17 @@ void drawMap(){
     if (displayType == 1){ //Height map
       for (int h = 0; h < height; h++) {
         for (int w = 0; w < width; w++) {
-            if (terrainMap[h][w][0] > (cutoff / 100.0f)){
-              pixels[h * 1000 + w] = getColorHeight(terrainMap[h][w][0]);
-            }
-            else{
-              pixels[h * 1000 + w] = seaC;
-            }
+             
+            //Heightmap v2 built for exporting
+            pixels[h * 1000 + w] = getColorHeight(terrainMap[h][w][0] - 0.21);
+            
+            //Heightmap v1 not useful for exporting (Colors sealevel)
+            //if (terrainMap[h][w][0] > (cutoff / 100.0f)){
+            //  pixels[h * 1000 + w] = getColorHeight(terrainMap[h][w][0]);
+            //}
+            //else{
+            //  pixels[h * 1000 + w] = seaC;
+            //}
         }
     }
     }
@@ -80,6 +85,14 @@ void drawMap(){
         }
       }
    updatePixels();
+   
+   //After generation if heightmap save to file
+   if (displayType == 1){
+     save(heightmapSaveLocation);     
+   }
+   else if (displayType == 0){
+     save(textureSaveLocation);
+   }
 }
 
 PImage createBaseTileFloor(PImage img){

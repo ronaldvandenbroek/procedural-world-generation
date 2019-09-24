@@ -20,7 +20,8 @@ PImage blendBiomes;
 PImage biomeMap;
 
 //Default starting values
-long seed = 4648;
+//long seed = 4648; //Default seed
+long seed = 3033; //VCC seed
 int intensity = 3;
 int octaves = 8;
 int falloff = 7;
@@ -31,16 +32,23 @@ int cutoff = 21;
 int windDir = 8;
 int equatorOffset = 0;
 int ridgeFactor = 28;
+String heightmapSaveLocation = "C:/Users/ronald/Documents/GitHub/Processing-WorldGeneration/WorldGen_v3/heightmap.bmp";
+String textureSaveLocation = "C:/Users/ronald/Documents/GitHub/Processing-WorldGeneration/WorldGen_v3/texturemap.bmp";
+
+//Settings
+//For heightmap generation set greyscale to true and displaytype to 1
+//For demo set greyscale to false and displaytype to 0
 
 boolean edge = true;
-boolean greyScale = false;
+boolean greyScale = true;
 boolean debug = false;
 boolean terrainCurving = true;
 boolean rainSmoothing = false;
 boolean runOnce = true;
 boolean shaderHeight = true;
 
-int displayType = 0;
+int displayType = 1;
+//0 = complete map
 //1 = heightmap
 //2 = tempmap
 //3 = total humiditymap
