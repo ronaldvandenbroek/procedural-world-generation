@@ -35,6 +35,10 @@ color getColorHum(float z){
   }
 }
 
+color getMountainBiome(){
+  return color(160,160,160);
+}
+
 color getColorBiome(float t, float h){
   if(h < 0){h = 0;};
   if(h > 1){h = 1;};

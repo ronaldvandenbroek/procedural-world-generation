@@ -42,7 +42,7 @@ String saveLocation = "C:/Users/ronald/Pictures/Terrain/Generated/";
 boolean greyScale = true;
 boolean terrainCurving = false;
 int displayType = 1;
-long seed = 1065; //VCC seed //3033
+long seed = 2980; //VCC seed //3033 //1065
 
 boolean edge = true;
 boolean debug = false;

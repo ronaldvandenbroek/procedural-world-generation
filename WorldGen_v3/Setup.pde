@@ -21,6 +21,7 @@ void loadImages(){
     biomeBlends[10] = createBaseTileFloor(loadImage("Blend\\WetBorealForest.png"));
     biomeBlends[11] = createBaseTileFloor(loadImage("Blend\\Tundra.png"));
     
-    biomes = loadImage("Color\\BiomesV2.bmp");
+    //biomes = loadImage("Color\\BiomesV2.bmp");
+    biomes = loadImage("Color\\BiomesV3.bmp");
     biomesShader = loadImage("Color\\BiomesMapShade.bmp");
 }

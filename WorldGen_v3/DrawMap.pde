@@ -84,6 +84,22 @@ void drawMap(){
           }
         }
       }
+      
+      
+      
+    //Mountainside test
+    //if (displayType == 4 || displayType == 0){
+    //  for (int h = 1; h < height - 1; h++) {
+    //    for (int w = 1; w < width - 1; w++) {
+    //      if(abs(terrainMap[h][w][0] - terrainMap[h+1][w][0]) > 0.03 || 
+    //      abs(terrainMap[h][w][0] - terrainMap[h-1][w][0]) > 0.03 || 
+    //      abs(terrainMap[h][w][0] - terrainMap[h][w+1][0]) > 0.03 || 
+    //      abs(terrainMap[h][w][0] - terrainMap[h][w-1][0]) > 0.03){
+    //        pixels[h * 1000 + w] = getMountainBiome();
+    //      }
+    //  }
+    //  }
+    //}
    updatePixels();
    
    //After generation if heightmap save to file
