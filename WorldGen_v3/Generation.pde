@@ -22,7 +22,7 @@ public void seed(){
 public float circularFalloff(int w, int h){
     int wCoord = w - (width / 2);
     int hCoord = h - (height / 2);
-    return sqrt(sq(wCoord) + sq(hCoord)) / 800.0;
+    return sqrt(sq(wCoord) + sq(hCoord)) / 500.0; //800
 }
 
 public float diamondFalloff(int w, int h){
@@ -57,9 +57,9 @@ public void calculateRidges() {
 }
 
 public void calculateHeightAndTemp() {
-noiseSeed(seed);
-noiseDetail(octaves, falloff / 10.0f);
-float yoff = 0;
+  noiseSeed(seed);
+  noiseDetail(octaves, falloff / 10.0f);
+  float yoff = 0;
     for (int h = 0; h < height; h++) {
         float xoff = 0;
         for (int w = 0; w < width; w++) {

@@ -30,8 +30,7 @@ int cutoff = 21;
 int windDir = 8;
 int equatorOffset = 0;
 int ridgeFactor = 28;
-String heightmapSaveLocation = "C:/Users/ronald/Documents/GitHub/Processing-WorldGeneration/WorldGen_v3/heightmap.bmp";
-String textureSaveLocation = "C:/Users/ronald/Documents/GitHub/Processing-WorldGeneration/WorldGen_v3/texturemap.bmp";
+String saveLocation = "C:/Users/ronald/Pictures/Terrain/Generated/";
 
 //Settings
 //For heightmap generation set greyscale to true and displaytype to 1
@@ -43,7 +42,7 @@ String textureSaveLocation = "C:/Users/ronald/Documents/GitHub/Processing-WorldG
 boolean greyScale = true;
 boolean terrainCurving = false;
 int displayType = 1;
-long seed = 3033; //VCC seed //1065
+long seed = 1065; //VCC seed //3033
 
 boolean edge = true;
 boolean debug = false;

@@ -88,10 +88,10 @@ void drawMap(){
    
    //After generation if heightmap save to file
    if (displayType == 1){
-     save(heightmapSaveLocation);     
+     save(saveLocation + seed + "heightmap.bmp");     
    }
    else if (displayType == 0){
-     save(textureSaveLocation);
+     save(saveLocation + seed + "texturemap.bmp");    
    }
 }
 
