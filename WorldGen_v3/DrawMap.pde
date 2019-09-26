@@ -6,7 +6,7 @@ void drawMap(){
         for (int w = 0; w < width; w++) {
              
             //Heightmap v2 built for exporting
-            pixels[h * 1000 + w] = getColorHeight(terrainMap[h][w][0] - 0.21);
+            pixels[h * width + w] = getColorHeight(terrainMap[h][w][0] - 0.21);
             
             //Heightmap v1 not useful for exporting (Colors sealevel)
             //if (terrainMap[h][w][0] > (cutoff / 100.0f)){
@@ -21,14 +21,14 @@ void drawMap(){
     else if (displayType == 2){//Temp map
        for (int h = 0; h < height; h++) {
         for (int w = 0; w < width; w++) {
-              pixels[h * 1000 + w] = getColorTemp(terrainMap[h][w][1]);
+              pixels[h * width + w] = getColorTemp(terrainMap[h][w][1]);
         }
       }
     }
    else if (displayType == 3){//Hum map
        for (int h = 0; h < height; h++) {
         for (int w = 0; w < width; w++) {
-              pixels[h * 1000 + w] = getColorHum(terrainMap[h][w][2]);
+              pixels[h * width + w] = getColorHum(terrainMap[h][w][2]);
         }
       }
     }
@@ -36,10 +36,10 @@ void drawMap(){
        for (int h = 0; h < height; h++) {
         for (int w = 0; w < width; w++) {
           if(terrainMap[h][w][0] == cutoff / 100.0f){
-            pixels[h * 1000 + w] = seaC;
+            pixels[h * width + w] = seaC;
           }
           else{
-              pixels[h * 1000 + w] = getColorBiome(terrainMap[h][w][1],terrainMap[h][w][2]);
+              pixels[h * width + w] = getColorBiome(terrainMap[h][w][1],terrainMap[h][w][2]);
           }
           }
         }
@@ -47,28 +47,28 @@ void drawMap(){
       else if (displayType == 5){//Pressure map
        for (int h = 0; h < height; h++) {
         for (int w = 0; w < width; w++) {
-              pixels[h * 1000 + w] = getColorTemp(terrainMap[h][w][3]);
+              pixels[h * width + w] = getColorTemp(terrainMap[h][w][3]);
             }
         }
       }
          else if (displayType == 6){//Hum map
        for (int h = 0; h < height; h++) {
         for (int w = 0; w < width; w++) {
-              pixels[h * 1000 + w] = getColorHum(terrainMap[h][w][5]);
+              pixels[h * width + w] = getColorHum(terrainMap[h][w][5]);
         }
       }
     }
        else if (displayType == 7){//Hum map
        for (int h = 0; h < height; h++) {
         for (int w = 0; w < width; w++) {
-              pixels[h * 1000 + w] = getColorHum(terrainMap[h][w][6]);
+              pixels[h * width + w] = getColorHum(terrainMap[h][w][6]);
         }
       }
     }
        else if (displayType == 8){//Hum map
        for (int h = 0; h < height; h++) {
         for (int w = 0; w < width; w++) {
-              pixels[h * 1000 + w] = getColorHum(terrainMap[h][w][7]);
+              pixels[h * width + w] = getColorHum(terrainMap[h][w][7]);
         }
       }
     }
@@ -76,10 +76,10 @@ void drawMap(){
       for (int h = 0; h < height; h++) {
         for (int w = 0; w < width; w++) {
           if(terrainMap[h][w][0] == cutoff / 100.0f){
-            pixels[h * 1000 + w] = seaC;
+            pixels[h * width + w] = seaC;
           }
           else{
-              pixels[h * 1000 + w] = getColorBiomeShader(terrainMap[h][w][1],terrainMap[h][w][2]);
+              pixels[h * width + w] = getColorBiomeShader(terrainMap[h][w][1],terrainMap[h][w][2]);
           }
           }
         }
@@ -88,18 +88,18 @@ void drawMap(){
       
       
     //Mountainside test
-    //if (displayType == 4 || displayType == 0){
-    //  for (int h = 1; h < height - 1; h++) {
-    //    for (int w = 1; w < width - 1; w++) {
-    //      if(abs(terrainMap[h][w][0] - terrainMap[h+1][w][0]) > 0.03 || 
-    //      abs(terrainMap[h][w][0] - terrainMap[h-1][w][0]) > 0.03 || 
-    //      abs(terrainMap[h][w][0] - terrainMap[h][w+1][0]) > 0.03 || 
-    //      abs(terrainMap[h][w][0] - terrainMap[h][w-1][0]) > 0.03){
-    //        pixels[h * 1000 + w] = getMountainBiome();
-    //      }
-    //  }
-    //  }
-    //}
+    if (displayType == 4 || displayType == 0){
+      for (int h = 5; h < height - 5; h++) {
+        for (int w = 5; w < width - 5; w++) {
+          if(abs(terrainMap[h][w][0] - terrainMap[h+4][w][0]) > 0.08 || 
+          abs(terrainMap[h][w][0] - terrainMap[h-4][w][0]) > 0.08 || 
+          abs(terrainMap[h][w][0] - terrainMap[h][w+4][0]) > 0.08 || 
+          abs(terrainMap[h][w][0] - terrainMap[h][w-4][0]) > 0.08){
+            pixels[h * width + w] = getMountainBiome();
+          }
+      }
+      }
+    }
    updatePixels();
    
    //After generation if heightmap save to file

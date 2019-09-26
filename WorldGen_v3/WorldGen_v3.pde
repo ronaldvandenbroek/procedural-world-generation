@@ -29,7 +29,7 @@ int falloffRidge = 7;
 int cutoff = 21;
 int windDir = 8;
 int equatorOffset = 0;
-int ridgeFactor = 28;
+int ridgeFactor = 31;//28
 String saveLocation = "C:/Users/ronald/Pictures/Terrain/Generated/";
 
 //Settings
@@ -41,7 +41,7 @@ String saveLocation = "C:/Users/ronald/Pictures/Terrain/Generated/";
 //For demo set greyscale to false and displaytype to 0
 boolean greyScale = true;
 boolean terrainCurving = false;
-int displayType = 1;
+int displayType = 4;
 long seed = 2980; //VCC seed //3033 //1065
 
 boolean edge = true;
@@ -66,7 +66,7 @@ float yo;
 float zoom = 1;
 
 public void setup() {
-  size(1000, 1000);
+  size(1024, 1024);
   font = createFont("Arial",18,true);
   fontSmall = createFont("Arial",12,true);
   loadImages();

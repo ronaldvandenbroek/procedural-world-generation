@@ -70,8 +70,9 @@ public void calculateHeightAndTemp() {
             if (edge){
               pheight -= circularFalloff(w, h);
             }
+            //pheight = pow((pheight - 0.1), 2) + 0.2;
             if(terrainCurving){
-              pheight = pow((pheight - 0.09), 5) + 0.2;
+              
               pheight = lerp(pheight, terrainMap[h][w][0], ridgeFactor/10.0);
             }
            
@@ -100,19 +101,19 @@ public void simulateRain(int dir, int pass){
     //Set initial humidity
     for (int h = 0; h < (height); h++) {
          terrainMap[h][0][5] = 1.00;
-         terrainMap[h][999][5] = 1.00;
+         terrainMap[h][width-1][5] = 1.00;
          terrainMap[h][0][6] = 1.00;
-         terrainMap[h][999][6] = 1.00;
+         terrainMap[h][width-1][6] = 1.00;
          terrainMap[h][0][7] = 1.00;
-         terrainMap[h][999][7] = 1.00;
+         terrainMap[h][width-1][7] = 1.00;
     }
     for (int w = 0; w < (width); w++) {
          terrainMap[0]  [w][5] = 1.00;
-         terrainMap[999][w][5] = 1.00;
+         terrainMap[height-1][w][5] = 1.00;
          terrainMap[0]  [w][6] = 1.00;
-         terrainMap[999][w][6] = 1.00;
+         terrainMap[height-1][w][6] = 1.00;
          terrainMap[0]  [w][7] = 1.00;
-         terrainMap[999][w][7] = 1.00;
+         terrainMap[height-1][w][7] = 1.00;
     }
     
     int wDir = 0;
@@ -135,26 +136,26 @@ public void simulateRain(int dir, int pass){
         case 4:
           wDir = -1;
           hDir = 1;
-          wStart = 999;
+          wStart = width-1;
           break;
         case 5:
           wDir = -1;
-          wStart = 999;
+          wStart = width-1;
           break;
         case 6:
           wDir = -1;
           hDir = -1;
-          wStart = 999;
-          hStart = 999;
+          wStart = width-1;
+          hStart = height-1;
           break;
         case 7:
           hDir = -1;
-          hStart = 999;
+          hStart = height-1;
           break;
         case 8:
           wDir = 1;
           hDir = -1;
-          hStart = 999;
+          hStart = height-1;
           break;
     }
     
@@ -264,7 +265,7 @@ public void simulatePressure(){
         for (int w = 0; w < width - 1; w +=1) {
           //println(h + " " + w);
           //Normalising only for every other row
-        if(h % 2 == 0 && h != 0 && h != 999){
+          if(h % 2 == 0 && h != 0 && h != height-1){
             float pTop = terrainMap[h - 1][w][3];
             float pMid = terrainMap[h][w][3];
             float pBot = terrainMap[h + 1][w][3];
@@ -288,7 +289,7 @@ public void simulatePressure(){
           //float pBot = terrainMap[h + 1][w][3];
           
           if(terrainMap[h + 1][w][0] > 0.8){
-             if(h != 999 && w != 0 && terrainMap[h + 1][w - 1][0] < 0.8){
+             if(h != height-1 && w != 0 && terrainMap[h + 1][w - 1][0] < 0.8){
                   terrainMap[h + 1][w - 1][3] += pMid/2;
               }
              if(h != 0 && w != 0 && terrainMap[h - 1][w + 1][0] < 0.8){
