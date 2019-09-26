@@ -25,3 +25,17 @@ void loadImages(){
     biomes = loadImage("Color\\BiomesV3.bmp");
     biomesShader = loadImage("Color\\BiomesMapShade.bmp");
 }
+
+PImage createBaseTileFloor(PImage img){
+    PImage background = new PImage(height, width);
+    float colsB = width/img.width;
+    float rowsB = height/img.height;
+    if( width%img.width > 0){colsB++;}
+    if( height%img.height > 0){rowsB++;}
+    for (int y=0; y<rowsB; y++){
+      for (int x=0; x<colsB; x++){
+        background.set(x*img.width,y*img.height, img);
+      }
+    }
+    return background;
+}
