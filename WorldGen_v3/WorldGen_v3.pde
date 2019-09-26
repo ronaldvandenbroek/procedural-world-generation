@@ -67,12 +67,12 @@ float zoom = 1;
 
 public void setup() {
   size(1024, 1024);
-  font = createFont("Arial",18,true);
-  fontSmall = createFont("Arial",12,true);
+  font = createFont("Arial", 18, true);
+  fontSmall = createFont("Arial", 12, true);
   loadImages();
   biomes.loadPixels();
   refresh();
-    
+
   xo = 0;
   yo = 0;
   noSmooth();
@@ -82,49 +82,48 @@ public void setup() {
 public void draw() {
   if (runOnce && displayType == 9) {
     addIcons();
-  }
-  else if (runOnce && displayType == 0){
+  } else if (runOnce && displayType == 0) {
     drawBiomeTextureMap();
   }
   runOnce = false;
-  if(displayType == 0){
+  if (displayType == 0) {
     translate(width/2, height/2);
     scale(zoom);
     background(255);
-    image(biomeMap,xo -width/2 ,yo-height/2);
+    image(biomeMap, xo -width/2, yo-height/2);
   }
 }
- 
-public void keyPressed(){
+
+public void keyPressed() {
   keyPressedHandling(key);
 }
 
-void refresh(){
+void refresh() {
   generate();
   drawMap();
-  if(displayType != 0){
+  if (displayType != 0) {
     information();
   }
 }
 
-void mousePressed(){
-    if(displayType != 0){
-        pixelInfo();
-    }
+void mousePressed() {
+  if (displayType != 0) {
+    pixelInfo();
+  }
 }
 
-void mouseMoved(){
+void mouseMoved() {
   pixelInfoLive();
 }
 
-void mouseDragged(){
+void mouseDragged() {
   xo = xo + ((mouseX - pmouseX) / zoom);
   yo = yo + ((mouseY - pmouseY)/ zoom);
 }
 
 void mouseWheel(MouseEvent event) {
   zoom -= event.getCount() / 2.00;
-  if (zoom < 1.00){
+  if (zoom < 1.00) {
     zoom = 1;
   }
 }
