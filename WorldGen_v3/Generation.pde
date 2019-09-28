@@ -1,16 +1,22 @@
 public void generate() {
-
   terrainMap = new float[height][width][8];
   debugReset();
-
-  println("Calculating Ridges");
-  calculateRidges();
+  
+  noiseDetail(octavesRidge, falloffRidge / 10.0f);
+  //println("Calculating Ridges");
+  //calculateRidges();
+  
+  noiseSeed(seed);
+  noiseDetail(octaves, falloff / 10.0f);
+  
   println("Calculating Height and Temperature");
   calculateHeightAndTemp();
+  
   println("Simulating Rain");
   simulateRain(windDir, 5);
   simulateRain(remove(windDir, 1, 1, 8), 6);
   simulateRain(add(windDir, 1, 1, 8), 7);
+  
   println("Calculating Humidity");
   calculateHumidity();
 }
@@ -22,7 +28,7 @@ public void seed() {
 public float circularFalloff(int w, int h) {
   int wCoord = w - (width / 2);
   int hCoord = h - (height / 2);
-  return sqrt(sq(wCoord) + sq(hCoord)) / 500.0; //800
+  return sqrt(sq(wCoord) + sq(hCoord)) / ((width+height)/4) - (baseFalloffHeight/10); //800
 }
 
 public float diamondFalloff(int w, int h) {
@@ -37,8 +43,6 @@ public float horizontalFalloff(int h, int offset) {
 }
 
 public void calculateRidges() {
-  noiseSeed(seed);
-  noiseDetail(octavesRidge, falloffRidge / 10.0f);
   float yoff = 0;
   for (int h = 0; h < height; h++) {
     float xoff = 0;
@@ -57,8 +61,6 @@ public void calculateRidges() {
 }
 
 public void calculateHeightAndTemp() {
-  noiseSeed(seed);
-  noiseDetail(octaves, falloff / 10.0f);
   float yoff = 0;
   for (int h = 0; h < height; h++) {
     float xoff = 0;

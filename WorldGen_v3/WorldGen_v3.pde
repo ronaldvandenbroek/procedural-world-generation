@@ -20,9 +20,10 @@ PImage blendBiomes;
 PImage biomeMap;
 
 //Default starting values
-int intensity = 3;
+int intensity = 30;
 int octaves = 8;
-int falloff = 7;
+int falloff = 5;
+int baseFalloffHeight = 5;
 int intensityRidge = 3;
 int octavesRidge = 3;
 int falloffRidge = 7;
