@@ -10,13 +10,14 @@ int power = 30;
 
 public void setup() {
   size(1024, 1024);
-  cp5 = new ControlP5(this);
-  cp5.addSlider("intensity").setPosition(0,0).setRange(1,30);
-  cp5.addSlider("power").setPosition(0,10).setRange(0,50);
-  cp5.addSlider("falloff").setPosition(0,20).setRange(0,10);
-  cp5.addSlider("octaves").setPosition(0,30).setRange(1,15);
-
   terrainMap = new float[height][width];
+
+  //Configure GUI
+  cp5 = new ControlP5(this);
+  cp5.addSlider("intensity").setPosition(0, 0).setRange(1, 30);
+  cp5.addSlider("power").setPosition(0, 10).setRange(0, 50);
+  cp5.addSlider("falloff").setPosition(0, 20).setRange(0, 10);
+  cp5.addSlider("octaves").setPosition(0, 30).setRange(1, 15);
 }
 
 public void draw() {
