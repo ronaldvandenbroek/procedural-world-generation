@@ -6,7 +6,8 @@ int mapWidth, mapHeight;
 
 //Default starting values, see Presets for slider starter values
 int seed = 1;
-int position = 0;
+int sliderPosition = 0;
+int buttonPosition = 0;
 boolean guiShow = true;
 
 public void setup() {
@@ -29,14 +30,31 @@ public void setup() {
   createGUISlider("falloff2", 0, 10);
   createGUISlider("octaves2", 1, 15);
   createGUISlider("circularFalloff2", 0, 1);
-
+  
+  CallbackListener callbackListener = new CallbackListener() {
+    public void controlEvent(CallbackEvent theEvent) {
+      println("callback for startBarCode " + theEvent.getController().getValue());
+    }
+  };
+  
+  createGUIMapButton("test", 1, callbackListener);
+  createGUIMapButton("test2", 2, callbackListener);
   //Generate default map
   generateHeightMap();
 }
 
 public void createGUISlider(String name, int min, int max) {
-  cp5.addSlider(name).setPosition(0, position).setRange(min, max);
-  position += 10;
+  cp5.addSlider(name).setPosition(0, sliderPosition).setRange(min, max);
+  sliderPosition += 10;
+}
+
+public void createGUIMapButton(String name, int value, CallbackListener callbackListener) {
+  cp5.addButton(name).setPosition(width - 80, buttonPosition).setValue(value).onRelease(callbackListener);
+  buttonPosition += 20;
+}
+
+public void test(int value){
+  println("success" + value);
 }
 
 public void draw() {
