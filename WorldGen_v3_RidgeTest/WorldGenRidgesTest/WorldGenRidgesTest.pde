@@ -60,6 +60,11 @@ public void keyPressed() {
   }
 }
 
+  
+public void mouseReleased() {
+  generateHeightMap();
+}
+
 public void generateHeightMap() {
   float[][] terrainMap1 = generateRidgeHeightMap(mapWidth, mapHeight, seed, octaves1, falloff1, intensity1, power1, circularFalloff1, false);
   float[][] terrainMap2 = generateRidgeHeightMap(mapWidth, mapHeight, seed+100, octaves2, falloff2, intensity2, power2, circularFalloff2, true);
