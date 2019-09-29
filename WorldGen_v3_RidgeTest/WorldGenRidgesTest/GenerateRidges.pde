@@ -1,4 +1,4 @@
-public float[][] generateRidgeHeightMap(int mapWidth, int mapHeight, long ridgeSeed, int ridgeOctaves, float ridgeFalloff, float ridgeIntensity, int ridgePower, float circularFalloff) {
+public float[][] generateRidgeHeightMap(int mapWidth, int mapHeight, long ridgeSeed, int ridgeOctaves, float ridgeFalloff, float ridgeIntensity, int ridgePower, float circularFalloff, boolean ridge) {
   noiseSeed(ridgeSeed);
   noiseDetail(ridgeOctaves, ridgeFalloff / 10.0f);
   float[][] ridgeHeightMap = new float[mapWidth][mapHeight];
@@ -7,19 +7,24 @@ public float[][] generateRidgeHeightMap(int mapWidth, int mapHeight, long ridgeS
     float xoff = 0;
     for (int w = 0; w < mapWidth; w++) {
       //Height Calculation
-      float pHeight = getPerlinRidge(xoff, yoff);
+      float pHeight;
+      if (ridge) {
+        pHeight = getPerlinRidge(xoff, yoff);
+      } else {
+        pHeight = getPerlinNoise(xoff, yoff);
+      }
 
       //Curve heightMap
       pHeight = pow(pHeight, ridgePower);
 
       //Heightmap falloff
-      if (circularFalloff != 0){
+      if (circularFalloff != 0) {
         pHeight -= circularFalloff(w, h, mapWidth, mapHeight, circularFalloff);
-        if (pHeight <= 0){
-           pHeight = 0; 
+        if (pHeight <= 0) {
+          pHeight = 0;
         }
       }
-      
+
       //Set height
       ridgeHeightMap[h][w] = pHeight;
       xoff += (ridgeIntensity / 1000.0f);
@@ -31,6 +36,10 @@ public float[][] generateRidgeHeightMap(int mapWidth, int mapHeight, long ridgeS
 
 public float getPerlinRidge(float x, float y) {
   return 1 - abs((noise(x, y) - 0.5) * -1);
+}
+
+public float getPerlinNoise(float x, float y) {
+  return noise(x, y);
 }
 
 public float circularFalloff(int w, int h, int mapWidth, int mapHeight, float circularFalloff) {

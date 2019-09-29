@@ -8,17 +8,6 @@ int position;
 
 //Default starting values
 int seed = 1;
-float intensity1 = 3;//'Best' between 5 and 30 
-float falloff1 = 2;//'Best' between 0 and 5
-int octaves1 = 3;
-int power1 = 7;
-float circularFalloff1 = 0.2f;
-float blendPower12 = 0.4f;
-float intensity2 = 3;//'Best' between 5 and 30 
-float falloff2 = 3.5;//'Best' between 0 and 5
-int octaves2 = 7;
-int power2 = 30;
-float circularFalloff2 = 0;
 
 public void setup() {
   //Setup window and map
@@ -40,12 +29,12 @@ public void setup() {
   createGUISlider("falloff2", 0, 10);
   createGUISlider("octaves2", 1, 15);
   createGUISlider("circularFalloff2", 0, 1);
-  
+
   //Generate default map
   generateHeightMap();
 }
 
-public void createGUISlider(String name, int min, int max){
+public void createGUISlider(String name, int min, int max) {
   cp5.addSlider(name).setPosition(0, position).setRange(min, max);
   position += 10;
 }
@@ -72,8 +61,8 @@ public void keyPressed() {
 }
 
 public void generateHeightMap() {
-  float[][] terrainMap1 = generateRidgeHeightMap(mapWidth, mapHeight, seed, octaves1, falloff1, intensity1, power1, circularFalloff1);
-  float[][] terrainMap2 = generateRidgeHeightMap(mapWidth, mapHeight, seed+100, octaves2, falloff2, intensity2, power2, circularFalloff2);
+  float[][] terrainMap1 = generateRidgeHeightMap(mapWidth, mapHeight, seed, octaves1, falloff1, intensity1, power1, circularFalloff1, false);
+  float[][] terrainMap2 = generateRidgeHeightMap(mapWidth, mapHeight, seed+100, octaves2, falloff2, intensity2, power2, circularFalloff2, true);
   //float[][] terrainMapMedium = generateRidgeHeightMap(1024, 1024, (long)random(0, 10000), 7, 3.5f, 3, 30);
   //float[][] terrainMapSmall = generateRidgeHeightMap(1024, 1024, (long)random(0, 10000), 11, 4, 8, 20);
   terrainMap = mergeHeightMaps(terrainMap1, terrainMap2, blendPower12);
