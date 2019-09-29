@@ -30,15 +30,22 @@ public void setup() {
   createGUISlider("falloff2", 0, 10);
   createGUISlider("octaves2", 1, 15);
   createGUISlider("circularFalloff2", 0, 1);
-  
-  CallbackListener callbackListener = new CallbackListener() {
+
+  CallbackListener mapCallbackListener = new CallbackListener() {
     public void controlEvent(CallbackEvent theEvent) {
-      println("callback for startBarCode " + theEvent.getController().getValue());
+      switch (key) {
+      case '1':
+        drawTerrainMap();
+        break;
+      case '2':
+        drawTerrainMap();
+        break;
+      }
     }
   };
-  
-  createGUIMapButton("test", 1, callbackListener);
-  createGUIMapButton("test2", 2, callbackListener);
+
+  createGUIMapButton("Height Map", 1, mapCallbackListener);
+  createGUIMapButton("Temperature Map", 2, mapCallbackListener);
   //Generate default map
   generateHeightMap();
 }
@@ -53,7 +60,7 @@ public void createGUIMapButton(String name, int value, CallbackListener callback
   buttonPosition += 20;
 }
 
-public void test(int value){
+public void test(int value) {
   println("success" + value);
 }
 
@@ -75,11 +82,10 @@ public void keyPressed() {
     generateHeightMap();
     break;
   case 'q': //Next Seed
-    if (guiShow){
+    if (guiShow) {
       cp5.hide();
       guiShow = false;
-    }
-    else {
+    } else {
       cp5.show();
       guiShow = true;
     }
