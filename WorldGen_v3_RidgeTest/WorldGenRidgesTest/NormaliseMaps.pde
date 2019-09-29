@@ -15,7 +15,7 @@ public float[][] normaliseMaps(float[][] normalisedMap) {
       }
     }
   }
-  println("MinMax1: " + min + " " + max);
+  println("aMinMax1: " + min + " " + max);
 
   //Map terrain to 256 step heightmap
   for (int h = 0; h < mapHeight; h++) {

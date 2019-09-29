@@ -1,22 +1,23 @@
 public void generateTemperatureMap() {
-  temperatureMap = generateTemperatureMapLayer(heightMap);
+  temperatureMap = generateTemperatureMapLayer(heightMap, equatorOffset, temperatureFalloff, temperatureHeight);
   temperatureMap = normaliseMaps(temperatureMap);
 }
 
-public float[][] generateTemperatureMapLayer(float[][] heightMap) {
+public float[][] generateTemperatureMapLayer(float[][] heightMap, int mapEquatorOffset, float mapFalloffStrength, float mapHeightStrength) {
   int mapHeight = heightMap.length;
   int mapWidth = heightMap[0].length;
 
   float[][] generatedTemperatureMap = new float[mapWidth][mapHeight];
   for (int h = 0; h < mapHeight; h++) {
     for (int w = 0; w < mapWidth; w++) {
-      generatedTemperatureMap[h][w] = 1.1 - (lerp(horizontalFalloff(h, 0), heightMap[h][w] * 1.2, 0.65));
+      //generatedTemperatureMap[h][w] = lerp(horizontalFalloff(h, mapEquatorOffset, mapFalloffStrength), heightMap[h][w], mapHeightFalloffBlend);
+      generatedTemperatureMap[h][w] = 1 - horizontalFalloff(h, mapEquatorOffset) * mapFalloffStrength - (heightMap[h][w] * mapHeightStrength);
     }
   }
   return generatedTemperatureMap;
 }
 
 public float horizontalFalloff(int h, int offset) {
-  int hCoord = h - (height / 2) + offset;
-  return abs(hCoord) / 180.0;
+  float hCoord = h - (height / 2) + offset;
+  return abs(hCoord);
 }

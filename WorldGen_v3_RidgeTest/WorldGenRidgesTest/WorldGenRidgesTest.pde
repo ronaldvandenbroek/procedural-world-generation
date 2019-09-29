@@ -35,7 +35,10 @@ public void setup() {
   createGUISlider("circularFalloff2", 0, 1);
 
   createGUISliderTitle("TemperatureMap Configuration", false);
-
+  createGUISlider("equatorOffset", -height/2, height/2);
+  createGUISlider("temperatureFalloff", 0, 1);
+  createGUISlider("temperatureHeight", 0, 1);
+  
   CallbackListener mapCallbackListener = new CallbackListener() {
     public void controlEvent(CallbackEvent theEvent) {
       int buttonPressed = int(theEvent.getController().getValue());
