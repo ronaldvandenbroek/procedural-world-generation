@@ -1,4 +1,4 @@
-void draw_terrainMap() {
+void drawTerrainMap() {
   loadPixels();
   for (int h = 0; h < height; h++) {
     for (int w = 0; w < width; w++) {
