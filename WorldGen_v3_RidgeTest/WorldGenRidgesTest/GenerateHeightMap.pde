@@ -1,7 +1,14 @@
-public float[][] generateHeightMap(int mapWidth, int mapHeight, long mapSeed, int mapOctaves, float mapFalloff, float mapIntensity, int mapPower, float mapCircularFalloff, boolean ridge) {
+public void generateHeightMap() {
+  float[][] heightMap1 = generateHeightMapLayer(mapWidth, mapHeight, seed, octaves1, falloff1, intensity1, power1, circularFalloff1, false);
+  float[][] heightMap2 = generateHeightMapLayer(mapWidth, mapHeight, seed+100, octaves2, falloff2, intensity2, power2, circularFalloff2, true);
+  heightMap = mergeMaps(heightMap1, heightMap2, blendPower12);
+  heightMap = normaliseMaps(heightMap);
+}
+
+public float[][] generateHeightMapLayer(int mapWidth, int mapHeight, long mapSeed, int mapOctaves, float mapFalloff, float mapIntensity, int mapPower, float mapCircularFalloff, boolean ridge) {
   noiseSeed(mapSeed);
   noiseDetail(mapOctaves, mapFalloff / 10.0f);
-  float[][] ridgeHeightMap = new float[mapWidth][mapHeight];
+  float[][] generatedHeightMap = new float[mapWidth][mapHeight];
   float yoff = 0;
   for (int h = 0; h < mapHeight; h++) {
     float xoff = 0;
@@ -26,12 +33,12 @@ public float[][] generateHeightMap(int mapWidth, int mapHeight, long mapSeed, in
       }
 
       //Set height
-      ridgeHeightMap[h][w] = pHeight;
+      generatedHeightMap[h][w] = pHeight;
       xoff += (mapIntensity / 1000.0f);
     }
     yoff += (mapIntensity / 1000.0f);
   }
-  return ridgeHeightMap;
+  return generatedHeightMap;
 }
 
 public float getPerlinRidge(float x, float y) {
@@ -47,65 +54,4 @@ public float circularFalloff(int w, int h, int mapWidth, int mapHeight, float ci
   int wCoord = w - (mapWidth / 2);
   int hCoord = h - (mapHeight / 2);
   return sqrt(sq(wCoord) + sq(hCoord)) / circularFalloffStrength;
-}
-
-public float[][] mergeHeightMaps(float[][] heightMap1, float[][] heightMap2, float lerpAmount) {
-  int mapHeight = heightMap1.length;
-  int mapWidth = heightMap1[0].length;
-  float[][] ridgeHeightMap = new float[mapHeight][mapWidth];
-  for (int h = 0; h < mapHeight; h++) {
-    for (int w = 0; w < mapWidth; w++) {
-      //ridgeHeightMap[h][w] = lerp(heightMap1[h][w], heightMap2[h][w], lerpAmount);
-      ridgeHeightMap[h][w] = (heightMap1[h][w] * lerpAmount + heightMap1[h][w] * heightMap2[h][w] * (1-lerpAmount)) / 2 ;
-    }
-  }
-  return ridgeHeightMap;
-}
-
-public float[][] normaliseMinAndMaxHeight(float[][] heightMap) {
-  int mapHeight = heightMap.length;
-  int mapWidth = heightMap[0].length;
-
-  float min = 1; // Highbound so min is always lower
-  float max = 0; // Lowerbound so max is always heigher
-  //Determine min and max value
-  for (int h = 0; h < mapHeight; h++) {
-    for (int w = 0; w < mapWidth; w++) {
-      if (heightMap[h][w] <= min) { 
-        min = heightMap[h][w];
-      }
-      if (heightMap[h][w] >= max) { 
-        max = heightMap[h][w];
-      }
-    }
-  }
-  println("MinMax1: " + min + " " + max);
-
-  //Map terrain to 256 step heightmap
-  for (int h = 0; h < mapHeight; h++) {
-    for (int w = 0; w < mapWidth; w++) {
-      float result = map(heightMap[h][w], min, max, 0, 255);
-      //println(heightMap[h][w] + " " + min + " " + max + " " + result);
-      //println(result);
-      heightMap[h][w] = result;
-    }
-  }
-
-  float minNormal = 256.0f; // Highbound so min is always lower
-  float maxNormal = -256.0f; // Lowerbound so max is always heigher
-  //Determine min and max value
-  for (int h = 0; h < mapHeight; h++) {
-    for (int w = 0; w < mapWidth; w++) {
-      if (heightMap[h][w] <= minNormal) {
-        minNormal = heightMap[h][w];
-      }
-      if (heightMap[h][w] >= maxNormal) {
-        //println(heightMap[h][w]);
-        maxNormal = heightMap[h][w];
-      }
-    }
-  }
-  println("MinMax2: " + int(minNormal) + " " + int(maxNormal));
-
-  return heightMap;
 }

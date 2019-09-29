@@ -1,7 +1,7 @@
 import controlP5.*;
 
 ControlP5 cp5;
-float[][] terrainMap;
+float[][] heightMap;
 int mapWidth, mapHeight;
 
 //Default starting values, see Presets for slider starter values
@@ -13,7 +13,7 @@ boolean guiShow = true;
 public void setup() {
   //Setup window and map
   size(1024, 1024);
-  terrainMap = new float[height][width];
+  heightMap = new float[height][width];
   mapWidth = width;
   mapHeight = height;
 
@@ -31,17 +31,17 @@ public void setup() {
   createGUISlider("falloff2", 0, 10);
   createGUISlider("octaves2", 1, 15);
   createGUISlider("circularFalloff2", 0, 1);
-  
+
   createGUISliderTitle("TemperatureMap Configuration", false);
 
   CallbackListener mapCallbackListener = new CallbackListener() {
     public void controlEvent(CallbackEvent theEvent) {
       switch (key) {
       case '1':
-        drawTerrainMap();
+        drawHeightMap();
         break;
       case '2':
-        drawTerrainMap();
+        drawHeightMap();
         break;
       }
     }
@@ -49,12 +49,14 @@ public void setup() {
 
   createGUIMapButton("Height Map", 1, mapCallbackListener);
   createGUIMapButton("Temperature Map", 2, mapCallbackListener);
-  //Generate default map
+  
+  //Generate and display the default map
   generateHeightMap();
+  drawHeightMap();
 }
 
-public void createGUISliderTitle(String name, Boolean first){
-  if (!first){
+public void createGUISliderTitle(String name, Boolean first) {
+  if (!first) {
     sliderPosition += 10;
   }
   cp5.addLabel(name).setPosition(0, sliderPosition);
@@ -71,10 +73,6 @@ public void createGUIMapButton(String name, int value, CallbackListener callback
   buttonPosition += 20;
 }
 
-public void test(int value) {
-  println("success" + value);
-}
-
 public void draw() {
 }
 
@@ -87,12 +85,14 @@ public void keyPressed() {
       seed -= 1;
     }
     generateHeightMap();
+    drawHeightMap();
     break;
   case '2': //Next Seed
     seed += 1;
     generateHeightMap();
+    drawHeightMap();
     break;
-  case 'q': //Next Seed
+  case 'q':
     if (guiShow) {
       cp5.hide();
       guiShow = false;
@@ -100,19 +100,12 @@ public void keyPressed() {
       cp5.show();
       guiShow = true;
     }
-    drawTerrainMap();
+    drawHeightMap();
     break;
   }
 }
 
 public void mouseReleased() {
   generateHeightMap();
-}
-
-public void generateHeightMap() {
-  float[][] terrainMap1 = generateHeightMap(mapWidth, mapHeight, seed, octaves1, falloff1, intensity1, power1, circularFalloff1, false);
-  float[][] terrainMap2 = generateHeightMap(mapWidth, mapHeight, seed+100, octaves2, falloff2, intensity2, power2, circularFalloff2, true);
-  terrainMap = mergeHeightMaps(terrainMap1, terrainMap2, blendPower12);
-  terrainMap = normaliseMinAndMaxHeight(terrainMap);
-  drawTerrainMap();
+  drawHeightMap();
 }
