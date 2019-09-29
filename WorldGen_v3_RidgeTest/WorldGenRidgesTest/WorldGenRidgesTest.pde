@@ -60,7 +60,6 @@ public void keyPressed() {
   }
 }
 
-  
 public void mouseReleased() {
   generateHeightMap();
 }
@@ -68,10 +67,7 @@ public void mouseReleased() {
 public void generateHeightMap() {
   float[][] terrainMap1 = generateRidgeHeightMap(mapWidth, mapHeight, seed, octaves1, falloff1, intensity1, power1, circularFalloff1, false);
   float[][] terrainMap2 = generateRidgeHeightMap(mapWidth, mapHeight, seed+100, octaves2, falloff2, intensity2, power2, circularFalloff2, true);
-  //float[][] terrainMapMedium = generateRidgeHeightMap(1024, 1024, (long)random(0, 10000), 7, 3.5f, 3, 30);
-  //float[][] terrainMapSmall = generateRidgeHeightMap(1024, 1024, (long)random(0, 10000), 11, 4, 8, 20);
   terrainMap = mergeHeightMaps(terrainMap1, terrainMap2, blendPower12);
-  //terrainMap = mergeHeightMaps(terrainMapLarge, terrainMapSmall, 0.6f);
   terrainMap = normaliseMinAndMaxHeight(terrainMap);
   drawTerrainMap();
 }
