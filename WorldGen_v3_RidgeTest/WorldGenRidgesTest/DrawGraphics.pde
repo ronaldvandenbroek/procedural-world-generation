@@ -1,8 +1,11 @@
-void drawMap(int value){
-  switch(value){
-    case 0:
-      drawPixelMap(heightMap);
-      break;
+void drawMap(int value) {
+  switch(value) {
+  case 0:
+    drawPixelMap(heightMap);
+    break;
+  case 1:
+    drawPixelMap(temperatureMap);
+    break;
   }
 }
 

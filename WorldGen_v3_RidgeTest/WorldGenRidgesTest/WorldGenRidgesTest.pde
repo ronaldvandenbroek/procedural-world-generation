@@ -2,6 +2,7 @@ import controlP5.*;
 
 ControlP5 cp5;
 float[][] heightMap;
+float[][] temperatureMap;
 int mapWidth, mapHeight;
 
 //Default starting values, see Presets for slider starter values
@@ -47,7 +48,7 @@ public void setup() {
   createGUIMapButton("Temperature Map", 1, mapCallbackListener);
   
   //Generate and display the default map
-  generateHeightMap();
+  generateAllMaps();
   drawMap(0);
 }
 
@@ -80,12 +81,12 @@ public void keyPressed() {
     } else {
       seed -= 1;
     }
-    generateHeightMap();
+    generateAllMaps();
     drawMap(currentMap);
     break;
   case '2': //Next Seed
     seed += 1;
-    generateHeightMap();
+    generateAllMaps();
     drawMap(currentMap);
     break;
   case 'q':
@@ -102,6 +103,11 @@ public void keyPressed() {
 }
 
 public void mouseReleased() {
-  generateHeightMap();
+  generateAllMaps();
   drawMap(currentMap);
+}
+
+public void generateAllMaps(){
+  generateHeightMap();
+  generateTemperatureMap();
 }
