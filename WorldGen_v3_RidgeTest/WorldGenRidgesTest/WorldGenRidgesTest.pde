@@ -9,6 +9,7 @@ int seed = 1;
 int sliderPosition = 0;
 int buttonPosition = 0;
 boolean guiShow = true;
+int currentMap = 0;
 
 public void setup() {
   //Setup window and map
@@ -36,23 +37,18 @@ public void setup() {
 
   CallbackListener mapCallbackListener = new CallbackListener() {
     public void controlEvent(CallbackEvent theEvent) {
-      switch (key) {
-      case '1':
-        drawHeightMap();
-        break;
-      case '2':
-        drawHeightMap();
-        break;
-      }
+      int buttonPressed = int(theEvent.getController().getValue());
+      currentMap = buttonPressed;
+      drawMap(buttonPressed);
     }
   };
 
-  createGUIMapButton("Height Map", 1, mapCallbackListener);
-  createGUIMapButton("Temperature Map", 2, mapCallbackListener);
+  createGUIMapButton("Height Map", 0, mapCallbackListener);
+  createGUIMapButton("Temperature Map", 1, mapCallbackListener);
   
   //Generate and display the default map
   generateHeightMap();
-  drawHeightMap();
+  drawMap(0);
 }
 
 public void createGUISliderTitle(String name, Boolean first) {
@@ -85,12 +81,12 @@ public void keyPressed() {
       seed -= 1;
     }
     generateHeightMap();
-    drawHeightMap();
+    drawMap(currentMap);
     break;
   case '2': //Next Seed
     seed += 1;
     generateHeightMap();
-    drawHeightMap();
+    drawMap(currentMap);
     break;
   case 'q':
     if (guiShow) {
@@ -100,12 +96,12 @@ public void keyPressed() {
       cp5.show();
       guiShow = true;
     }
-    drawHeightMap();
+    drawMap(currentMap);
     break;
   }
 }
 
 public void mouseReleased() {
   generateHeightMap();
-  drawHeightMap();
+  drawMap(currentMap);
 }
