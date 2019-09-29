@@ -4,10 +4,10 @@ ControlP5 cp5;
 float[][] terrainMap;
 int mapWidth, mapHeight;
 
-int position;
-
-//Default starting values
+//Default starting values, see Presets for slider starter values
 int seed = 1;
+int position = 0;
+boolean guiShow = true;
 
 public void setup() {
   //Setup window and map
@@ -39,7 +39,6 @@ public void createGUISlider(String name, int min, int max) {
   position += 10;
 }
 
-
 public void draw() {
 }
 
@@ -57,6 +56,17 @@ public void keyPressed() {
     seed += 1;
     generateHeightMap();
     break;
+  case 'q': //Next Seed
+    if (guiShow){
+      cp5.hide();
+      guiShow = false;
+    }
+    else {
+      cp5.show();
+      guiShow = true;
+    }
+    drawTerrainMap();
+    break;
   }
 }
 
@@ -65,8 +75,8 @@ public void mouseReleased() {
 }
 
 public void generateHeightMap() {
-  float[][] terrainMap1 = generateRidgeHeightMap(mapWidth, mapHeight, seed, octaves1, falloff1, intensity1, power1, circularFalloff1, false);
-  float[][] terrainMap2 = generateRidgeHeightMap(mapWidth, mapHeight, seed+100, octaves2, falloff2, intensity2, power2, circularFalloff2, true);
+  float[][] terrainMap1 = generateHeightMap(mapWidth, mapHeight, seed, octaves1, falloff1, intensity1, power1, circularFalloff1, false);
+  float[][] terrainMap2 = generateHeightMap(mapWidth, mapHeight, seed+100, octaves2, falloff2, intensity2, power2, circularFalloff2, true);
   terrainMap = mergeHeightMaps(terrainMap1, terrainMap2, blendPower12);
   terrainMap = normaliseMinAndMaxHeight(terrainMap);
   drawTerrainMap();

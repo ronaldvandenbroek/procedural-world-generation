@@ -1,6 +1,6 @@
-public float[][] generateRidgeHeightMap(int mapWidth, int mapHeight, long ridgeSeed, int ridgeOctaves, float ridgeFalloff, float ridgeIntensity, int ridgePower, float circularFalloff, boolean ridge) {
-  noiseSeed(ridgeSeed);
-  noiseDetail(ridgeOctaves, ridgeFalloff / 10.0f);
+public float[][] generateHeightMap(int mapWidth, int mapHeight, long mapSeed, int mapOctaves, float mapFalloff, float mapIntensity, int mapPower, float mapCircularFalloff, boolean ridge) {
+  noiseSeed(mapSeed);
+  noiseDetail(mapOctaves, mapFalloff / 10.0f);
   float[][] ridgeHeightMap = new float[mapWidth][mapHeight];
   float yoff = 0;
   for (int h = 0; h < mapHeight; h++) {
@@ -15,11 +15,11 @@ public float[][] generateRidgeHeightMap(int mapWidth, int mapHeight, long ridgeS
       }
 
       //Curve heightMap
-      pHeight = pow(pHeight, ridgePower);
+      pHeight = pow(pHeight, mapPower);
 
       //Heightmap falloff
-      if (circularFalloff != 0) {
-        pHeight -= circularFalloff(w, h, mapWidth, mapHeight, circularFalloff);
+      if (mapCircularFalloff != 0) {
+        pHeight -= circularFalloff(w, h, mapWidth, mapHeight, mapCircularFalloff);
         if (pHeight <= 0) {
           pHeight = 0;
         }
@@ -27,9 +27,9 @@ public float[][] generateRidgeHeightMap(int mapWidth, int mapHeight, long ridgeS
 
       //Set height
       ridgeHeightMap[h][w] = pHeight;
-      xoff += (ridgeIntensity / 1000.0f);
+      xoff += (mapIntensity / 1000.0f);
     }
-    yoff += (ridgeIntensity / 1000.0f);
+    yoff += (mapIntensity / 1000.0f);
   }
   return ridgeHeightMap;
 }
