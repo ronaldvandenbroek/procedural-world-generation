@@ -25,7 +25,7 @@ public void generateHeightMap() {
   //float[][] terrainMapMedium = generateRidgeHeightMap(1024, 1024, (long)random(0, 10000), 7, 3.5f, 3, 30);
   float[][] terrainMapSmall = generateRidgeHeightMap(1024, 1024, (long)random(0, 10000), 11, 4, 8, 20);
   //terrainMap = mergeHeightMaps(terrainMapLarge, terrainMapMedium, 0.7f);
-  terrainMap = mergeHeightMaps(terrainMapLarge, terrainMapSmall, 0.7f);
+  terrainMap = mergeHeightMaps(terrainMapLarge, terrainMapSmall, 0.6f);
   terrainMap = normaliseMinAndMaxHeight(terrainMapLarge);
   draw_terrainMap();
 }
