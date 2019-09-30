@@ -56,6 +56,11 @@ public void setup() {
   createGUISlider("rainDirection3", 0, 8);
   createGUISlider("rainDirection3Strength", 0, 10);
 
+  CallbackListener exportCallbackListener = new CallbackListener() {
+    public void controlEvent(CallbackEvent theEvent) {
+      export();
+    }
+  };
   CallbackListener mapCallbackListener = new CallbackListener() {
     public void controlEvent(CallbackEvent theEvent) {
       int buttonPressed = int(theEvent.getController().getValue());
@@ -68,6 +73,8 @@ public void setup() {
   createGUIMapButton("Temperature Map", 1, mapCallbackListener);
   createGUIMapButton("Humidity Map", 2, mapCallbackListener);
   createGUIMapButton("Biome Map", 3, mapCallbackListener);
+
+  createGUIMapButton("Export", -1, exportCallbackListener);
 
   //Generate and display the default map
   generateAllMaps();
