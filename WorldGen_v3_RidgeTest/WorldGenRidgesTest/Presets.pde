@@ -34,5 +34,5 @@ int rainDirection1 = 5;
 int rainDirection2 = 6;
 int rainDirection3 = 6;
 int rainDirection1Strength = 1;
-int rainDirection2Stringth = 4;
+int rainDirection2Strength = 4;
 int rainDirection3Strength = 1;

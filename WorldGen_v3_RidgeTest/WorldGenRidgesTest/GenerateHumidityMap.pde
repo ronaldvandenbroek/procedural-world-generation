@@ -1,9 +1,9 @@
 public void generateHumidityMap() {
   float[][] humidityMap1 = generateHumidityMapLayer(heightMap, temperatureMap, rainDirection1, seaLevel);
-  //float[][] humidityMap2 = generateHumidityMapLayer(heightMap, rainDirection2);
-  //float[][] humidityMap3 = generateHumidityMapLayer(heightMap, rainDirection3);
+  float[][] humidityMap2 = generateHumidityMapLayer(heightMap, temperatureMap, rainDirection2, seaLevel);
+  float[][] humidityMap3 = generateHumidityMapLayer(heightMap, temperatureMap, rainDirection3, seaLevel);
 
-  humidityMap = humidityMap1;
+  humidityMap = mergeMaps(humidityMap1, rainDirection1Strength, humidityMap2, rainDirection2Strength, humidityMap3, rainDirection3Strength);
   humidityMap = normaliseMaps(humidityMap);
 }
 
