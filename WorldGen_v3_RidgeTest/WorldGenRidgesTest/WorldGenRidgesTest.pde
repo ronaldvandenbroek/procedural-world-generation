@@ -3,6 +3,7 @@ import controlP5.*;
 ControlP5 cp5;
 float[][] heightMap;
 float[][] temperatureMap;
+float[][] humidityMap;
 int mapWidth, mapHeight;
 
 //Default starting values, see Presets for slider starter values
@@ -16,6 +17,8 @@ public void setup() {
   //Setup window and map
   size(1024, 1024);
   heightMap = new float[height][width];
+  temperatureMap = new float[height][width];
+  humidityMap = new float[height][width];
   mapWidth = width;
   mapHeight = height;
 
@@ -34,11 +37,22 @@ public void setup() {
   createGUISlider("octaves2", 1, 15);
   createGUISlider("circularFalloff2", 0, 1);
 
+  createGUISliderTitle("Sealevel Configuration", false);
+  createGUISlider("seaLevel", 0, 255);
+
   createGUISliderTitle("TemperatureMap Configuration", false);
   createGUISlider("equatorOffset", -height/2, height/2);
   createGUISlider("temperatureFalloff", 0, 1);
   createGUISlider("temperatureHeight", 0, 1);
-  
+
+  createGUISliderTitle("HumidityMap Configuration", false);
+  createGUISlider("rainDirection1", 0, 8);
+  createGUISlider("rainDirection1Strength", 0, 10);
+  createGUISlider("rainDirection2", 0, 8);
+  createGUISlider("rainDirection2Strength", 0, 10);
+  createGUISlider("rainDirection3", 0, 8);
+  createGUISlider("rainDirection3Strength", 0, 10);
+
   CallbackListener mapCallbackListener = new CallbackListener() {
     public void controlEvent(CallbackEvent theEvent) {
       int buttonPressed = int(theEvent.getController().getValue());
@@ -49,6 +63,7 @@ public void setup() {
 
   createGUIMapButton("Height Map", 0, mapCallbackListener);
   createGUIMapButton("Temperature Map", 1, mapCallbackListener);
+  createGUIMapButton("Humidity Map", 2, mapCallbackListener);
   
   //Generate and display the default map
   generateAllMaps();
@@ -110,7 +125,8 @@ public void mouseReleased() {
   drawMap(currentMap);
 }
 
-public void generateAllMaps(){
+public void generateAllMaps() {
   generateHeightMap();
   generateTemperatureMap();
+  generateHumidityMap();
 }

@@ -6,6 +6,9 @@ void drawMap(int value) {
   case 1:
     drawPixelMap(temperatureMap);
     break;
+  case 2:
+    drawPixelMap(humidityMap);
+    break;
   }
 }
 

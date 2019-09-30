@@ -24,6 +24,15 @@ float falloff2 = 4.5;//'Best' between 0 and 5
 int octaves2 = 7;
 float circularFalloff2 = 0.3;
 
+int seaLevel = 20;
+
 int equatorOffset = 0;
 float temperatureFalloff = 1;
 float temperatureHeight = 0.65;
+
+int rainDirection1 = 5;
+int rainDirection2 = 6;
+int rainDirection3 = 6;
+int rainDirection1Strength = 1;
+int rainDirection2Stringth = 4;
+int rainDirection3Strength = 1;
