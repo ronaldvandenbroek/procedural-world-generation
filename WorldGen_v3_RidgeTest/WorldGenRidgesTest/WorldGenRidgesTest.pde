@@ -5,6 +5,7 @@ float[][] heightMap;
 float[][] temperatureMap;
 float[][] humidityMap;
 int mapWidth, mapHeight;
+PImage biomes;
 
 //Default starting values, see Presets for slider starter values
 int seed = 1;
@@ -21,6 +22,8 @@ public void setup() {
   humidityMap = new float[height][width];
   mapWidth = width;
   mapHeight = height;
+
+  loadImages();
 
   //Configure GUI
   cp5 = new ControlP5(this);
@@ -64,6 +67,7 @@ public void setup() {
   createGUIMapButton("Height Map", 0, mapCallbackListener);
   createGUIMapButton("Temperature Map", 1, mapCallbackListener);
   createGUIMapButton("Humidity Map", 2, mapCallbackListener);
+  createGUIMapButton("Biome Map", 3, mapCallbackListener);
 
   //Generate and display the default map
   generateAllMaps();

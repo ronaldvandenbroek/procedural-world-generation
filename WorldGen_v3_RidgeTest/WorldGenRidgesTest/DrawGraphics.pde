@@ -1,4 +1,5 @@
 void drawMap(int value) {
+  loadPixels();
   switch(value) {
   case 0:
     drawPixelMap(heightMap);
@@ -9,15 +10,28 @@ void drawMap(int value) {
   case 2:
     drawPixelMap(humidityMap);
     break;
+  case 3:
+    drawBiomeMap(heightMap, temperatureMap, humidityMap);
   }
+  updatePixels();
 }
 
 void drawPixelMap(float[][] map) {
-  loadPixels();
   for (int h = 0; h < height; h++) {
     for (int w = 0; w < width; w++) {
-      pixels[h * width + w] = color(map[h][w]);
+      pixels[h * width + w] = getGreyScale(map[h][w]);
     }
   }
-  updatePixels();
+}
+
+void drawBiomeMap(float[][] heightMap, float[][] temperatureMap, float[][] humidityMap) {
+  for (int h = 0; h < height; h++) {
+    for (int w = 0; w < width; w++) {
+      if (heightMap[h][w] <= seaLevel) {
+        pixels[h * width + w] = seaColor;
+      } else {
+        pixels[h * width + w] = getColorBiome(temperatureMap[h][w], humidityMap[h][w]);
+      }
+    }
+  }
 }
