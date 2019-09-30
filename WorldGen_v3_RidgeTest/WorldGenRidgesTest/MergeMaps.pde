@@ -14,7 +14,7 @@ public float[][] mergeMaps(float[][] mergedMap1, float[][] mergedMap2, float ler
 public float[][] mergeMaps(float[][] mergedMap1, int mergedMap1Strength, float[][] mergedMap2, int mergedMap2Strength, float[][] mergedMap3, int mergedMap3Strength) {
   int mapHeight = mergedMap1.length;
   int mapWidth = mergedMap1[0].length;
-  
+
   int totalStrength = mergedMap1Strength + mergedMap2Strength + mergedMap3Strength;
   float[][] mergedHeightMap = new float[mapHeight][mapWidth];
   for (int h = 0; h < mapHeight; h++) {

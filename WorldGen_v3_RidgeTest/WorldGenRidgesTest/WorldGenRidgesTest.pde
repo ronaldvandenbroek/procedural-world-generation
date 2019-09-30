@@ -64,7 +64,7 @@ public void setup() {
   createGUIMapButton("Height Map", 0, mapCallbackListener);
   createGUIMapButton("Temperature Map", 1, mapCallbackListener);
   createGUIMapButton("Humidity Map", 2, mapCallbackListener);
-  
+
   //Generate and display the default map
   generateAllMaps();
   drawMap(0);
