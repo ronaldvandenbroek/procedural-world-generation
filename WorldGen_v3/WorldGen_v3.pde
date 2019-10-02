@@ -20,7 +20,7 @@ PImage blendBiomes;
 PImage biomeMap;
 
 //Default starting values
-int intensity = 30;
+int intensity = 3;
 int octaves = 8;
 int falloff = 5;
 int baseFalloffHeight = 5;
@@ -41,7 +41,7 @@ String saveLocation = "C:/Users/ronald/Pictures/Terrain/Generated/";
 //long seed = 4648; //Default seed
 //For demo set greyscale to false and displaytype to 0
 boolean greyScale = true;
-boolean terrainCurving = false;
+boolean terrainCurving = true;
 int displayType = 4;
 long seed = 2980; //VCC seed //3033 //1065
 

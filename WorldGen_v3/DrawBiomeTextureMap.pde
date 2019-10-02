@@ -58,15 +58,6 @@ PImage prep_biome_texture(PImage biomeBlend, boolean sea, String hex) {
         } else {
           biomeTexture.pixels[h * width + w] = getColorBiome(terrainMap[h][w][1], terrainMap[h][w][2]);
         }
-
-
-        //if(terrainMap[h][w][0] > 40 / 100.0f){//Hills
-        //  color bcolor = lerpColor(getColorBiome(terrainMap[h][w][1], terrainMap[h][w][2]), color(0), terrainMap[h][w][0]);
-        //  biomeTexture.pixels[h * width + w] = bcolor;
-        //}
-        //else{//Normal
-        //  biomeTexture.pixels[h * width + w] = getColorBiome(terrainMap[h][w][1], terrainMap[h][w][2]); 
-        //}
       } else {
         biomeTexture.pixels[h * width + w] = color(0);
       }
