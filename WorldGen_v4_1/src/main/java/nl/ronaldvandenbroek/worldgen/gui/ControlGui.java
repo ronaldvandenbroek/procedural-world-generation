@@ -3,21 +3,20 @@ package nl.ronaldvandenbroek.worldgen.gui;
 import controlP5.CallbackEvent;
 import controlP5.CallbackListener;
 import controlP5.ControlP5;
-import nl.ronaldvandenbroek.worldgen.WorldGen;
-import processing.core.PImage;
-
-import static processing.core.PConstants.RGB;
+import processing.core.PApplet;
 
 public class ControlGui {
     private int sliderPosition = 0;
     private int buttonPosition = 0;
     private boolean guiShow = true;
     private int currentMap = 0;
+    private PApplet processing;
 
     public static ControlP5 gui;
 
-    public ControlGui() {
-        gui = new ControlP5(WorldGen.processing);
+    public ControlGui(PApplet processing) {
+        this.processing = processing;
+        gui = new ControlP5(processing);
         createGUISliderTitle("HeightMap Configuration", true);
         createGUISlider("intensity1", 1, 30);
         createGUISlider("power1", 0, 50);
@@ -35,7 +34,7 @@ public class ControlGui {
         createGUISlider("seaLevel", 0, 255);
 
         createGUISliderTitle("TemperatureMap Configuration", false);
-        createGUISlider("equatorOffset", -WorldGen.processing.height/2, WorldGen.processing.height/2);
+        createGUISlider("equatorOffset", -processing.height/2, processing.height/2);
         createGUISlider("temperatureFalloff", 0, 1);
         createGUISlider("temperatureHeight", 0, 1);
 
@@ -82,7 +81,7 @@ public class ControlGui {
     }
 
     public void createGUIMapButton(String name, int value, CallbackListener callbackListener) {
-        gui.addButton(name).setPosition(WorldGen.processing.width - 80, buttonPosition).setValue(value).onRelease(callbackListener);
+        gui.addButton(name).setPosition(processing.width - 80, buttonPosition).setValue(value).onRelease(callbackListener);
         buttonPosition += 20;
     }
 }
