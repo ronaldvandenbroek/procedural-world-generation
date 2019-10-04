@@ -42,7 +42,7 @@ public class TwoDimensionalArrayUtility {
      * @param max float
      * @return float[][]
      */
-    public float[][] map(float[][] array, float min, float max) {
+    public static float[][] map(float[][] array, float min, float max) {
         if (min >= max){
             return null;
         }
