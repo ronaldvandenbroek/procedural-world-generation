@@ -115,7 +115,7 @@ public class TwoDimensionalArrayUtility {
     }
 
     /**
-     * Add circular falloff to the array
+     * Add percentile circular falloff to the array
      * @param array float[][]
      * @param falloffStrength float
      * @return float[][]
@@ -134,6 +134,12 @@ public class TwoDimensionalArrayUtility {
         return array;
     }
 
+    /**
+     * Add absolute circular falloff to the array
+     * @param array float[][]
+     * @param falloffStrength float
+     * @return float[][]
+     */
     public static float[][] circularFalloffAbsolute(float[][] array, float falloffStrength){
         int arrayHeight = getArrayHeight(array);
         int centerHeight = arrayHeight / 2;
@@ -155,11 +161,21 @@ public class TwoDimensionalArrayUtility {
         return array;
     }
 
+    /**
+     * Calculate the percentage of the way to the border of the grid you are from any given point
+     * @param h int
+     * @param w int
+     * @param centerHeight int
+     * @param centerWidth int
+     * @param falloffStrength float
+     * @return double
+     */
     private static double calculateDistancePercentage(int h, int w, int centerHeight, int centerWidth, float falloffStrength){
-        double hDistance = Math.pow(Math.abs(centerHeight - h), 2);
-        double wDistance = Math.pow(Math.abs(centerWidth - w), 2);
-        double distance = Math.sqrt(hDistance + wDistance);
-        double distancePercentage = (distance / centerHeight) * falloffStrength;
+        //double hDistance = Math.pow(Math.abs(centerHeight - h), 2);
+        //double wDistance = Math.pow(Math.abs(centerWidth - w), 2);
+        //double distance = Math.sqrt(hDistance + wDistance);
+        //double distancePercentage = (distance / centerHeight) * falloffStrength;
+        double distancePercentage = (Math.sqrt(Math.pow(Math.abs(centerHeight - h), 2) + Math.pow(Math.abs(centerWidth - w), 2)) / centerHeight) * falloffStrength;
         if (distancePercentage > 1){
             distancePercentage = 1;
         }
