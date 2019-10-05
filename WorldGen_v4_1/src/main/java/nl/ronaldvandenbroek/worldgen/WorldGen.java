@@ -32,17 +32,24 @@ public class WorldGen extends PApplet {
         controlGui.createGUISliderTitle("HeightMap Configuration", true);
         controlGui.createGUISliderFloat(new ControlElementSliderFloat("Test Variable", "test", presets, presets.getTest(), 1f, 10f));
 
-        float[][] noiseMap = noiseMapGenerator.generate(HEIGHT, WIDTH, 1, 7, 4.5f, 4f);
-        mapUtil.map(noiseMap, 0, 1);
-        mapUtil.ridge(noiseMap);
-        mapUtil.curve(noiseMap, 4);
-        mapUtil.circularFalloffAbsolute(noiseMap, 1);
-        mapUtil.map(noiseMap, 0, 255);
+        float[][] heightMapBase = noiseMapGenerator.generate(HEIGHT, WIDTH, 2, 7, 4.5f, 4f);
+        mapUtil.map(heightMapBase, 0, 1);
+        mapUtil.map(heightMapBase, 0, 255);
 
-        //System.out.println(mapUtil.getHighestArrayValue(noiseMap));
-        //System.out.println(mapUtil.getLowestArrayValue(noiseMap));
+        float[][] heightMapRidge = noiseMapGenerator.generate(HEIGHT, WIDTH, 2, 7, 4.5f, 4f);
+        mapUtil.map(heightMapRidge, 0, 1);
+        mapUtil.ridge(heightMapRidge);
+        mapUtil.curve(heightMapRidge, 5);
+        mapUtil.map(heightMapRidge, 0, 255);
 
-        PImage testImage = processingImageDrawer.draw(noiseMap);
+        float[][] heightMapTotal = mapUtil.merge(heightMapBase, heightMapRidge,0.8f);
+        mapUtil.circularFalloffAbsolute(heightMapTotal, 1f);
+        mapUtil.map(heightMapTotal, 0, 255);
+
+        System.out.println(mapUtil.getHighestArrayValue(heightMapTotal));
+        System.out.println(mapUtil.getLowestArrayValue(heightMapTotal));
+
+        PImage testImage = processingImageDrawer.draw(heightMapTotal);
         image(testImage, 0, 0);
     }
 
