@@ -23,16 +23,16 @@ public class HeightMap {
         return seed;
     }
 
-    public void setSeed(int seed) {
-        this.seed = seed;
+    public void setSeed(float seed) {
+        this.seed = (int)seed;
     }
 
     public int getOctaves() {
         return octaves;
     }
 
-    public void setOctaves(int octaves) {
-        this.octaves = octaves;
+    public void setOctaves(float octaves) {
+        this.octaves = (int)octaves;
     }
 
     public float getNoiseFalloff() {
