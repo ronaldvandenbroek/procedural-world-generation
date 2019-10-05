@@ -43,6 +43,7 @@ public class WorldGen extends PApplet {
         mapUtil.map(heightMapRidge, 0, 255);
 
         float[][] heightMapTotal = mapUtil.merge(heightMapBase, heightMapRidge,0.8f);
+        mapUtil.map(heightMapRidge, 0, 1);
         mapUtil.circularFalloffAbsolute(heightMapTotal, 1f);
         mapUtil.map(heightMapTotal, 0, 255);
 
