@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="178580e6-910f-4a4c-bcbe-8af7d74bac55" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/WorldGen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/WorldGen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/calculation/TwoDimensionalArrayUtility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/calculation/TwoDimensionalArrayUtility.java" afterDir="false" />
     </list>
@@ -88,7 +87,7 @@
       <option name="presentableId" value="Default" />
       <updated>1570214589610</updated>
       <workItem from="1570214596211" duration="9445000" />
-      <workItem from="1570281947998" duration="14399000" />
+      <workItem from="1570281947998" duration="14607000" />
     </task>
     <servers />
   </component>

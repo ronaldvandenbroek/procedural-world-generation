@@ -26,20 +26,21 @@ public class WorldGen extends PApplet {
         Presets presets = new Presets();
         NoiseMapGenerator noiseMapGenerator = new ProcessingPerlinNoise(this);
         ProcessingImageDrawer processingImageDrawer = new ProcessingImageDrawer(this);
+        TwoDimensionalArrayUtility mapUtil = new TwoDimensionalArrayUtility();
 
         ControlGui controlGui = new ControlGui(this);
         controlGui.createGUISliderTitle("HeightMap Configuration", true);
         controlGui.createGUISliderFloat(new ControlElementSliderFloat("Test Variable", "test", presets, presets.getTest(), 1f, 10f));
 
         float[][] noiseMap = noiseMapGenerator.generate(HEIGHT, WIDTH, 1, 7, 4.5f, 4f);
-        TwoDimensionalArrayUtility.map(noiseMap, 0, 1);
-        TwoDimensionalArrayUtility.ridge(noiseMap);
-        TwoDimensionalArrayUtility.curve(noiseMap, 4);
-        TwoDimensionalArrayUtility.circularFalloffAbsolute(noiseMap, 1);
-        TwoDimensionalArrayUtility.map(noiseMap, 0, 255);
+        mapUtil.map(noiseMap, 0, 1);
+        mapUtil.ridge(noiseMap);
+        mapUtil.curve(noiseMap, 4);
+        mapUtil.circularFalloffAbsolute(noiseMap, 1);
+        mapUtil.map(noiseMap, 0, 255);
 
-        //System.out.println(TwoDimensionalArrayUtility.getHighestArrayValue(noiseMap));
-        //System.out.println(TwoDimensionalArrayUtility.getLowestArrayValue(noiseMap));
+        //System.out.println(mapUtil.getHighestArrayValue(noiseMap));
+        //System.out.println(mapUtil.getLowestArrayValue(noiseMap));
 
         PImage testImage = processingImageDrawer.draw(noiseMap);
         image(testImage, 0, 0);

@@ -9,7 +9,7 @@ public class TwoDimensionalArrayUtility {
      * @param weight float between 0 and 1
      * @return float[][]
      */
-    public static float[][] merge(float[][] array1, float[][] array2, float weight) {
+    public float[][] merge(float[][] array1, float[][] array2, float weight) {
         // Check if the arrays are the same size
         if (getArrayHeight(array1) != getArrayHeight(array2) || getArrayWidth(array1) != getArrayWidth(array2)){
             return null;
@@ -42,7 +42,7 @@ public class TwoDimensionalArrayUtility {
      * @param max float
      * @return float[][]
      */
-    public static float[][] map(float[][] array, float min, float max) {
+    public float[][] map(float[][] array, float min, float max) {
         if (min >= max){
             return null;
         }
@@ -69,7 +69,7 @@ public class TwoDimensionalArrayUtility {
      * @param power float
      * @return float[][]
      */
-    public static float[][] curve(float[][] array, float power) {
+    public float[][] curve(float[][] array, float power) {
         int arrayHeight = getArrayHeight(array);
         int arrayWidth = getArrayWidth(array);
 
@@ -86,7 +86,7 @@ public class TwoDimensionalArrayUtility {
      * @param array float[][]
      * @return float[][]
      */
-    public static float[][] ridge(float[][] array) {
+    public float[][] ridge(float[][] array) {
         int arrayHeight = getArrayHeight(array);
         int arrayWidth = getArrayWidth(array);
 
@@ -119,7 +119,7 @@ public class TwoDimensionalArrayUtility {
      * @param falloffStrength float
      * @return float[][]
      */
-    public static float[][] circularFalloffPercentile(float[][] array, float falloffStrength){
+    public float[][] circularFalloffPercentile(float[][] array, float falloffStrength){
         int arrayHeight = getArrayHeight(array);
         int centerHeight = arrayHeight / 2;
         int arrayWidth = getArrayWidth(array);
@@ -139,7 +139,7 @@ public class TwoDimensionalArrayUtility {
      * @param falloffStrength float
      * @return float[][]
      */
-    public static float[][] circularFalloffAbsolute(float[][] array, float falloffStrength){
+    public float[][] circularFalloffAbsolute(float[][] array, float falloffStrength){
         int arrayHeight = getArrayHeight(array);
         int centerHeight = arrayHeight / 2;
         int arrayWidth = getArrayWidth(array);
@@ -169,7 +169,7 @@ public class TwoDimensionalArrayUtility {
      * @param falloffStrength float
      * @return double
      */
-    private static double calculateDistancePercentage(int h, int w, int centerHeight, int centerWidth, float falloffStrength){
+    private double calculateDistancePercentage(int h, int w, int centerHeight, int centerWidth, float falloffStrength){
         //double hDistance = Math.pow(Math.abs(centerHeight - h), 2);
         //double wDistance = Math.pow(Math.abs(centerWidth - w), 2);
         //double distance = Math.sqrt(hDistance + wDistance);
@@ -186,7 +186,7 @@ public class TwoDimensionalArrayUtility {
      * @param array float[][]
      * @return float
      */
-    public static float getHighestArrayValue(float[][] array){
+    public float getHighestArrayValue(float[][] array){
         int arrayHeight = getArrayHeight(array);
         int arrayWidth = getArrayWidth(array);
 
@@ -206,7 +206,7 @@ public class TwoDimensionalArrayUtility {
      * @param array float[][]
      * @return float
      */
-    public static float getLowestArrayValue(float[][] array){
+    public float getLowestArrayValue(float[][] array){
         int arrayHeight = getArrayHeight(array);
         int arrayWidth = getArrayWidth(array);
 
@@ -226,7 +226,7 @@ public class TwoDimensionalArrayUtility {
      * @param array float[][]
      * @return int
      */
-    public static int getArrayHeight(float[][] array){
+    public int getArrayHeight(float[][] array){
         return array.length;
     }
 
@@ -235,7 +235,7 @@ public class TwoDimensionalArrayUtility {
      * @param array float[][]
      * @return int
      */
-    public static int getArrayWidth(float[][] array){
+    public int getArrayWidth(float[][] array){
         return array[0].length;
     }
 }
