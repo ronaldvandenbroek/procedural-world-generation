@@ -120,7 +120,7 @@ public class TwoDimensionalArrayUtility {
      * @param falloffStrength float
      * @return float[][]
      */
-    public static float[][] circularFalloff(float[][] array, float falloffStrength){
+    public static float[][] circularFalloffPercentile(float[][] array, float falloffStrength){
         int arrayHeight = getArrayHeight(array);
         int centerHeight = arrayHeight / 2;
         int arrayWidth = getArrayWidth(array);
@@ -128,18 +128,42 @@ public class TwoDimensionalArrayUtility {
 
         for (int h = 0; h < arrayHeight; h++) {
             for (int w = 0; w < arrayWidth; w++) {
-                double hDistance = Math.pow(Math.abs(centerHeight - h), 2);
-                double wDistance = Math.pow(Math.abs(centerWidth - w), 2);
-                double distance = Math.sqrt(hDistance + wDistance);
-                double distancePercentage = (distance / centerHeight) * falloffStrength;
-                if (distancePercentage > 1){
-                    distancePercentage = 1;
-                }
-
-                array[h][w] -= array[h][w] * distancePercentage;
+                array[h][w] -= array[h][w] * calculateDistancePercentage(h, w, centerHeight, centerWidth, falloffStrength);
             }
         }
         return array;
+    }
+
+    public static float[][] circularFalloffAbsolute(float[][] array, float falloffStrength){
+        int arrayHeight = getArrayHeight(array);
+        int centerHeight = arrayHeight / 2;
+        int arrayWidth = getArrayWidth(array);
+        int centerWidth = arrayWidth / 2;
+
+        float maxHeight = getHighestArrayValue(array);
+        float minHeight = getLowestArrayValue(array);
+
+        for (int h = 0; h < arrayHeight; h++) {
+            for (int w = 0; w < arrayWidth; w++) {
+                array[h][w] -= maxHeight * calculateDistancePercentage(h, w, centerHeight, centerWidth, falloffStrength);
+
+                if (array[h][w] < minHeight){
+                    array[h][w] = minHeight;
+                }
+            }
+        }
+        return array;
+    }
+
+    private static double calculateDistancePercentage(int h, int w, int centerHeight, int centerWidth, float falloffStrength){
+        double hDistance = Math.pow(Math.abs(centerHeight - h), 2);
+        double wDistance = Math.pow(Math.abs(centerWidth - w), 2);
+        double distance = Math.sqrt(hDistance + wDistance);
+        double distancePercentage = (distance / centerHeight) * falloffStrength;
+        if (distancePercentage > 1){
+            distancePercentage = 1;
+        }
+        return distancePercentage;
     }
 
     /**
