@@ -1,9 +1,7 @@
 package nl.ronaldvandenbroek.worldgen;
 
-import controlP5.ControlP5;
 import nl.ronaldvandenbroek.worldgen.calculation.TwoDimensionalArrayUtility;
 import nl.ronaldvandenbroek.worldgen.gui.ControlElementSliderFloat;
-import nl.ronaldvandenbroek.worldgen.gui.ControlElementSliderInteger;
 import nl.ronaldvandenbroek.worldgen.gui.ControlGui;
 import nl.ronaldvandenbroek.worldgen.gui.Presets;
 import nl.ronaldvandenbroek.worldgen.processing.ProcessingImageDrawer;
@@ -34,13 +32,15 @@ public class WorldGen extends PApplet {
         controlGui.createGUISliderFloat(new ControlElementSliderFloat("Test Variable", "test", presets, presets.getTest(), 1f, 10f));
 
         float[][] noiseMap = noiseMapGenerator.generate(HEIGHT, WIDTH, 1, 7, 4.5f, 4f);
-        //TwoDimensionalArrayUtility.map(noiseMap, 0, 255);
-        //TwoDimensionalArrayUtility.curve(noiseMap, 10);
+        TwoDimensionalArrayUtility.map(noiseMap, 0, 1);
         TwoDimensionalArrayUtility.ridge(noiseMap);
+        TwoDimensionalArrayUtility.curve(noiseMap, 4);
         TwoDimensionalArrayUtility.circularFalloffAbsolute(noiseMap, 1);
         TwoDimensionalArrayUtility.map(noiseMap, 0, 255);
-        System.out.println(TwoDimensionalArrayUtility.getHighestArrayValue(noiseMap));
-        System.out.println(TwoDimensionalArrayUtility.getLowestArrayValue(noiseMap));
+
+        //System.out.println(TwoDimensionalArrayUtility.getHighestArrayValue(noiseMap));
+        //System.out.println(TwoDimensionalArrayUtility.getLowestArrayValue(noiseMap));
+
         PImage testImage = processingImageDrawer.draw(noiseMap);
         image(testImage, 0, 0);
     }

@@ -101,8 +101,7 @@ public class TwoDimensionalArrayUtility {
                 //float flip = initialMax + (moveHalfUp * -1);
                 //float flip = moveHalfUp * -1;
 
-                float result = initialMax + ((Math.abs(array[h][w] - centerPoint) + centerPoint) * -1);
-                array[h][w] = result;
+                array[h][w] = (initialMax + ((Math.abs(array[h][w] - centerPoint) + centerPoint) * -1)) * 2;
             }
         }
         float afterMin = getLowestArrayValue(array);
