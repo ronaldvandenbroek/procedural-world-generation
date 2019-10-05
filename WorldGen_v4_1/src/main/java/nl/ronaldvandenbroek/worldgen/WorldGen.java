@@ -33,12 +33,14 @@ public class WorldGen extends PApplet {
         controlGui.createGUISliderTitle("HeightMap Configuration", true);
         controlGui.createGUISliderFloat(new ControlElementSliderFloat("Test Variable", "test", presets, presets.getTest(), 1f, 10f));
 
-        float[][] noiseMap = noiseMapGenerator.generate(HEIGHT, WIDTH, 0, 7, 4.5f, 4f);
+        float[][] noiseMap = noiseMapGenerator.generate(HEIGHT, WIDTH, 1, 7, 4.5f, 4f);
         //TwoDimensionalArrayUtility.map(noiseMap, 0, 255);
         //TwoDimensionalArrayUtility.curve(noiseMap, 10);
         TwoDimensionalArrayUtility.ridge(noiseMap);
-        //TwoDimensionalArrayUtility.circularFalloff(noiseMap, 1f);
+        TwoDimensionalArrayUtility.circularFalloffAbsolute(noiseMap, 1);
         TwoDimensionalArrayUtility.map(noiseMap, 0, 255);
+        System.out.println(TwoDimensionalArrayUtility.getHighestArrayValue(noiseMap));
+        System.out.println(TwoDimensionalArrayUtility.getLowestArrayValue(noiseMap));
         PImage testImage = processingImageDrawer.draw(noiseMap);
         image(testImage, 0, 0);
     }
