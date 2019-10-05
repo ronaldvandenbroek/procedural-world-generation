@@ -1,5 +1,6 @@
 package nl.ronaldvandenbroek.worldgen;
 
+import nl.ronaldvandenbroek.worldgen.calculation.HeightMap;
 import nl.ronaldvandenbroek.worldgen.calculation.TwoDimensionalArrayUtility;
 import nl.ronaldvandenbroek.worldgen.gui.ControlElementSliderFloat;
 import nl.ronaldvandenbroek.worldgen.gui.ControlGui;
@@ -32,25 +33,13 @@ public class WorldGen extends PApplet {
         controlGui.createGUISliderTitle("HeightMap Configuration", true);
         controlGui.createGUISliderFloat(new ControlElementSliderFloat("Test Variable", "test", presets, presets.getTest(), 1f, 10f));
 
-        float[][] heightMapBase = noiseMapGenerator.generate(HEIGHT, WIDTH, 2, 7, 4.5f, 4f);
-        mapUtil.map(heightMapBase, 0, 1);
-        mapUtil.map(heightMapBase, 0, 255);
+        HeightMap heightMapBase = new HeightMap(noiseMapGenerator, mapUtil, HEIGHT, WIDTH, 1, 7, 4.5f, 4f, false, 0, 0, 0.8f);
+        HeightMap heightMapRidge = new HeightMap(noiseMapGenerator, mapUtil, HEIGHT, WIDTH, 1, 7, 4.5f, 4f, true, 5, 0, 1f);
+        HeightMap heightMapTotal = heightMapBase.merge(heightMapRidge);
+        heightMapTotal.setCircularFalloff(1f);
+        heightMapTotal.generate();
 
-        float[][] heightMapRidge = noiseMapGenerator.generate(HEIGHT, WIDTH, 2, 7, 4.5f, 4f);
-        mapUtil.map(heightMapRidge, 0, 1);
-        mapUtil.ridge(heightMapRidge);
-        mapUtil.curve(heightMapRidge, 5);
-        mapUtil.map(heightMapRidge, 0, 255);
-
-        float[][] heightMapTotal = mapUtil.merge(heightMapBase, heightMapRidge,0.8f);
-        mapUtil.map(heightMapRidge, 0, 1);
-        mapUtil.circularFalloffAbsolute(heightMapTotal, 1f);
-        mapUtil.map(heightMapTotal, 0, 255);
-
-        System.out.println(mapUtil.getHighestArrayValue(heightMapTotal));
-        System.out.println(mapUtil.getLowestArrayValue(heightMapTotal));
-
-        PImage testImage = processingImageDrawer.draw(heightMapTotal);
+        PImage testImage = processingImageDrawer.draw(heightMapTotal.finalise());
         image(testImage, 0, 0);
     }
 
