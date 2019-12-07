@@ -9,6 +9,9 @@ import nl.ronaldvandenbroek.worldgen.processing.ProcessingPerlinNoise;
 import processing.core.PApplet;
 import processing.core.PImage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class WorldGen extends PApplet {
     private static int WIDTH = 1024;
     private static int HEIGHT = 1024;
@@ -18,7 +21,7 @@ public class WorldGen extends PApplet {
     private TwoDimensionalArrayUtility mapUtil;
     private ControlGui controlGui;
 
-    boolean generatedControls = false;
+    private List<HeightMap> heightMaps;
 
     public static void main(String[] args) {
         PApplet.main("nl.ronaldvandenbroek.worldgen.WorldGen", args);
@@ -28,7 +31,8 @@ public class WorldGen extends PApplet {
         size(WIDTH, HEIGHT);
     }
 
-    public void setup(){
+    public void setup() {
+        heightMaps = new ArrayList<>();
         noiseMapGenerator = new ProcessingPerlinNoise(this);
         processingImageDrawer = new ProcessingImageDrawer(this);
         mapUtil = new TwoDimensionalArrayUtility();
@@ -36,7 +40,7 @@ public class WorldGen extends PApplet {
         controlGui = new ControlGui(this);
         controlGui.createGUISliderTitle("HeightMap Configuration", true);
 
-        generateHeightMaps();
+        createDefaultHeightMaps();
     }
 
     public void draw() {
@@ -44,22 +48,40 @@ public class WorldGen extends PApplet {
 
     public void mouseReleased() {
         generateHeightMaps();
-        System.out.println("Mouse Released");
+        //System.out.println("Mouse Released");
     }
 
-    public void generateHeightMaps(){
-        HeightMap heightMapBase = new HeightMap(noiseMapGenerator, mapUtil, HEIGHT, WIDTH, 1, 7, 4.5f, 4f, false, 0, 0, 0.8f);
-        if (!generatedControls){
-            ControlBuilder.HeightMap(controlGui, heightMapBase, "Base HeightMap");
+    private void createDefaultHeightMaps() {
+        heightMaps.add(new HeightMap("Base", noiseMapGenerator, mapUtil, HEIGHT, WIDTH, 1, 7, 4.5f, 4f, false, 0, 0, 0.80f));
+        heightMaps.add(new HeightMap("Ridge", noiseMapGenerator, mapUtil, HEIGHT, WIDTH, 1, 7, 4.5f, 4f, true, 5, 0, 1f));
+
+        for (HeightMap heightMap : heightMaps) {
+            ControlBuilder.HeightMap(controlGui, heightMap);
         }
-        HeightMap heightMapRidge = new HeightMap(noiseMapGenerator, mapUtil, HEIGHT, WIDTH, 1, 7, 4.5f, 4f, true, 5, 0, 1f);
-        HeightMap heightMapTotal = heightMapBase.merge(heightMapRidge);
-        heightMapTotal.setCircularFalloff(1f);
-        heightMapTotal.generate();
 
-        PImage testImage = processingImageDrawer.draw(heightMapTotal.finalise());
-        image(testImage, 0, 0);
-        generatedControls = true;
+        generateHeightMaps();
     }
 
+    private void generateHeightMaps() {
+        // Combine all heightMaps
+        HeightMap heightMapTotal = null;
+        for (HeightMap heightMap : heightMaps) {
+            heightMap.generate();
+            if(heightMapTotal == null){
+                heightMapTotal = heightMap;
+            }
+            else {
+                heightMapTotal = heightMapTotal.merge(heightMap);
+            }
+        }
+
+        if (heightMapTotal != null){
+            // Generate final heightMap
+            heightMapTotal.setCircularFalloff(1f);
+            heightMapTotal.generate();
+
+            PImage testImage = processingImageDrawer.draw(heightMapTotal.finalise());
+            image(testImage, 0, 0);
+        }
+    }
 }

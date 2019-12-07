@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="178580e6-910f-4a4c-bcbe-8af7d74bac55" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/gui/ControlBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/WorldGen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/WorldGen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/calculation/HeightMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/calculation/HeightMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/gui/ControlElementSliderInteger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/gui/ControlElementSliderInteger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/gui/Presets.java" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -91,7 +86,12 @@
       <option name="presentableId" value="Default" />
       <updated>1570214589610</updated>
       <workItem from="1570214596211" duration="9445000" />
-      <workItem from="1570281947998" duration="21648000" />
+      <workItem from="1570281947998" duration="21693000" />
+      <workItem from="1570606469694" duration="200000" />
+      <workItem from="1570630143443" duration="1885000" />
+      <workItem from="1570643372592" duration="1030000" />
+      <workItem from="1571567367915" duration="675000" />
+      <workItem from="1575730040427" duration="4657000" />
     </task>
     <servers />
   </component>
