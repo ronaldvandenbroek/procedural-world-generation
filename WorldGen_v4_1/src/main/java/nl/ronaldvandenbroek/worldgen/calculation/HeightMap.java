@@ -24,6 +24,7 @@ public class HeightMap {
     }
 
     public void setSeed(float seed) {
+        System.out.println("New seed: " + seed);
         this.seed = (int)seed;
     }
 
@@ -93,6 +94,7 @@ public class HeightMap {
 
     private NoiseMapGenerator noiseMapGenerator;
     private TwoDimensionalArrayUtility mapUtil;
+    private String name;
     private int height;
     private int width;
     private int seed;
@@ -105,7 +107,8 @@ public class HeightMap {
     private float weight;
     private float[][] heightMap;
 
-    public HeightMap(float[][] merge, TwoDimensionalArrayUtility mapUtil) {
+    private HeightMap(String name, float[][] merge, TwoDimensionalArrayUtility mapUtil, float weight) {
+        this.name = name;
         this.heightMap = merge;
         this.height = mapUtil.getArrayHeight(merge);
         this.width = mapUtil.getArrayWidth(merge);
@@ -116,13 +119,12 @@ public class HeightMap {
         this.ridge = false;
         this.power = 0;
         this.circularFalloff = 0;
-        this.weight = 0;
+        this.weight = weight;
         this.mapUtil = mapUtil;
-
-        generate();
     }
 
-    public HeightMap(NoiseMapGenerator noiseMapGenerator, TwoDimensionalArrayUtility mapUtil, int height, int width, int seed, int octaves, float noiseFalloff, float intensity, boolean ridge, float power, float circularFalloff, float weight) {
+    public HeightMap(String name, NoiseMapGenerator noiseMapGenerator, TwoDimensionalArrayUtility mapUtil, int height, int width, int seed, int octaves, float noiseFalloff, float intensity, boolean ridge, float power, float circularFalloff, float weight) {
+        this.name = name;
         this.noiseMapGenerator = noiseMapGenerator;
         this.mapUtil = mapUtil;
         this.height = height;
@@ -135,8 +137,6 @@ public class HeightMap {
         this.power = power;
         this.circularFalloff = circularFalloff;
         this.weight = weight;
-
-        generate();
     }
 
     public void generate() {
@@ -157,12 +157,21 @@ public class HeightMap {
     }
 
     public HeightMap merge(HeightMap toBeMergedMap) {
-        float[][] mergedMap = mapUtil.merge(heightMap, toBeMergedMap.getHeightMap(), weight);
-        return new HeightMap(mergedMap, mapUtil);
+        float[][] mergedMap = mapUtil.merge(heightMap, toBeMergedMap.getHeightMap(), this.weight);
+        float combinedWeight = this.weight + toBeMergedMap.getWeight();
+        return new HeightMap("MergedMap", mergedMap, mapUtil, combinedWeight);
     }
 
     public float[][] finalise() {
         mapUtil.map(heightMap, 0, 255);
         return heightMap;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
