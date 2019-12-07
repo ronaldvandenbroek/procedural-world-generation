@@ -1,5 +1,6 @@
 package nl.ronaldvandenbroek.worldgen.gui;
 
+import nl.ronaldvandenbroek.worldgen.WorldGen;
 import nl.ronaldvandenbroek.worldgen.calculation.HeightMap;
 import nl.ronaldvandenbroek.worldgen.properties.Config;
 
@@ -61,6 +62,19 @@ public class ControlBuilder {
                 heightMap.getWeight(),
                 Config.HEIGHT_MAP_WEIGHT_MIN,
                 Config.HEIGHT_MAP_WEIGHT_MAX)
+        );
+    }
+
+    public static void Menu(ControlGui controlGui, WorldGen worldGen){
+        controlGui.createGUIMapButton(new ControlElementButton(
+                "HeightMap",
+                worldGen,
+                0f)
+        );
+        controlGui.createGUIMapButton(new ControlElementButton(
+                "TemperatureMap",
+                worldGen,
+                1f)
         );
     }
 }
