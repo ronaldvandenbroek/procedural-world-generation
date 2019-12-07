@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WorldGen extends PApplet {
+    private float currentMap;
+
     // Utilities
     private NoiseMapGenerator noiseMapGenerator;
     private ProcessingImageDrawer processingImageDrawer;
@@ -31,6 +33,7 @@ public class WorldGen extends PApplet {
     public static void main(String[] args) {
         PropertyLoader.load(Config.class, "config.properties");
         PropertyLoader.load(Preset.class, "preset.properties");
+
         PApplet.main("nl.ronaldvandenbroek.worldgen.WorldGen", args);
     }
 
@@ -39,12 +42,16 @@ public class WorldGen extends PApplet {
     }
 
     public void setup() {
+        currentMap = Config.DEFAULT_MAP;
+
         noiseMapGenerator = new ProcessingPerlinNoise(this);
         processingImageDrawer = new ProcessingImageDrawer(this);
         mapUtil = new TwoDimensionalArrayUtility();
 
         controlGui = new ControlGui(this);
         controlGui.createGUISliderTitle("HeightMap Configuration", true);
+
+        ControlBuilder.Menu(controlGui, this);
 
         createDefaultMaps();
     }
@@ -55,6 +62,13 @@ public class WorldGen extends PApplet {
     public void mouseReleased() {
         generateMaps();
         //System.out.println("Mouse Released");
+    }
+
+    public void menuPressed(float value){
+        System.out.println("Menu Pressed: " + value);
+        currentMap = value;
+
+        drawMaps();
     }
 
     private void createDefaultMaps() {
@@ -130,8 +144,17 @@ public class WorldGen extends PApplet {
     }
 
     private void drawMaps() {
-        PImage testImage = processingImageDrawer.draw(heightMap.finalise());
-        //PImage testImage = processingImageDrawer.draw(temperatureMap.finalise());
-        image(testImage, 0, 0);
+        PImage displayImage;
+        switch ((int)currentMap){
+            case 1:
+                displayImage = processingImageDrawer.draw(temperatureMap.finalise());
+                break;
+            default: //also 0
+                displayImage = processingImageDrawer.draw(heightMap.finalise());
+        }
+
+        if (displayImage != null) {
+            image(displayImage, 0, 0);
+        }
     }
 }
