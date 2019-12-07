@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="178580e6-910f-4a4c-bcbe-8af7d74bac55" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/WorldGen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/WorldGen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/calculation/HeightMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/calculation/HeightMap.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -93,7 +91,7 @@
       <workItem from="1570630143443" duration="1885000" />
       <workItem from="1570643372592" duration="1030000" />
       <workItem from="1571567367915" duration="675000" />
-      <workItem from="1575730040427" duration="4538000" />
+      <workItem from="1575730040427" duration="4657000" />
     </task>
     <servers />
   </component>
