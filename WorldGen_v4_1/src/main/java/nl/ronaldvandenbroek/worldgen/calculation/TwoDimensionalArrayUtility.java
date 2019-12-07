@@ -10,7 +10,7 @@ public class TwoDimensionalArrayUtility {
      * @param weight float between 0 and 1
      * @return float[][]
      */
-    public float[][] merge(float[][] array1, float[][] array2, float weight) {
+    float[][] merge(float[][] array1, float[][] array2, float weight) {
         // Check if the arrays are the same size
         if (getArrayHeight(array1) != getArrayHeight(array2) || getArrayWidth(array1) != getArrayWidth(array2)) {
             return null;
@@ -44,7 +44,7 @@ public class TwoDimensionalArrayUtility {
      * @param max   float
      * @return float[][]
      */
-    public float[][] map(float[][] array, float min, float max) {
+    float[][] map(float[][] array, float min, float max) {
         if (min >= max) {
             return null;
         }
@@ -54,15 +54,22 @@ public class TwoDimensionalArrayUtility {
         float initialMin = getLowestArrayValue(array);
         float initialMax = getHighestArrayValue(array);
 
+        float[][] mappedArray = new float[arrayHeight][arrayWidth];
+
         //Map to min and max
         for (int h = 0; h < arrayHeight; h++) {
             for (int w = 0; w < arrayWidth; w++) {
                 float result = (array[h][w] - initialMin) * (max - min) / (initialMax - initialMin) + min;
-                array[h][w] = result;
+                mappedArray[h][w] = result;
             }
         }
 
-        return array;
+//        float afterMin = getLowestArrayValue(mappedArray);
+//        float afterMax = getHighestArrayValue(mappedArray);
+//        System.out.println("map initial: " + initialMin + " " + initialMax);
+//        System.out.println("map after: " + afterMin + " " + afterMax);
+
+        return mappedArray;
     }
 
     /**
@@ -72,16 +79,18 @@ public class TwoDimensionalArrayUtility {
      * @param power float
      * @return float[][]
      */
-    public float[][] curve(float[][] array, float power) {
+    float[][] curve(float[][] array, float power) {
         int arrayHeight = getArrayHeight(array);
         int arrayWidth = getArrayWidth(array);
 
+        float[][] curvedArray = new float[arrayHeight][arrayWidth];
+
         for (int h = 0; h < arrayHeight; h++) {
             for (int w = 0; w < arrayWidth; w++) {
-                array[h][w] = (float) Math.pow(array[h][w], power);
+                curvedArray[h][w] = (float) Math.pow(array[h][w], power);
             }
         }
-        return array;
+        return curvedArray;
     }
 
     /**
@@ -90,9 +99,11 @@ public class TwoDimensionalArrayUtility {
      * @param array float[][]
      * @return float[][]
      */
-    public float[][] ridge(float[][] array) {
+    float[][] ridge(float[][] array) {
         int arrayHeight = getArrayHeight(array);
         int arrayWidth = getArrayWidth(array);
+
+        float[][] ridgedArray = new float[arrayHeight][arrayWidth];
 
         float initialMin = getLowestArrayValue(array);
         float initialMax = getHighestArrayValue(array);
@@ -105,16 +116,16 @@ public class TwoDimensionalArrayUtility {
                 //float flip = initialMax + (moveHalfUp * -1);
                 //float flip = moveHalfUp * -1;
 
-                array[h][w] = (initialMax + ((Math.abs(array[h][w] - centerPoint) + centerPoint) * -1)) * 2;
+                ridgedArray[h][w] = (initialMax + ((Math.abs(array[h][w] - centerPoint) + centerPoint) * -1)) * 2;
             }
         }
-        float afterMin = getLowestArrayValue(array);
-        float afterMax = getHighestArrayValue(array);
 
-        //System.out.println(initialMin + " " + initialMax);
-        //System.out.println(afterMin + " " + afterMax);
+//        float afterMin = getLowestArrayValue(array);
+//        float afterMax = getHighestArrayValue(array);
+//        System.out.println(initialMin + " " + initialMax);
+//        System.out.println(afterMin + " " + afterMax);
 
-        return array;
+        return ridgedArray;
     }
 
     /**
@@ -124,18 +135,20 @@ public class TwoDimensionalArrayUtility {
      * @param falloffStrength float
      * @return float[][]
      */
-    public float[][] circularFalloffPercentile(float[][] array, float falloffStrength) {
+    float[][] circularFalloffPercentile(float[][] array, float falloffStrength) {
         int arrayHeight = getArrayHeight(array);
         int centerHeight = arrayHeight / 2;
         int arrayWidth = getArrayWidth(array);
         int centerWidth = arrayWidth / 2;
 
+        float[][] falloffArray = new float[arrayHeight][arrayWidth];
+
         for (int h = 0; h < arrayHeight; h++) {
             for (int w = 0; w < arrayWidth; w++) {
-                array[h][w] -= array[h][w] * calculateDistancePercentage(h, w, centerHeight, centerWidth, falloffStrength);
+                falloffArray[h][w] -= array[h][w] * calculateDistancePercentage(h, w, centerHeight, centerWidth, falloffStrength);
             }
         }
-        return array;
+        return falloffArray;
     }
 
     /**
@@ -145,25 +158,27 @@ public class TwoDimensionalArrayUtility {
      * @param falloffStrength float
      * @return float[][]
      */
-    public float[][] circularFalloffAbsolute(float[][] array, float falloffStrength) {
+    float[][] circularFalloffAbsolute(float[][] array, float falloffStrength) {
         int arrayHeight = getArrayHeight(array);
         int centerHeight = arrayHeight / 2;
         int arrayWidth = getArrayWidth(array);
         int centerWidth = arrayWidth / 2;
+
+        float[][] falloffArray = new float[arrayHeight][arrayWidth];
 
         float maxHeight = getHighestArrayValue(array);
         float minHeight = getLowestArrayValue(array);
 
         for (int h = 0; h < arrayHeight; h++) {
             for (int w = 0; w < arrayWidth; w++) {
-                array[h][w] -= maxHeight * calculateDistancePercentage(h, w, centerHeight, centerWidth, falloffStrength);
+                falloffArray[h][w] = (float) (array[h][w] - (maxHeight * calculateDistancePercentage(h, w, centerHeight, centerWidth, falloffStrength)));
 
-                if (array[h][w] < minHeight) {
-                    array[h][w] = minHeight;
+                if (falloffArray[h][w] < minHeight) {
+                    falloffArray[h][w] = minHeight;
                 }
             }
         }
-        return array;
+        return falloffArray;
     }
 
     /**
