@@ -22,15 +22,7 @@ public class ControlGui {
         sliderPosition += 10;
     }
 
-    public void createGUISliderInteger(ControlElementSliderInteger controlElement) {
-        gui.addSlider(controlElement.getName())
-                .setPosition(0, sliderPosition)
-                .setRange(controlElement.getMin(), controlElement.getMax())
-                .onRelease(controlElement.getControlListener());
-        sliderPosition += 10;
-    }
-
-    public void createGUISliderFloat(ControlElementSliderFloat controlElement) {
+    public void createGUISlider(ControlElementSlider controlElement) {
         gui.addSlider(controlElement.getName())
                 .setPosition(0, sliderPosition)
                 .setRange(controlElement.getMin(), controlElement.getMax())

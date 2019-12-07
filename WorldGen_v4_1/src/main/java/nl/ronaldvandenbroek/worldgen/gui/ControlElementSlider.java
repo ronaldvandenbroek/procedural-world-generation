@@ -2,14 +2,14 @@ package nl.ronaldvandenbroek.worldgen.gui;
 
 import nl.ronaldvandenbroek.worldgen.Utility;
 
-public class ControlElementSliderFloat {
+public class ControlElementSlider {
     private ControlListener controlListener;
     private String name;
     private float defaultValue;
     private float min;
     private float max;
 
-    public ControlElementSliderFloat(String displayName, String variableName, Object variableLocation, float defaultValue, float min, float max) {
+    public ControlElementSlider(String displayName, String variableName, Object variableLocation, float defaultValue, float min, float max) {
         try {
             this.name = displayName;
             this.defaultValue = defaultValue;

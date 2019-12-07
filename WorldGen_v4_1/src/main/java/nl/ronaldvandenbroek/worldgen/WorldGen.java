@@ -21,8 +21,6 @@ public class WorldGen extends PApplet {
     private TwoDimensionalArrayUtility mapUtil;
     private ControlGui controlGui;
 
-    private boolean generatedControls = false;
-
     private List<HeightMap> heightMaps;
 
     public static void main(String[] args) {
