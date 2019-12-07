@@ -25,4 +25,36 @@ public class TemperatureMap {
     public float[][] finalise() {
         return mapUtil.map(temperatureMap, 0, 255);
     }
+
+    public int getLatitudeStrength() {
+        return latitudeStrength;
+    }
+
+    public void setLatitudeStrength(float latitudeStrength) {
+        this.latitudeStrength = (int)latitudeStrength;
+    }
+
+    public int getAltitudeStrength() {
+        return altitudeStrength;
+    }
+
+    public void setAltitudeStrength(float altitudeStrength) {
+        this.altitudeStrength = (int)altitudeStrength;
+    }
+
+    public int getGlobalModifier() {
+        return globalModifier;
+    }
+
+    public void setGlobalModifier(float globalModifier) {
+        this.globalModifier = (int)globalModifier;
+    }
+
+    public int getEquatorOffset() {
+        return equatorOffset;
+    }
+
+    public void setEquatorOffset(float equatorOffset) {
+        this.equatorOffset = (int)equatorOffset;
+    }
 }
