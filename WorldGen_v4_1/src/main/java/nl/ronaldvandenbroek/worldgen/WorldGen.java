@@ -42,7 +42,6 @@ public class WorldGen extends PApplet {
         controlGui = new ControlGui(this);
         controlGui.createGUISliderTitle("HeightMap Configuration", true);
 
-
         createDefaultHeightMaps();
     }
 
@@ -54,21 +53,8 @@ public class WorldGen extends PApplet {
         //System.out.println("Mouse Released");
     }
 
-    public void generateHeightMaps() {
-        for (HeightMap heightMap : heightMaps) {
-            heightMap.generate();
-        }
-
-        HeightMap heightMapTotal = heightMaps.get(0).merge(heightMaps.get(1));
-        heightMapTotal.setCircularFalloff(1f);
-        heightMapTotal.generate();
-
-        PImage testImage = processingImageDrawer.draw(heightMapTotal.finalise());
-        image(testImage, 0, 0);
-    }
-
-    public void createDefaultHeightMaps() {
-        heightMaps.add(new HeightMap("Base", noiseMapGenerator, mapUtil, HEIGHT, WIDTH, 1, 7, 4.5f, 4f, false, 0, 0, 0.8f));
+    private void createDefaultHeightMaps() {
+        heightMaps.add(new HeightMap("Base", noiseMapGenerator, mapUtil, HEIGHT, WIDTH, 1, 7, 4.5f, 4f, false, 0, 0, 0.80f));
         heightMaps.add(new HeightMap("Ridge", noiseMapGenerator, mapUtil, HEIGHT, WIDTH, 1, 7, 4.5f, 4f, true, 5, 0, 1f));
 
         for (HeightMap heightMap : heightMaps) {
@@ -76,5 +62,28 @@ public class WorldGen extends PApplet {
         }
 
         generateHeightMaps();
+    }
+
+    private void generateHeightMaps() {
+        // Combine all heightMaps
+        HeightMap heightMapTotal = null;
+        for (HeightMap heightMap : heightMaps) {
+            heightMap.generate();
+            if(heightMapTotal == null){
+                heightMapTotal = heightMap;
+            }
+            else {
+                heightMapTotal = heightMapTotal.merge(heightMap);
+            }
+        }
+
+        if (heightMapTotal != null){
+            // Generate final heightMap
+            heightMapTotal.setCircularFalloff(1f);
+            heightMapTotal.generate();
+
+            PImage testImage = processingImageDrawer.draw(heightMapTotal.finalise());
+            image(testImage, 0, 0);
+        }
     }
 }
