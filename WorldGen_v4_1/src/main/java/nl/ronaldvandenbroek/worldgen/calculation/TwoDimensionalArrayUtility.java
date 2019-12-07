@@ -1,5 +1,7 @@
 package nl.ronaldvandenbroek.worldgen.calculation;
 
+import static java.lang.Math.abs;
+
 public class TwoDimensionalArrayUtility {
     /**
      * Merge the two given arrays via linear interpolation
@@ -116,7 +118,7 @@ public class TwoDimensionalArrayUtility {
                 //float flip = initialMax + (moveHalfUp * -1);
                 //float flip = moveHalfUp * -1;
 
-                ridgedArray[h][w] = (initialMax + ((Math.abs(array[h][w] - centerPoint) + centerPoint) * -1)) * 2;
+                ridgedArray[h][w] = (initialMax + ((abs(array[h][w] - centerPoint) + centerPoint) * -1)) * 2;
             }
         }
 
@@ -181,6 +183,25 @@ public class TwoDimensionalArrayUtility {
         return falloffArray;
     }
 
+    public float[][] verticalFalloffPercentile(float[][] array, int offset) {
+        int arrayHeight = getArrayHeight(array);
+        int arrayWidth = getArrayWidth(array);
+
+        float[][] falloffArray = new float[arrayHeight][arrayWidth];
+
+        for (int h = 0; h < arrayHeight; h++) {
+            for (int w = 0; w < arrayWidth; w++) {
+                falloffArray[h][w] = abs(h - (arrayHeight / 2) + offset);
+            }
+        }
+
+        float min = getLowestArrayValue(falloffArray);
+        float max = getHighestArrayValue(falloffArray);
+        System.out.println("map vertical falloff: " + min + " " + max);
+
+        return falloffArray;
+    }
+
     /**
      * Calculate the percentage of the way to the border of the grid you are from any given point
      *
@@ -196,7 +217,7 @@ public class TwoDimensionalArrayUtility {
         //double wDistance = Math.pow(Math.abs(centerWidth - w), 2);
         //double distance = Math.sqrt(hDistance + wDistance);
         //double distancePercentage = (distance / centerHeight) * falloffStrength;
-        double distancePercentage = (Math.sqrt(Math.pow(Math.abs(centerHeight - h), 2) + Math.pow(Math.abs(centerWidth - w), 2)) / centerHeight) * falloffStrength;
+        double distancePercentage = (Math.sqrt(Math.pow(abs(centerHeight - h), 2) + Math.pow(abs(centerWidth - w), 2)) / centerHeight) * falloffStrength;
         if (distancePercentage > 1) {
             distancePercentage = 1;
         }

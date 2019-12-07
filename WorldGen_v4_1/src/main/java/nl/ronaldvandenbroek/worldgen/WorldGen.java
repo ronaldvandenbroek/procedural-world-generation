@@ -1,6 +1,7 @@
 package nl.ronaldvandenbroek.worldgen;
 
 import nl.ronaldvandenbroek.worldgen.calculation.HeightMap;
+import nl.ronaldvandenbroek.worldgen.calculation.TemperatureMap;
 import nl.ronaldvandenbroek.worldgen.calculation.TwoDimensionalArrayUtility;
 import nl.ronaldvandenbroek.worldgen.gui.ControlBuilder;
 import nl.ronaldvandenbroek.worldgen.gui.ControlGui;
@@ -25,6 +26,7 @@ public class WorldGen extends PApplet {
     // Generated maps
     private List<HeightMap> heightMapLayers;
     private HeightMap heightMap;
+    private TemperatureMap temperatureMap;
 
     public static void main(String[] args) {
         PropertyLoader.load(Config.class, "config.properties");
@@ -88,6 +90,13 @@ public class WorldGen extends PApplet {
                 Preset.HEIGHT_MAP_RIDGE_CIRCULAR_FALLOFF,
                 Preset.HEIGHT_MAP_RIDGE_WEIGHT)
         );
+        temperatureMap = new TemperatureMap(
+                mapUtil,
+                Preset.TEMPERATURE_MAP_EQUATOR_OFFSET,
+                Preset.TEMPERATURE_MAP_LATITUDE_STRENGTH,
+                Preset.TEMPERATURE_MAP_ALTITUDE_STRENGTH,
+                Preset.TEMPERATURE_MAP_GLOBAL_MODIFIER
+        );
 
         for (HeightMap heightMap : heightMapLayers) {
             ControlBuilder.HeightMap(controlGui, heightMap);
@@ -114,12 +123,15 @@ public class WorldGen extends PApplet {
             heightMap.setCircularFalloff(Preset.HEIGHT_MAP_TOTAL_CIRCULAR_FALLOFF);
             heightMap.generate();
 
+            temperatureMap.generate(heightMap);
+
             drawMaps();
         }
     }
 
     private void drawMaps() {
         PImage testImage = processingImageDrawer.draw(heightMap.finalise());
+        //PImage testImage = processingImageDrawer.draw(temperatureMap.finalise());
         image(testImage, 0, 0);
     }
 }

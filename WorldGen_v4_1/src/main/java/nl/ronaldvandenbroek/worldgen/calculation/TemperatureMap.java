@@ -1,15 +1,28 @@
 package nl.ronaldvandenbroek.worldgen.calculation;
 
-import nl.ronaldvandenbroek.worldgen.NoiseMapGenerator;
-
 public class TemperatureMap {
-    private NoiseMapGenerator noiseMapGenerator;
     private TwoDimensionalArrayUtility mapUtil;
-    private String name;
-    private int height;
-    private int width;
     private int equatorOffset;
-    private int falloffStrength;
-    private int heightStrength;
+    private int latitudeStrength;
+    private int altitudeStrength;
+    private int globalModifier;
+    private float[][] temperatureMap;
 
+    public TemperatureMap(TwoDimensionalArrayUtility mapUtil, int equatorOffset, int latitudeStrength, int altitudeStrength, int globalModifier) {
+        this.mapUtil = mapUtil;
+        this.equatorOffset = equatorOffset;
+        this.latitudeStrength = latitudeStrength;
+        this.altitudeStrength = altitudeStrength;
+        this.globalModifier = globalModifier;
+    }
+
+    public void generate(HeightMap heightMapObject) {
+        float[][] heightMap = heightMapObject.getHeightMap();
+
+        temperatureMap = mapUtil.verticalFalloffPercentile(heightMap, equatorOffset);
+    }
+
+    public float[][] finalise() {
+        return mapUtil.map(temperatureMap, 0, 255);
+    }
 }
