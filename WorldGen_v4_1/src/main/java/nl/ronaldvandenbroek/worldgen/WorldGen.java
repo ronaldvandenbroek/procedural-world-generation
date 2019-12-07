@@ -16,12 +16,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WorldGen extends PApplet {
+    // Utilities
     private NoiseMapGenerator noiseMapGenerator;
     private ProcessingImageDrawer processingImageDrawer;
     private TwoDimensionalArrayUtility mapUtil;
     private ControlGui controlGui;
 
-    private List<HeightMap> heightMaps;
+    // Generated maps
+    private List<HeightMap> heightMapLayers;
+    private HeightMap heightMap;
 
     public static void main(String[] args) {
         PropertyLoader.load(Config.class, "config.properties");
@@ -34,7 +37,6 @@ public class WorldGen extends PApplet {
     }
 
     public void setup() {
-        heightMaps = new ArrayList<>();
         noiseMapGenerator = new ProcessingPerlinNoise(this);
         processingImageDrawer = new ProcessingImageDrawer(this);
         mapUtil = new TwoDimensionalArrayUtility();
@@ -42,19 +44,21 @@ public class WorldGen extends PApplet {
         controlGui = new ControlGui(this);
         controlGui.createGUISliderTitle("HeightMap Configuration", true);
 
-        createDefaultHeightMaps();
+        createDefaultMaps();
     }
 
     public void draw() {
     }
 
     public void mouseReleased() {
-        generateHeightMaps();
+        generateMaps();
         //System.out.println("Mouse Released");
     }
 
-    private void createDefaultHeightMaps() {
-        heightMaps.add(new HeightMap(
+    private void createDefaultMaps() {
+        heightMapLayers = new ArrayList<>();
+
+        heightMapLayers.add(new HeightMap(
                 Preset.HEIGHT_MAP_BASE_NAME,
                 noiseMapGenerator,
                 mapUtil,
@@ -69,7 +73,7 @@ public class WorldGen extends PApplet {
                 Preset.HEIGHT_MAP_BASE_CIRCULAR_FALLOFF,
                 Preset.HEIGHT_MAP_BASE_WEIGHT)
         );
-        heightMaps.add(new HeightMap(
+        heightMapLayers.add(new HeightMap(
                 Preset.HEIGHT_MAP_RIDGE_NAME,
                 noiseMapGenerator,
                 mapUtil,
@@ -85,32 +89,38 @@ public class WorldGen extends PApplet {
                 Preset.HEIGHT_MAP_RIDGE_WEIGHT)
         );
 
-        for (HeightMap heightMap : heightMaps) {
+        for (HeightMap heightMap : heightMapLayers) {
             ControlBuilder.HeightMap(controlGui, heightMap);
         }
 
-        generateHeightMaps();
+        generateMaps();
     }
 
-    private void generateHeightMaps() {
+    private void generateMaps() {
+        heightMap = null;
+
         // Combine all heightMaps
-        HeightMap heightMapTotal = null;
-        for (HeightMap heightMap : heightMaps) {
-            heightMap.generate();
-            if (heightMapTotal == null) {
-                heightMapTotal = heightMap;
+        for (HeightMap heightMapLayer : heightMapLayers) {
+            heightMapLayer.generate();
+            if (heightMap == null) {
+                heightMap = heightMapLayer;
             } else {
-                heightMapTotal = heightMapTotal.merge(heightMap);
+                heightMap = heightMap.merge(heightMapLayer);
             }
         }
 
-        if (heightMapTotal != null) {
-            // Generate final heightMap
-            heightMapTotal.setCircularFalloff(Preset.HEIGHT_MAP_TOTAL_CIRCULAR_FALLOFF);
-            heightMapTotal.generate();
+        // Generate final heightMap
+        if (heightMap != null) {
+            heightMap.setCircularFalloff(Preset.HEIGHT_MAP_TOTAL_CIRCULAR_FALLOFF);
+            heightMap.generate();
+            heightMap.finalise();
 
-            PImage testImage = processingImageDrawer.draw(heightMapTotal.finalise());
-            image(testImage, 0, 0);
+            drawMaps();
         }
+    }
+
+    private void drawMaps() {
+        PImage testImage = processingImageDrawer.draw(heightMap.getHeightMap());
+        image(testImage, 0, 0);
     }
 }
