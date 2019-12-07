@@ -107,8 +107,8 @@ public class TwoDimensionalArrayUtility {
         float afterMin = getLowestArrayValue(array);
         float afterMax = getHighestArrayValue(array);
 
-        System.out.println(initialMin + " " + initialMax);
-        System.out.println(afterMin + " " + afterMax);
+        //System.out.println(initialMin + " " + initialMax);
+        //System.out.println(afterMin + " " + afterMax);
 
         return array;
     }
