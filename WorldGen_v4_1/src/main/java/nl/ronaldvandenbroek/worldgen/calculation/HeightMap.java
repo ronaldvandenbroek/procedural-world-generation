@@ -107,7 +107,7 @@ public class HeightMap {
     private float weight;
     private float[][] heightMap;
 
-    public HeightMap(String name, float[][] merge, TwoDimensionalArrayUtility mapUtil) {
+    private HeightMap(String name, float[][] merge, TwoDimensionalArrayUtility mapUtil, float weight) {
         this.name = name;
         this.heightMap = merge;
         this.height = mapUtil.getArrayHeight(merge);
@@ -119,7 +119,7 @@ public class HeightMap {
         this.ridge = false;
         this.power = 0;
         this.circularFalloff = 0;
-        this.weight = 1;
+        this.weight = weight;
         this.mapUtil = mapUtil;
     }
 
@@ -157,8 +157,9 @@ public class HeightMap {
     }
 
     public HeightMap merge(HeightMap toBeMergedMap) {
-        float[][] mergedMap = mapUtil.merge(heightMap, toBeMergedMap.getHeightMap(), weight);
-        return new HeightMap("MergedMap", mergedMap, mapUtil);
+        float[][] mergedMap = mapUtil.merge(heightMap, toBeMergedMap.getHeightMap(), this.weight);
+        float combinedWeight = this.weight + toBeMergedMap.getWeight();
+        return new HeightMap("MergedMap", mergedMap, mapUtil, combinedWeight);
     }
 
     public float[][] finalise() {
