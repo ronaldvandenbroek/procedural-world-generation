@@ -6,6 +6,9 @@ import nl.ronaldvandenbroek.worldgen.gui.ControlBuilder;
 import nl.ronaldvandenbroek.worldgen.gui.ControlGui;
 import nl.ronaldvandenbroek.worldgen.processing.ProcessingImageDrawer;
 import nl.ronaldvandenbroek.worldgen.processing.ProcessingPerlinNoise;
+import nl.ronaldvandenbroek.worldgen.properties.Config;
+import nl.ronaldvandenbroek.worldgen.properties.Preset;
+import nl.ronaldvandenbroek.worldgen.properties.PropertyLoader;
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -13,9 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WorldGen extends PApplet {
-    private static int WIDTH = 1024;
-    private static int HEIGHT = 1024;
-
     private NoiseMapGenerator noiseMapGenerator;
     private ProcessingImageDrawer processingImageDrawer;
     private TwoDimensionalArrayUtility mapUtil;
@@ -24,11 +24,13 @@ public class WorldGen extends PApplet {
     private List<HeightMap> heightMaps;
 
     public static void main(String[] args) {
+        PropertyLoader.load(Config.class, "config.properties");
+        PropertyLoader.load(Preset.class, "preset.properties");
         PApplet.main("nl.ronaldvandenbroek.worldgen.WorldGen", args);
     }
 
     public void settings() {
-        size(WIDTH, HEIGHT);
+        size(Config.WIDTH, Config.HEIGHT);
     }
 
     public void setup() {
@@ -52,8 +54,36 @@ public class WorldGen extends PApplet {
     }
 
     private void createDefaultHeightMaps() {
-        heightMaps.add(new HeightMap("Base", noiseMapGenerator, mapUtil, HEIGHT, WIDTH, 1, 7, 4.5f, 4f, false, 0, 0, 0.80f));
-        heightMaps.add(new HeightMap("Ridge", noiseMapGenerator, mapUtil, HEIGHT, WIDTH, 1, 7, 4.5f, 4f, true, 5, 0, 1f));
+        heightMaps.add(new HeightMap(
+                Preset.HEIGHT_MAP_BASE_NAME,
+                noiseMapGenerator,
+                mapUtil,
+                Config.HEIGHT,
+                Config.WIDTH,
+                Preset.HEIGHT_MAP_BASE_SEED,
+                Preset.HEIGHT_MAP_BASE_OCTAVE,
+                Preset.HEIGHT_MAP_BASE_NOISE_FALLOFF ,
+                Preset.HEIGHT_MAP_BASE_INTENSITY,
+                Preset.HEIGHT_MAP_BASE_RIDGE,
+                Preset.HEIGHT_MAP_BASE_POWER,
+                Preset.HEIGHT_MAP_BASE_CIRCULAR_FALLOFF,
+                Preset.HEIGHT_MAP_BASE_WEIGHT)
+        );
+        heightMaps.add(new HeightMap(
+                Preset.HEIGHT_MAP_RIDGE_NAME,
+                noiseMapGenerator,
+                mapUtil,
+                Config.HEIGHT,
+                Config.WIDTH,
+                Preset.HEIGHT_MAP_RIDGE_SEED,
+                Preset.HEIGHT_MAP_RIDGE_OCTAVE,
+                Preset.HEIGHT_MAP_RIDGE_NOISE_FALLOFF ,
+                Preset.HEIGHT_MAP_RIDGE_INTENSITY,
+                Preset.HEIGHT_MAP_RIDGE_RIDGE,
+                Preset.HEIGHT_MAP_RIDGE_POWER,
+                Preset.HEIGHT_MAP_RIDGE_CIRCULAR_FALLOFF,
+                Preset.HEIGHT_MAP_RIDGE_WEIGHT)
+        );
 
         for (HeightMap heightMap : heightMaps) {
             ControlBuilder.HeightMap(controlGui, heightMap);
@@ -77,7 +107,7 @@ public class WorldGen extends PApplet {
 
         if (heightMapTotal != null){
             // Generate final heightMap
-            heightMapTotal.setCircularFalloff(1f);
+            heightMapTotal.setCircularFalloff(Preset.HEIGHT_MAP_TOTAL_CIRCULAR_FALLOFF);
             heightMapTotal.generate();
 
             PImage testImage = processingImageDrawer.draw(heightMapTotal.finalise());

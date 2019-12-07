@@ -1,12 +1,10 @@
 package nl.ronaldvandenbroek.worldgen.processing;
 
 import nl.ronaldvandenbroek.worldgen.NoiseMapGenerator;
+import nl.ronaldvandenbroek.worldgen.properties.Config;
 import processing.core.PApplet;
 
 public class ProcessingPerlinNoise implements NoiseMapGenerator {
-    private static float FALLOFF_MODIFIER = 10.0f;
-    private static float INTENSITY_MODIFIER = 1000.0f;
-
     private PApplet processing;
 
     public ProcessingPerlinNoise(PApplet processing) {
@@ -15,8 +13,8 @@ public class ProcessingPerlinNoise implements NoiseMapGenerator {
 
     @Override
     public float[][] generate(int height, int width, int seed, int octaves, float falloff, float intensity) {
-        falloff = falloff / FALLOFF_MODIFIER;
-        intensity = intensity / INTENSITY_MODIFIER;
+        falloff = falloff / Config.PERLIN_FALLOFF_MODIFIER;
+        intensity = intensity / Config.PERLIN_INTENSITY_MODIFIER;
 
         processing.noiseSeed(seed);
         processing.noiseDetail(octaves, falloff);
