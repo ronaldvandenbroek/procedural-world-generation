@@ -21,4 +21,13 @@ public class Config {
     public static float HEIGHT_MAP_POWER_MAX;
     public static float HEIGHT_MAP_WEIGHT_MIN;
     public static float HEIGHT_MAP_WEIGHT_MAX;
+
+    public static float TEMPERATURE_MAP_EQUATOR_OFFSET_MIN;
+    public static float TEMPERATURE_MAP_EQUATOR_OFFSET_MAX;
+    public static float TEMPERATURE_MAP_LATITUDE_STRENGTH_MIN;
+    public static float TEMPERATURE_MAP_LATITUDE_STRENGTH_MAX;
+    public static float TEMPERATURE_MAP_ALTITUDE_STRENGTH_MIN;
+    public static float TEMPERATURE_MAP_ALTITUDE_STRENGTH_MAX;
+    public static float TEMPERATURE_MAP_GLOBAL_MODIFIER_MIN;
+    public static float TEMPERATURE_MAP_GLOBAL_MODIFIER_MAX;
 }

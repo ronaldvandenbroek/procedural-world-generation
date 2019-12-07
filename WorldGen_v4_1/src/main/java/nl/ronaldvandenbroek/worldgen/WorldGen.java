@@ -49,7 +49,7 @@ public class WorldGen extends PApplet {
         mapUtil = new TwoDimensionalArrayUtility();
 
         controlGui = new ControlGui(this);
-        controlGui.createGUISliderTitle("HeightMap Configuration", true);
+        controlGui.createGUISliderTitle("WorldGen Configuration", true);
 
         ControlBuilder.Menu(controlGui, this);
 
@@ -115,6 +115,7 @@ public class WorldGen extends PApplet {
         for (HeightMap heightMap : heightMapLayers) {
             ControlBuilder.HeightMap(controlGui, heightMap);
         }
+        ControlBuilder.TemperatureMap(controlGui, temperatureMap);
 
         generateMaps();
     }
