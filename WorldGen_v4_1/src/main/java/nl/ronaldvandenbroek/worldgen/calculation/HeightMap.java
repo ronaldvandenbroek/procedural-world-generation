@@ -71,7 +71,6 @@ public class HeightMap {
     }
 
     public void setSeed(float seed) {
-        System.out.println("New seed: " + seed);
         this.seed = (int) seed;
     }
 
@@ -143,17 +142,17 @@ public class HeightMap {
         if (noiseMapGenerator != null) {
             heightMap = noiseMapGenerator.generate(height, width, seed, octaves, noiseFalloff, intensity);
         }
-        mapUtil.map(heightMap, 0, 1);
+        heightMap = mapUtil.map(heightMap, 0, 1);
         if (ridge) {
-            mapUtil.ridge(heightMap);
+            heightMap = mapUtil.ridge(heightMap);
         }
         if (power > 0) {
-            mapUtil.curve(heightMap, power);
+            heightMap = mapUtil.curve(heightMap, power);
         }
         if (circularFalloff > 0) {
-            mapUtil.circularFalloffAbsolute(heightMap, circularFalloff);
+            heightMap = mapUtil.circularFalloffAbsolute(heightMap, circularFalloff);
         }
-        mapUtil.map(heightMap, 0, 1);
+        heightMap = mapUtil.map(heightMap, 0, 1);
     }
 
     public HeightMap merge(HeightMap toBeMergedMap) {
@@ -163,8 +162,7 @@ public class HeightMap {
     }
 
     public float[][] finalise() {
-        mapUtil.map(heightMap, 0, 255);
-        return heightMap;
+        return mapUtil.map(heightMap, 0, 255);
     }
 
     public String getName() {

@@ -113,14 +113,13 @@ public class WorldGen extends PApplet {
         if (heightMap != null) {
             heightMap.setCircularFalloff(Preset.HEIGHT_MAP_TOTAL_CIRCULAR_FALLOFF);
             heightMap.generate();
-            heightMap.finalise();
 
             drawMaps();
         }
     }
 
     private void drawMaps() {
-        PImage testImage = processingImageDrawer.draw(heightMap.getHeightMap());
+        PImage testImage = processingImageDrawer.draw(heightMap.finalise());
         image(testImage, 0, 0);
     }
 }
