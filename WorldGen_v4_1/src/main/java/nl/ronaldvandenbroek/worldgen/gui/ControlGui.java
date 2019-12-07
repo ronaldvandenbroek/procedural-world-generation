@@ -4,10 +4,9 @@ import controlP5.ControlP5;
 import processing.core.PApplet;
 
 public class ControlGui {
+    public static ControlP5 gui;
     private int sliderPosition = 0;
     private PApplet processing;
-
-    public static ControlP5 gui;
 
     public ControlGui(PApplet processing) {
         this.processing = processing;

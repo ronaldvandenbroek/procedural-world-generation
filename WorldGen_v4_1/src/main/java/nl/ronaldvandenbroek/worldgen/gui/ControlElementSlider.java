@@ -25,15 +25,15 @@ public class ControlElementSlider {
         return controlListener;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public float getMin(){
+    public float getMin() {
         return min;
     }
 
-    public float getMax(){
+    public float getMax() {
         return max;
     }
 

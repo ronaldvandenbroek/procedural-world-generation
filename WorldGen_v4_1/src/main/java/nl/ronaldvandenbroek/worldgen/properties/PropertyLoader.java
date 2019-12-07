@@ -24,6 +24,7 @@ public class PropertyLoader {
             throw new RuntimeException("Error loading configuration: " + e, e);
         }
     }
+
     private static Object getValue(Properties props, String name, Class<?> type) {
         String value = props.getProperty(name);
         if (value == null)

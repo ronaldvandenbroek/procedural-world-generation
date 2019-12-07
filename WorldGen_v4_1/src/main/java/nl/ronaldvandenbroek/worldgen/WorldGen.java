@@ -62,7 +62,7 @@ public class WorldGen extends PApplet {
                 Config.WIDTH,
                 Preset.HEIGHT_MAP_BASE_SEED,
                 Preset.HEIGHT_MAP_BASE_OCTAVE,
-                Preset.HEIGHT_MAP_BASE_NOISE_FALLOFF ,
+                Preset.HEIGHT_MAP_BASE_NOISE_FALLOFF,
                 Preset.HEIGHT_MAP_BASE_INTENSITY,
                 Preset.HEIGHT_MAP_BASE_RIDGE,
                 Preset.HEIGHT_MAP_BASE_POWER,
@@ -77,7 +77,7 @@ public class WorldGen extends PApplet {
                 Config.WIDTH,
                 Preset.HEIGHT_MAP_RIDGE_SEED,
                 Preset.HEIGHT_MAP_RIDGE_OCTAVE,
-                Preset.HEIGHT_MAP_RIDGE_NOISE_FALLOFF ,
+                Preset.HEIGHT_MAP_RIDGE_NOISE_FALLOFF,
                 Preset.HEIGHT_MAP_RIDGE_INTENSITY,
                 Preset.HEIGHT_MAP_RIDGE_RIDGE,
                 Preset.HEIGHT_MAP_RIDGE_POWER,
@@ -97,15 +97,14 @@ public class WorldGen extends PApplet {
         HeightMap heightMapTotal = null;
         for (HeightMap heightMap : heightMaps) {
             heightMap.generate();
-            if(heightMapTotal == null){
+            if (heightMapTotal == null) {
                 heightMapTotal = heightMap;
-            }
-            else {
+            } else {
                 heightMapTotal = heightMapTotal.merge(heightMap);
             }
         }
 
-        if (heightMapTotal != null){
+        if (heightMapTotal != null) {
             // Generate final heightMap
             heightMapTotal.setCircularFalloff(Preset.HEIGHT_MAP_TOTAL_CIRCULAR_FALLOFF);
             heightMapTotal.generate();
