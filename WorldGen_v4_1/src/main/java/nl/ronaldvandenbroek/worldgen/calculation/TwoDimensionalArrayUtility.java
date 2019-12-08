@@ -2,17 +2,8 @@ package nl.ronaldvandenbroek.worldgen.calculation;
 
 import static java.lang.Math.abs;
 
-public class TwoDimensionalArrayUtility {
-    /**
-     * Merge the two given arrays via linear interpolation
-     * Where array 1 and 2 are the same size
-     *
-     * @param array1 float[][]
-     * @param array2 float[][]
-     * @param weight float between 0 and 1
-     * @return float[][]
-     */
-    float[][] merge(float[][] array1, float[][] array2, float weight) {
+public class TwoDimensionalArrayUtility implements ITwoDimensionalArrayUtility {
+    public float[][] merge(float[][] array1, float[][] array2, float weight) {
         // Check if the arrays are the same size
         if (getArrayHeight(array1) != getArrayHeight(array2) || getArrayWidth(array1) != getArrayWidth(array2)) {
             return null;
@@ -37,31 +28,15 @@ public class TwoDimensionalArrayUtility {
         return mergedArray;
     }
 
-    /**
-     * Re-map all array values from one range to another
-     * Should replace the processing map function: map(array[h][w], initialMin, initialMax, min, max)
-     *
-     * @param array float[][]
-     * @param min   float smaller than max
-     * @param max   float
-     * @return float[][]
-     */
-    float[][] map(float[][] array, float min, float max) {
-        if (min >= max) {
-            return null;
-        }
-
+    public float[][] map(float[][] array, float min, float max, float arrayMin, float arrayMax){
         int arrayHeight = getArrayHeight(array);
         int arrayWidth = getArrayWidth(array);
-        float initialMin = getLowestArrayValue(array);
-        float initialMax = getHighestArrayValue(array);
-
         float[][] mappedArray = new float[arrayHeight][arrayWidth];
 
         //Map to min and max
         for (int h = 0; h < arrayHeight; h++) {
             for (int w = 0; w < arrayWidth; w++) {
-                float result = (array[h][w] - initialMin) * (max - min) / (initialMax - initialMin) + min;
+                float result = (array[h][w] - arrayMin) * (max - min) / (arrayMax - arrayMin) + min;
                 mappedArray[h][w] = result;
             }
         }
@@ -74,14 +49,18 @@ public class TwoDimensionalArrayUtility {
         return mappedArray;
     }
 
-    /**
-     * Curve the array values via powers
-     *
-     * @param array float[][]
-     * @param power float
-     * @return float[][]
-     */
-    float[][] curve(float[][] array, float power) {
+    public float[][] map(float[][] array, float min, float max) {
+        if (min >= max) {
+            return null;
+        }
+
+        float initialMin = getLowestArrayValue(array);
+        float initialMax = getHighestArrayValue(array);
+
+        return map(array, min, max, initialMin, initialMax);
+    }
+
+    public float[][] curve(float[][] array, float power) {
         int arrayHeight = getArrayHeight(array);
         int arrayWidth = getArrayWidth(array);
 
@@ -95,13 +74,7 @@ public class TwoDimensionalArrayUtility {
         return curvedArray;
     }
 
-    /**
-     * Create ridges within the array via absolute
-     *
-     * @param array float[][]
-     * @return float[][]
-     */
-    float[][] ridge(float[][] array) {
+    public float[][] ridge(float[][] array) {
         int arrayHeight = getArrayHeight(array);
         int arrayWidth = getArrayWidth(array);
 
@@ -130,14 +103,7 @@ public class TwoDimensionalArrayUtility {
         return ridgedArray;
     }
 
-    /**
-     * Add percentile circular falloff to the array
-     *
-     * @param array           float[][]
-     * @param falloffStrength float
-     * @return float[][]
-     */
-    float[][] circularFalloffPercentile(float[][] array, float falloffStrength) {
+    public float[][] circularFalloffPercentile(float[][] array, float falloffStrength) {
         int arrayHeight = getArrayHeight(array);
         int centerHeight = arrayHeight / 2;
         int arrayWidth = getArrayWidth(array);
@@ -153,14 +119,7 @@ public class TwoDimensionalArrayUtility {
         return falloffArray;
     }
 
-    /**
-     * Add absolute circular falloff to the array
-     *
-     * @param array           float[][]
-     * @param falloffStrength float
-     * @return float[][]
-     */
-    float[][] circularFalloffAbsolute(float[][] array, float falloffStrength) {
+    public float[][] circularFalloffAbsolute(float[][] array, float falloffStrength) {
         int arrayHeight = getArrayHeight(array);
         int centerHeight = arrayHeight / 2;
         int arrayWidth = getArrayWidth(array);
@@ -183,36 +142,33 @@ public class TwoDimensionalArrayUtility {
         return falloffArray;
     }
 
-    public float[][] verticalFalloffPercentile(float[][] array, int offset) {
+    public float[][] verticalFalloffAbsolute(float[][] array, int offset) {
         int arrayHeight = getArrayHeight(array);
         int arrayWidth = getArrayWidth(array);
+        float centerHeight = arrayHeight / 2f;
 
         float[][] falloffArray = new float[arrayHeight][arrayWidth];
 
         for (int h = 0; h < arrayHeight; h++) {
             for (int w = 0; w < arrayWidth; w++) {
-                falloffArray[h][w] = abs(h - (arrayHeight / 2) + offset);
+                falloffArray[h][w] = centerHeight - abs(h - centerHeight + offset);
             }
         }
 
-        float min = getLowestArrayValue(falloffArray);
-        float max = getHighestArrayValue(falloffArray);
-        System.out.println("map vertical falloff: " + min + " " + max);
+//        float min = getLowestArrayValue(falloffArray);
+//        float max = getHighestArrayValue(falloffArray);
+//        System.out.println("map vertical falloff: " + min + " " + max);
+
+        falloffArray = map(falloffArray, 0, 1, 0, centerHeight);
+
+//        min = getLowestArrayValue(falloffArray);
+//        max = getHighestArrayValue(falloffArray);
+//        System.out.println("map vertical falloff mapped: " + min + " " + max);
 
         return falloffArray;
     }
 
-    /**
-     * Calculate the percentage of the way to the border of the grid you are from any given point
-     *
-     * @param h               int
-     * @param w               int
-     * @param centerHeight    int
-     * @param centerWidth     int
-     * @param falloffStrength float
-     * @return double
-     */
-    private double calculateDistancePercentage(int h, int w, int centerHeight, int centerWidth, float falloffStrength) {
+    public double calculateDistancePercentage(int h, int w, int centerHeight, int centerWidth, float falloffStrength) {
         //double hDistance = Math.pow(Math.abs(centerHeight - h), 2);
         //double wDistance = Math.pow(Math.abs(centerWidth - w), 2);
         //double distance = Math.sqrt(hDistance + wDistance);
@@ -224,12 +180,6 @@ public class TwoDimensionalArrayUtility {
         return distancePercentage;
     }
 
-    /**
-     * Get the highest value in the 2D array
-     *
-     * @param array float[][]
-     * @return float
-     */
     public float getHighestArrayValue(float[][] array) {
         int arrayHeight = getArrayHeight(array);
         int arrayWidth = getArrayWidth(array);
@@ -245,12 +195,6 @@ public class TwoDimensionalArrayUtility {
         return max;
     }
 
-    /**
-     * Get the lowest value in the 2D array
-     *
-     * @param array float[][]
-     * @return float
-     */
     public float getLowestArrayValue(float[][] array) {
         int arrayHeight = getArrayHeight(array);
         int arrayWidth = getArrayWidth(array);
@@ -266,22 +210,10 @@ public class TwoDimensionalArrayUtility {
         return min;
     }
 
-    /**
-     * Get the height (amount of rows) of the array
-     *
-     * @param array float[][]
-     * @return int
-     */
     public int getArrayHeight(float[][] array) {
         return array.length;
     }
 
-    /**
-     * Get the width (amount of columns) of the array
-     *
-     * @param array float[][]
-     * @return int
-     */
     public int getArrayWidth(float[][] array) {
         return array[0].length;
     }
