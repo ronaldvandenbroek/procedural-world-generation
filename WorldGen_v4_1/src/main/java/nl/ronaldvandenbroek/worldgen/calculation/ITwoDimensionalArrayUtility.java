@@ -13,6 +13,18 @@ public interface ITwoDimensionalArrayUtility {
     float[][] merge(float[][] array1, float[][] array2, float weight);
 
     /**
+     * Merge the two given arrays via linear interpolation
+     * Where array 1 and 2 are the same size
+     *
+     * @param array1 float[][]
+     * @param array2 float[][]
+     * @param weight1 float
+     * @param weight2 float
+     * @return float[][]
+     */
+    float[][] merge(float[][] array1, float[][] array2, float weight1, float weight2);
+
+    /**
      * Re-map all array values from one range to another
      * Should replace the processing map function: map(array[h][w], initialMin, initialMax, min, max)
      *
@@ -52,6 +64,25 @@ public interface ITwoDimensionalArrayUtility {
      * @return float[][]
      */
     float[][] ridge(float[][] array);
+
+    /**
+     * Invert the array
+     *
+     * @param array float[][]
+     * @return float[][]
+     */
+    float[][] invert(float[][] array);
+
+    /**
+     * Add a static amount to every array entry where it can't go lower that min and not higher than max
+     *
+     * @param array float[][]
+     * @param min   float smaller than max
+     * @param max   float
+     * @param amount float
+     * @return float[][]
+     */
+    float[][] add(float[][] array, float min, float max, float amount);
 
     /**
      * Add percentile circular falloff to the array

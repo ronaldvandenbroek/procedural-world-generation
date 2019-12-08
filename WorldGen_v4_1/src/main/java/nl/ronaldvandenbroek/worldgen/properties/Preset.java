@@ -24,7 +24,7 @@ public class Preset {
     public static float HEIGHT_MAP_TOTAL_CIRCULAR_FALLOFF;
 
     public static int TEMPERATURE_MAP_EQUATOR_OFFSET;
-    public static int TEMPERATURE_MAP_GLOBAL_MODIFIER;
-    public static int TEMPERATURE_MAP_LATITUDE_STRENGTH;
-    public static int TEMPERATURE_MAP_ALTITUDE_STRENGTH;
+    public static float TEMPERATURE_MAP_GLOBAL_MODIFIER;
+    public static float TEMPERATURE_MAP_LATITUDE_STRENGTH;
+    public static float TEMPERATURE_MAP_ALTITUDE_STRENGTH;
 }
