@@ -3,6 +3,12 @@ package nl.ronaldvandenbroek.worldgen.calculation;
 import static java.lang.Math.abs;
 
 public class TwoDimensionalArrayUtility implements ITwoDimensionalArrayUtility {
+    public float[][] merge(float[][] array1, float[][] array2, float weight1, float weight2) {
+        float weightPercentage = (weight1 / (weight1 + weight2));
+        System.out.println("Merge Weights: " + weight1 + " " + weight2 + " " + weightPercentage);
+        return merge(array1, array2, weightPercentage);
+    }
+
     public float[][] merge(float[][] array1, float[][] array2, float weight) {
         // Check if the arrays are the same size
         if (getArrayHeight(array1) != getArrayHeight(array2) || getArrayWidth(array1) != getArrayWidth(array2)) {
@@ -57,6 +63,11 @@ public class TwoDimensionalArrayUtility implements ITwoDimensionalArrayUtility {
         float initialMin = getLowestArrayValue(array);
         float initialMax = getHighestArrayValue(array);
 
+        // Fix so that if the min and max of an array are the same map will output max instead of min
+        if (initialMin == initialMax) {
+            initialMin = initialMax - 0.001f;
+        }
+
         return map(array, min, max, initialMin, initialMax);
     }
 
@@ -72,6 +83,43 @@ public class TwoDimensionalArrayUtility implements ITwoDimensionalArrayUtility {
             }
         }
         return curvedArray;
+    }
+
+    public float[][] add(float[][] array, float min, float max, float amount) {
+        int arrayHeight = getArrayHeight(array);
+        int arrayWidth = getArrayWidth(array);
+
+        float[][] addedArray = new float[arrayHeight][arrayWidth];
+
+        for (int h = 0; h < arrayHeight; h++) {
+            for (int w = 0; w < arrayWidth; w++) {
+                float newValue = array[h][w] + amount;
+                if (newValue < min) {
+                    newValue = min;
+                }
+                else if (newValue > max) {
+                    newValue = max;
+                }
+                addedArray[h][w] = newValue;
+            }
+        }
+        return addedArray;
+    }
+
+    public float[][] invert(float[][] array) {
+        int arrayHeight = getArrayHeight(array);
+        int arrayWidth = getArrayWidth(array);
+
+        float max = getHighestArrayValue(array);
+
+        float[][] invertedArray = new float[arrayHeight][arrayWidth];
+
+        for (int h = 0; h < arrayHeight; h++) {
+            for (int w = 0; w < arrayWidth; w++) {
+                invertedArray[h][w] = max - array[h][w];
+            }
+        }
+        return invertedArray;
     }
 
     public float[][] ridge(float[][] array) {
