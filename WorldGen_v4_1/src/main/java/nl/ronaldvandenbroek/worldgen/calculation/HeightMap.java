@@ -4,7 +4,7 @@ import nl.ronaldvandenbroek.worldgen.NoiseMapGenerator;
 
 public class HeightMap {
     private NoiseMapGenerator noiseMapGenerator;
-    private TwoDimensionalArrayUtility mapUtil;
+    private ITwoDimensionalArrayUtility mapUtil;
     private String name;
     private int height;
     private int width;
@@ -18,7 +18,7 @@ public class HeightMap {
     private float weight;
     private float[][] heightMap;
 
-    private HeightMap(String name, float[][] merge, TwoDimensionalArrayUtility mapUtil, float weight) {
+    private HeightMap(String name, float[][] merge, ITwoDimensionalArrayUtility mapUtil, float weight) {
         this.name = name;
         this.heightMap = merge;
         this.height = mapUtil.getArrayHeight(merge);
@@ -34,7 +34,7 @@ public class HeightMap {
         this.mapUtil = mapUtil;
     }
 
-    public HeightMap(String name, NoiseMapGenerator noiseMapGenerator, TwoDimensionalArrayUtility mapUtil, int height, int width, int seed, int octaves, float noiseFalloff, float intensity, boolean ridge, float power, float circularFalloff, float weight) {
+    public HeightMap(String name, NoiseMapGenerator noiseMapGenerator, ITwoDimensionalArrayUtility mapUtil, int height, int width, int seed, int octaves, float noiseFalloff, float intensity, boolean ridge, float power, float circularFalloff, float weight) {
         this.name = name;
         this.noiseMapGenerator = noiseMapGenerator;
         this.mapUtil = mapUtil;

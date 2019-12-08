@@ -1,6 +1,7 @@
 package nl.ronaldvandenbroek.worldgen;
 
 import nl.ronaldvandenbroek.worldgen.calculation.HeightMap;
+import nl.ronaldvandenbroek.worldgen.calculation.ITwoDimensionalArrayUtility;
 import nl.ronaldvandenbroek.worldgen.calculation.TemperatureMap;
 import nl.ronaldvandenbroek.worldgen.calculation.TwoDimensionalArrayUtility;
 import nl.ronaldvandenbroek.worldgen.gui.ControlBuilder;
@@ -22,7 +23,7 @@ public class WorldGen extends PApplet {
     // Utilities
     private NoiseMapGenerator noiseMapGenerator;
     private ProcessingImageDrawer processingImageDrawer;
-    private TwoDimensionalArrayUtility mapUtil;
+    private ITwoDimensionalArrayUtility mapUtil;
     private ControlGui controlGui;
 
     // Generated maps
