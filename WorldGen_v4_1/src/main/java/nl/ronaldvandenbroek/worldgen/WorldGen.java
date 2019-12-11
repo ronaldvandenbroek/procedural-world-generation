@@ -19,6 +19,8 @@ import java.util.List;
 
 public class WorldGen extends PApplet {
     private float currentMap;
+    private float currentTime;
+    private boolean passTime;
 
     // Utilities
     private NoiseMapGenerator noiseMapGenerator;
@@ -44,6 +46,8 @@ public class WorldGen extends PApplet {
 
     public void setup() {
         currentMap = Config.DEFAULT_MAP;
+        passTime = Config.ENABLE_TIME_LAPSE;
+        currentTime = Config.TIME;
 
         noiseMapGenerator = new ProcessingPerlinNoise(this);
         processingImageDrawer = new ProcessingImageDrawer(this);
@@ -58,6 +62,13 @@ public class WorldGen extends PApplet {
     }
 
     public void draw() {
+        if (passTime) {
+            currentTime += Preset.HEIGHT_MAP_BASE_INTENSITY / Config.PERLIN_INTENSITY_MODIFIER * 2;
+            for (HeightMap heightMapLayer : heightMapLayers) {
+                heightMapLayer.setTime(currentTime);
+            }
+            generateMaps();
+        }
     }
 
     public void mouseReleased() {
@@ -82,6 +93,7 @@ public class WorldGen extends PApplet {
                 Config.HEIGHT,
                 Config.WIDTH,
                 Preset.HEIGHT_MAP_BASE_SEED,
+                currentTime,
                 Preset.HEIGHT_MAP_BASE_OCTAVE,
                 Preset.HEIGHT_MAP_BASE_NOISE_FALLOFF,
                 Preset.HEIGHT_MAP_BASE_INTENSITY,
@@ -97,6 +109,7 @@ public class WorldGen extends PApplet {
                 Config.HEIGHT,
                 Config.WIDTH,
                 Preset.HEIGHT_MAP_RIDGE_SEED,
+                currentTime,
                 Preset.HEIGHT_MAP_RIDGE_OCTAVE,
                 Preset.HEIGHT_MAP_RIDGE_NOISE_FALLOFF,
                 Preset.HEIGHT_MAP_RIDGE_INTENSITY,

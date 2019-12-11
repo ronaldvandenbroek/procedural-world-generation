@@ -1,7 +1,5 @@
 package nl.ronaldvandenbroek.worldgen.gui;
 
-import nl.ronaldvandenbroek.worldgen.Utility;
-
 class ControlElementButton {
     private ControlListener controlListener;
     private String name;
