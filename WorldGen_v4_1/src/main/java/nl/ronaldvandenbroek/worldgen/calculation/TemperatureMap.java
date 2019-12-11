@@ -1,5 +1,7 @@
 package nl.ronaldvandenbroek.worldgen.calculation;
 
+import nl.ronaldvandenbroek.worldgen.calculation.array.ITwoDimensionalArrayUtility;
+
 public class TemperatureMap {
     private ITwoDimensionalArrayUtility mapUtil;
     private int equatorOffset;

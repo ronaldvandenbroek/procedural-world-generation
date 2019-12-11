@@ -1,9 +1,9 @@
 package nl.ronaldvandenbroek.worldgen;
 
+import nl.ronaldvandenbroek.worldgen.calculation.array.ITwoDimensionalArrayUtility;
+import nl.ronaldvandenbroek.worldgen.calculation.array.TwoDimensionalArrayUtility;
 import nl.ronaldvandenbroek.worldgen.calculation.HeightMap;
-import nl.ronaldvandenbroek.worldgen.calculation.ITwoDimensionalArrayUtility;
 import nl.ronaldvandenbroek.worldgen.calculation.TemperatureMap;
-import nl.ronaldvandenbroek.worldgen.calculation.TwoDimensionalArrayUtility;
 import nl.ronaldvandenbroek.worldgen.gui.ControlBuilder;
 import nl.ronaldvandenbroek.worldgen.gui.ControlGui;
 import nl.ronaldvandenbroek.worldgen.processing.ProcessingImageDrawer;

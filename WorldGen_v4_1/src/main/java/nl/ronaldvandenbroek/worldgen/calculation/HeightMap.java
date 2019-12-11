@@ -1,6 +1,7 @@
 package nl.ronaldvandenbroek.worldgen.calculation;
 
 import nl.ronaldvandenbroek.worldgen.NoiseMapGenerator;
+import nl.ronaldvandenbroek.worldgen.calculation.array.ITwoDimensionalArrayUtility;
 
 public class HeightMap {
     private NoiseMapGenerator noiseMapGenerator;
