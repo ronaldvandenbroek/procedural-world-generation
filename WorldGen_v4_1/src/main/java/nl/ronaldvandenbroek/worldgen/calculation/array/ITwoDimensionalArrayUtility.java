@@ -1,4 +1,4 @@
-package nl.ronaldvandenbroek.worldgen.calculation;
+package nl.ronaldvandenbroek.worldgen.calculation.array;
 
 public interface ITwoDimensionalArrayUtility {
     /**
