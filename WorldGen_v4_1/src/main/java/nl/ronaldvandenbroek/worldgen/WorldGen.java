@@ -11,6 +11,7 @@ import nl.ronaldvandenbroek.worldgen.processing.ProcessingPerlinNoise;
 import nl.ronaldvandenbroek.worldgen.properties.Config;
 import nl.ronaldvandenbroek.worldgen.properties.Preset;
 import nl.ronaldvandenbroek.worldgen.properties.PropertyLoader;
+import nl.ronaldvandenbroek.worldgen.utility.CodeTimer;
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -27,6 +28,7 @@ public class WorldGen extends PApplet {
     private ProcessingImageDrawer processingImageDrawer;
     private ITwoDimensionalArrayUtility mapUtil;
     private ControlGui controlGui;
+    private CodeTimer codeTimer;
 
     // Generated maps
     private List<HeightMap> heightMapLayers;
@@ -45,24 +47,33 @@ public class WorldGen extends PApplet {
     }
 
     public void setup() {
+        // Setup exit handler
+        Runtime.getRuntime().addShutdownHook(new Thread(this::stop));
+
+        // Setup config variables
         currentMap = Config.DEFAULT_MAP;
         passTime = Config.ENABLE_TIME_LAPSE;
         currentTime = Config.TIME;
 
+        // Setup utilities
+        codeTimer = new CodeTimer("TickSpeed");
         noiseMapGenerator = new ProcessingPerlinNoise(this);
         processingImageDrawer = new ProcessingImageDrawer(this);
         mapUtil = new TwoDimensionalArrayUtility();
 
+        // Setup GUI
         controlGui = new ControlGui(this);
         controlGui.createGUISliderTitle("WorldGen Configuration", true);
-
         ControlBuilder.Menu(controlGui, this);
 
+        // Generate the preset map
+        codeTimer.start();
         createDefaultMaps();
     }
 
     public void draw() {
         if (passTime) {
+            codeTimer.round();
             currentTime += Preset.HEIGHT_MAP_BASE_INTENSITY / Config.PERLIN_INTENSITY_MODIFIER * 2;
             for (HeightMap heightMapLayer : heightMapLayers) {
                 heightMapLayer.setTime(currentTime);
@@ -71,13 +82,17 @@ public class WorldGen extends PApplet {
         }
     }
 
+    public void stop() {
+        codeTimer.end();
+    }
+
     public void mouseReleased() {
         generateMaps();
-        //System.out.println("Mouse Released");
+        // System.out.println("Mouse Released");
     }
 
     public void menuPressed(float value){
-        System.out.println("Menu Pressed: " + value);
+        // System.out.println("Menu Pressed: " + value);
         currentMap = value;
 
         drawMaps();

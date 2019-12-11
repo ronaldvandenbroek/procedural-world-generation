@@ -23,8 +23,8 @@ public class TemperatureMap {
         temperatureMap = mapUtil.merge(temperatureMap, heightTemperatureMap, latitudeStrength, altitudeStrength);
         temperatureMap = mapUtil.add(temperatureMap, 0, 1, globalModifier);
 
-        System.out.println(mapUtil.getHighestArrayValue(temperatureMap));
-        System.out.println(mapUtil.getLowestArrayValue(temperatureMap));
+        // System.out.println(mapUtil.getLowestArrayValue(temperatureMap));
+        // System.out.println(mapUtil.getHighestArrayValue(temperatureMap));
     }
 
     public float[][] finalise() {

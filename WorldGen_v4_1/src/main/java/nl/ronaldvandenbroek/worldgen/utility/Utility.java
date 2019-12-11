@@ -1,4 +1,4 @@
-package nl.ronaldvandenbroek.worldgen;
+package nl.ronaldvandenbroek.worldgen.utility;
 
 public class Utility {
     public static String upperCaseFirst(String value) {
