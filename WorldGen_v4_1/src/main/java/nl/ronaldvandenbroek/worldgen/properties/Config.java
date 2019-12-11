@@ -4,6 +4,8 @@ public class Config {
     public static float DEFAULT_MAP;
     public static int WIDTH;
     public static int HEIGHT;
+    public static float TIME;
+    public static boolean ENABLE_TIME_LAPSE;
     public static float PERLIN_FALLOFF_MODIFIER;
     public static float PERLIN_INTENSITY_MODIFIER;
 

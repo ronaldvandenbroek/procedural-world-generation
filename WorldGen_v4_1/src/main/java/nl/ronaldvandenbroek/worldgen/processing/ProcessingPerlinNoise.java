@@ -12,7 +12,7 @@ public class ProcessingPerlinNoise implements NoiseMapGenerator {
     }
 
     @Override
-    public float[][] generate(int height, int width, int seed, int octaves, float falloff, float intensity) {
+    public float[][] generate(int height, int width, float time, int seed, int octaves, float falloff, float intensity) {
         falloff = falloff / Config.PERLIN_FALLOFF_MODIFIER;
         intensity = intensity / Config.PERLIN_INTENSITY_MODIFIER;
 
@@ -24,7 +24,7 @@ public class ProcessingPerlinNoise implements NoiseMapGenerator {
         for (int h = 0; h < height; h++) {
             float x = 0;
             for (int w = 0; w < width; w++) {
-                noiseMap[h][w] = processing.noise(x, y);
+                noiseMap[h][w] = processing.noise(x, y, time);
                 x += intensity;
             }
             y += intensity;
