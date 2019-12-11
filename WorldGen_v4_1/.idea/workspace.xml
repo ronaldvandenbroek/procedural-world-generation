@@ -2,13 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="178580e6-910f-4a4c-bcbe-8af7d74bac55" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/utility/CodeTimer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/NoiseMapGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/NoiseMapGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/Utility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/utility/Utility.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/WorldGen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/WorldGen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/calculation/HeightMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/calculation/HeightMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/gui/ControlElementButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/gui/ControlElementButton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/processing/ProcessingPerlinNoise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/processing/ProcessingPerlinNoise.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/properties/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/properties/Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/calculation/TemperatureMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/calculation/TemperatureMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/calculation/TwoDimensionalArrayUtility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/calculation/TwoDimensionalArrayUtility.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/gui/ControlElementSlider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/gui/ControlElementSlider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/gui/ControlListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/gui/ControlListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.properties" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,8 +21,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
