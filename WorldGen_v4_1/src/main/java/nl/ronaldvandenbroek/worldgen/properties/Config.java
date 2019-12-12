@@ -6,6 +6,8 @@ public class Config {
     public static int HEIGHT;
     public static float TIME;
     public static boolean ENABLE_TIME_LAPSE;
+    public static boolean ENABLE_CONTROLS;
+    public static boolean ENABLE_ROUND_LOG;
     public static float PERLIN_FALLOFF_MODIFIER;
     public static float PERLIN_INTENSITY_MODIFIER;
 
