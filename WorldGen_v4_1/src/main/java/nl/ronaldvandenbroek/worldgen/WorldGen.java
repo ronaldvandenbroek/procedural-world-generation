@@ -1,9 +1,9 @@
 package nl.ronaldvandenbroek.worldgen;
 
-import nl.ronaldvandenbroek.worldgen.calculation.array.ITwoDimensionalArrayUtility;
-import nl.ronaldvandenbroek.worldgen.calculation.array.TwoDimensionalArrayUtility;
 import nl.ronaldvandenbroek.worldgen.calculation.HeightMap;
 import nl.ronaldvandenbroek.worldgen.calculation.TemperatureMap;
+import nl.ronaldvandenbroek.worldgen.calculation.array.ITwoDimensionalArrayUtility;
+import nl.ronaldvandenbroek.worldgen.calculation.array.TwoDimensionalArrayUtility;
 import nl.ronaldvandenbroek.worldgen.gui.ControlBuilder;
 import nl.ronaldvandenbroek.worldgen.gui.ControlGui;
 import nl.ronaldvandenbroek.worldgen.processing.ProcessingImageDrawer;
@@ -141,10 +141,12 @@ public class WorldGen extends PApplet {
                 Preset.TEMPERATURE_MAP_GLOBAL_MODIFIER
         );
 
-        for (HeightMap heightMap : heightMapLayers) {
-            ControlBuilder.HeightMap(controlGui, heightMap);
+        if (Config.ENABLE_CONTROLS) {
+            for (HeightMap heightMap : heightMapLayers) {
+                ControlBuilder.HeightMap(controlGui, heightMap);
+            }
+            ControlBuilder.TemperatureMap(controlGui, temperatureMap);
         }
-        ControlBuilder.TemperatureMap(controlGui, temperatureMap);
 
         generateMaps();
     }

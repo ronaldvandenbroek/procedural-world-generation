@@ -1,5 +1,7 @@
 package nl.ronaldvandenbroek.worldgen.utility;
 
+import nl.ronaldvandenbroek.worldgen.properties.Config;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -34,7 +36,9 @@ public class CodeTimer {
         long endRoundTime = System.nanoTime();
         long totalRoundTime = endRoundTime - roundTime;
         roundTimes.add(totalRoundTime);
-        System.out.println(ROUND_TIME + roundNumber + SPACE + name + DIVIDER + TimeUnit.NANOSECONDS.toMillis(totalRoundTime) + UNIT);
+        if (Config.ENABLE_ROUND_LOG) {
+            System.out.println(ROUND_TIME + roundNumber + SPACE + name + DIVIDER + TimeUnit.NANOSECONDS.toMillis(totalRoundTime) + UNIT);
+        }
         roundTime = endRoundTime;
         roundNumber += 1;
     }
