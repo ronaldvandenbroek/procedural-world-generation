@@ -21,6 +21,7 @@ public class ProcessingImageDrawer {
                 image.pixels[h * arrayWidth + w] = processing.color(array[h][w]);
             }
         }
+        processing.getSurface().setTitle(processing.frameRate + " fps");
         return image;
     }
 }
