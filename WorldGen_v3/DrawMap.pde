@@ -93,9 +93,9 @@ void drawMap() {
   updatePixels();
 
   //After generation if heightmap save to file
-  if (displayType == 1) {
+  if (displayType == 1 && saveMap) {
     save(saveLocation + seed + "heightmap.bmp");
-  } else if (displayType == 0) {
+  } else if (displayType == 0 && saveMap) {
     save(saveLocation + seed + "texturemap.bmp");
   }
 }

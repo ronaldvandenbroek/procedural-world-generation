@@ -31,7 +31,7 @@ int cutoff = 21;
 int windDir = 8;
 int equatorOffset = 0;
 int ridgeFactor = 31;//28
-String saveLocation = "C:/Users/ronald/Pictures/Terrain/Generated/";
+String saveLocation = "C:/WorldGen/v3/Terrain/Generated/";
 
 //Settings
 //For heightmap generation set greyscale to true and displaytype to 1
@@ -51,6 +51,7 @@ boolean rainSmoothing = false;
 boolean runOnce = true;
 boolean shaderHeight = true;
 boolean tooltip = false;
+boolean saveMap = false;
 
 //0 = complete map
 //1 = heightmap
