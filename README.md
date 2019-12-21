@@ -3,7 +3,7 @@ Procedural World Generation using Processing and Java
 
 Personal project capable of generating continents with a height, temperature, rainfall and biomes. 
 
-Initially pure Processing was used (till version 4), however with version 5, to increase flexibility by using Java and not having to use the Processing IDE, the switch was made to a Java project using Processing as a library.
+Initially pure Processing was used (till version 4), however with version 5 the switch was made to a Java project using Processing as a library, this was done to increase flexibility by not being limited to the Processing IDE. 
 
 ## Setup
 ### Libraries
