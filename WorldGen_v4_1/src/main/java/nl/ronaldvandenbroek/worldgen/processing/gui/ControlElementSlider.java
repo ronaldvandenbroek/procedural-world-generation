@@ -1,6 +1,6 @@
-package nl.ronaldvandenbroek.worldgen.gui;
+package nl.ronaldvandenbroek.worldgen.processing.gui;
 
-import nl.ronaldvandenbroek.worldgen.Utility;
+import nl.ronaldvandenbroek.worldgen.utility.Utility;
 
 class ControlElementSlider {
     private ControlListener controlListener;

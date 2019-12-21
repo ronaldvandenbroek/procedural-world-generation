@@ -1,6 +1,4 @@
-package nl.ronaldvandenbroek.worldgen.gui;
-
-import nl.ronaldvandenbroek.worldgen.Utility;
+package nl.ronaldvandenbroek.worldgen.processing.gui;
 
 class ControlElementButton {
     private ControlListener controlListener;

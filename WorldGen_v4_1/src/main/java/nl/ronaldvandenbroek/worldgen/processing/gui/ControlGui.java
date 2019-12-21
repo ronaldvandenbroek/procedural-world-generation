@@ -1,4 +1,4 @@
-package nl.ronaldvandenbroek.worldgen.gui;
+package nl.ronaldvandenbroek.worldgen.processing.gui;
 
 import controlP5.ControlP5;
 import nl.ronaldvandenbroek.worldgen.properties.Config;

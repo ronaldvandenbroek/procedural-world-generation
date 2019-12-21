@@ -1,11 +1,11 @@
-package nl.ronaldvandenbroek.worldgen.calculation;
+package nl.ronaldvandenbroek.worldgen.calculation.array;
 
 import static java.lang.Math.abs;
 
 public class TwoDimensionalArrayUtility implements ITwoDimensionalArrayUtility {
     public float[][] merge(float[][] array1, float[][] array2, float weight1, float weight2) {
         float weightPercentage = (weight1 / (weight1 + weight2));
-        System.out.println("Merge Weights: " + weight1 + " " + weight2 + " " + weightPercentage);
+        // System.out.println("Merge Weights: " + weight1 + " " + weight2 + " " + weightPercentage);
         return merge(array1, array2, weightPercentage);
     }
 

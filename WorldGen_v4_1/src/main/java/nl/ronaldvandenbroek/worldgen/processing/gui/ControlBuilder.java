@@ -1,12 +1,20 @@
-package nl.ronaldvandenbroek.worldgen.gui;
+package nl.ronaldvandenbroek.worldgen.processing.gui;
 
 import nl.ronaldvandenbroek.worldgen.WorldGen;
 import nl.ronaldvandenbroek.worldgen.calculation.HeightMap;
 import nl.ronaldvandenbroek.worldgen.calculation.TemperatureMap;
+import nl.ronaldvandenbroek.worldgen.calculation.WorldGenerator;
 import nl.ronaldvandenbroek.worldgen.properties.Config;
 
 public class ControlBuilder {
-    public static void HeightMap(ControlGui controlGui, HeightMap heightMap) {
+    public static void WorldGenControls(ControlGui controlGui, WorldGenerator worldGenerator) {
+        for (HeightMap heightMap : worldGenerator.getHeightMapLayers()) {
+            ControlBuilder.HeightMap(controlGui, heightMap);
+        }
+        ControlBuilder.TemperatureMap(controlGui, worldGenerator.getTemperatureMap());
+    }
+
+    private static void HeightMap(ControlGui controlGui, HeightMap heightMap) {
         controlGui.createGUISliderTitle(heightMap.getName() + "HeightMap", false);
         controlGui.createGUISlider(new ControlElementSlider(
                 heightMap.getName() + " Seed",
@@ -66,7 +74,7 @@ public class ControlBuilder {
         );
     }
 
-    public static void TemperatureMap(ControlGui controlGui, TemperatureMap temperatureMap) {
+    private static void TemperatureMap(ControlGui controlGui, TemperatureMap temperatureMap) {
         controlGui.createGUISliderTitle("TemperatureMap", false);
         controlGui.createGUISlider(new ControlElementSlider(
                 "Equator Offset",

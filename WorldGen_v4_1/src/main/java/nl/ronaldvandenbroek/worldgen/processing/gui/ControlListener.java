@@ -1,4 +1,4 @@
-package nl.ronaldvandenbroek.worldgen.gui;
+package nl.ronaldvandenbroek.worldgen.processing.gui;
 
 import controlP5.CallbackEvent;
 import controlP5.CallbackListener;
@@ -18,7 +18,7 @@ public class ControlListener implements CallbackListener {
     @Override
     public void controlEvent(CallbackEvent callbackEvent) {
         try {
-            System.out.println(callbackEvent.getController().getName() + " " + callbackEvent.getController().getValue());
+            // System.out.println(callbackEvent.getController().getName() + " " + callbackEvent.getController().getValue());
             callBackMethod.invoke(callBackObject, callbackEvent.getController().getValue());
         } catch (IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();

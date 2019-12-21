@@ -1,14 +1,16 @@
 package nl.ronaldvandenbroek.worldgen.calculation;
 
-import nl.ronaldvandenbroek.worldgen.NoiseMapGenerator;
+import nl.ronaldvandenbroek.worldgen.calculation.array.ITwoDimensionalArrayUtility;
+import nl.ronaldvandenbroek.worldgen.calculation.noise.INoiseMapGenerator;
 
 public class HeightMap {
-    private NoiseMapGenerator noiseMapGenerator;
+    private INoiseMapGenerator noiseMapGenerator;
     private ITwoDimensionalArrayUtility mapUtil;
     private String name;
     private int height;
     private int width;
     private int seed;
+    private float time;
     private int octaves;
     private float noiseFalloff;
     private float intensity;
@@ -34,13 +36,14 @@ public class HeightMap {
         this.mapUtil = mapUtil;
     }
 
-    public HeightMap(String name, NoiseMapGenerator noiseMapGenerator, ITwoDimensionalArrayUtility mapUtil, int height, int width, int seed, int octaves, float noiseFalloff, float intensity, boolean ridge, float power, float circularFalloff, float weight) {
+    public HeightMap(String name, INoiseMapGenerator noiseMapGenerator, ITwoDimensionalArrayUtility mapUtil, int height, int width, int seed, float time, int octaves, float noiseFalloff, float intensity, boolean ridge, float power, float circularFalloff, float weight) {
         this.name = name;
         this.noiseMapGenerator = noiseMapGenerator;
         this.mapUtil = mapUtil;
         this.height = height;
         this.width = width;
         this.seed = seed;
+        this.time = time;
         this.octaves = octaves;
         this.noiseFalloff = noiseFalloff;
         this.intensity = intensity;
@@ -72,6 +75,14 @@ public class HeightMap {
 
     public void setSeed(float seed) {
         this.seed = (int) seed;
+    }
+
+    public float getTime() {
+        return time;
+    }
+
+    public void setTime(float time) {
+        this.time = time;
     }
 
     public int getOctaves() {
@@ -140,7 +151,7 @@ public class HeightMap {
 
     public void generate() {
         if (noiseMapGenerator != null) {
-            heightMap = noiseMapGenerator.generate(height, width, seed, octaves, noiseFalloff, intensity);
+            heightMap = noiseMapGenerator.generate(height, width, time, seed, octaves, noiseFalloff, intensity);
         }
         heightMap = mapUtil.map(heightMap, 0, 1);
         if (ridge) {
