@@ -25,6 +25,7 @@ public class WorldGenerator {
     public WorldGenerator(INoiseMapGenerator noiseMapGenerator, ITwoDimensionalArrayUtility mapUtil) {
         this.noiseMapGenerator = noiseMapGenerator;
         this.mapUtil = mapUtil;
+        this.currentMap = Config.DEFAULT_MAP;
 
         createDefaultMaps();
     }
