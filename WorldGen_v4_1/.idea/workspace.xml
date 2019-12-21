@@ -2,21 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="178580e6-910f-4a4c-bcbe-8af7d74bac55" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/processing/IProcessingImageDrawer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/utility/codetimer/ICodeTimer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/NoiseMapGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/calculation/noise/INoiseMapGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/WorldGen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/WorldGen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/calculation/HeightMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/calculation/HeightMap.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/gui/ControlBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/processing/gui/ControlBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/gui/ControlElementButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/processing/gui/ControlElementButton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/gui/ControlElementSlider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/processing/gui/ControlElementSlider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/gui/ControlGui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/processing/gui/ControlGui.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/gui/ControlListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/processing/gui/ControlListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/processing/ProcessingImageDrawer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/processing/ProcessingImageDrawer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/processing/ProcessingPerlinNoise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/processing/ProcessingPerlinINoise.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/utility/CodeTimer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/utility/codetimer/CodeTimer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/utility/codetimer/CodeTimer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/utility/codetimer/CodeTimer.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -112,7 +99,7 @@
       <workItem from="1575730040427" duration="4657000" />
       <workItem from="1575811680298" duration="5117000" />
       <workItem from="1576139511056" duration="936000" />
-      <workItem from="1576929088143" duration="1602000" />
+      <workItem from="1576929088143" duration="2079000" />
     </task>
     <servers />
   </component>
