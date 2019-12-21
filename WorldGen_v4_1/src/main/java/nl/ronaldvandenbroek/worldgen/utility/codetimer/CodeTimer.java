@@ -49,12 +49,22 @@ public class CodeTimer implements ICodeTimer {
     public void end() {
         long endTime = System.nanoTime();
         long totalTime = endTime - startTime;
-        System.out.println(TOTAL_TIME + name + DIVIDER + TimeUnit.NANOSECONDS.toMillis(totalTime) + UNIT + AVERAGE_ROUND_TIME + TimeUnit.NANOSECONDS.toMillis(averageRoundTime()) + UNIT);
+        System.out.print(TOTAL_TIME + name + DIVIDER + TimeUnit.NANOSECONDS.toMillis(totalTime) + UNIT);
+
+        long averageTime = averageRoundTime();
+        if (averageTime != 0) {
+            System.out.println(AVERAGE_ROUND_TIME + TimeUnit.NANOSECONDS.toMillis(averageRoundTime()) + UNIT);
+        } else {
+            System.out.println("");
+        }
     }
 
     @Override
     public long averageRoundTime() {
         int totalRounds = roundTimes.size();
+        if (totalRounds == 0) {
+            return 0;
+        }
         long totalTime = 0;
         for (long roundTime : roundTimes) {
             totalTime += roundTime;
