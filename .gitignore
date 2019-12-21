@@ -110,3 +110,4 @@ fabric.properties
 */.idea/caches/build_file_checksums.ser
 WorldGen_v4/Exports/*
 WorldGen_v3/Potential Icons/*
+*.pdn
