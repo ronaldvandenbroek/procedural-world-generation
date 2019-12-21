@@ -1,4 +1,4 @@
-package nl.ronaldvandenbroek.worldgen.gui;
+package nl.ronaldvandenbroek.worldgen.processing.gui;
 
 import controlP5.CallbackEvent;
 import controlP5.CallbackListener;

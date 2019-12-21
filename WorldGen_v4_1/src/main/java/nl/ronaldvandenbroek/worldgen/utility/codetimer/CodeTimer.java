@@ -1,4 +1,4 @@
-package nl.ronaldvandenbroek.worldgen.utility;
+package nl.ronaldvandenbroek.worldgen.utility.codetimer;
 
 import nl.ronaldvandenbroek.worldgen.properties.Config;
 
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class CodeTimer {
+public class CodeTimer implements ICodeTimer {
     private static String ROUND_TIME = "Round Time ";
     private static String TOTAL_TIME = "Total Time ";
     private static String AVERAGE_ROUND_TIME = " with an average round time of ";
@@ -27,11 +27,13 @@ public class CodeTimer {
         this.roundNumber = 0;
     }
 
+    @Override
     public void start() {
         startTime = System.nanoTime();
         roundTime = startTime; // First round starts at the same time
     }
 
+    @Override
     public void round() {
         long endRoundTime = System.nanoTime();
         long totalRoundTime = endRoundTime - roundTime;
@@ -43,13 +45,15 @@ public class CodeTimer {
         roundNumber += 1;
     }
 
+    @Override
     public void end() {
         long endTime = System.nanoTime();
         long totalTime = endTime - startTime;
         System.out.println(TOTAL_TIME + name + DIVIDER + TimeUnit.NANOSECONDS.toMillis(totalTime) + UNIT + AVERAGE_ROUND_TIME + TimeUnit.NANOSECONDS.toMillis(averageRoundTime()) + UNIT);
     }
 
-    private long averageRoundTime() {
+    @Override
+    public long averageRoundTime() {
         int totalRounds = roundTimes.size();
         long totalTime = 0;
         for (long roundTime : roundTimes) {

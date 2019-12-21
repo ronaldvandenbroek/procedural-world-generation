@@ -1,4 +1,4 @@
-package nl.ronaldvandenbroek.worldgen.gui;
+package nl.ronaldvandenbroek.worldgen.processing.gui;
 
 import nl.ronaldvandenbroek.worldgen.WorldGen;
 import nl.ronaldvandenbroek.worldgen.calculation.HeightMap;

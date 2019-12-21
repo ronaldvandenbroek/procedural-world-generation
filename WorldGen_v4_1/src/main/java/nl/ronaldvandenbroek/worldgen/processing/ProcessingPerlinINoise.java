@@ -1,13 +1,13 @@
 package nl.ronaldvandenbroek.worldgen.processing;
 
-import nl.ronaldvandenbroek.worldgen.NoiseMapGenerator;
+import nl.ronaldvandenbroek.worldgen.calculation.noise.INoiseMapGenerator;
 import nl.ronaldvandenbroek.worldgen.properties.Config;
 import processing.core.PApplet;
 
-public class ProcessingPerlinNoise implements NoiseMapGenerator {
+public class ProcessingPerlinINoise implements INoiseMapGenerator {
     private PApplet processing;
 
-    public ProcessingPerlinNoise(PApplet processing) {
+    public ProcessingPerlinINoise(PApplet processing) {
         this.processing = processing;
     }
 
