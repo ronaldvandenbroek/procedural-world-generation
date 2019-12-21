@@ -78,7 +78,7 @@ public class WorldGen extends PApplet {
         drawMaps();
     }
 
-    public void menuPressed(float value){
+    public void menuPressed(float value) {
         worldGenerator.setCurrentMap(value);
         drawMaps();
     }

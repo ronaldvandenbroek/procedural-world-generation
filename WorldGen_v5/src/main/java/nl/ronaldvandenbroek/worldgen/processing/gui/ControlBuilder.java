@@ -110,7 +110,7 @@ public class ControlBuilder {
         );
     }
 
-    public static void Menu(ControlGui controlGui, WorldGen worldGen){
+    public static void Menu(ControlGui controlGui, WorldGen worldGen) {
         controlGui.createGUIMapButton(new ControlElementButton(
                 "0 HeightMap",
                 worldGen,
