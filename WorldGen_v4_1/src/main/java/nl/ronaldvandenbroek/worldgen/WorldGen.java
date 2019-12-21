@@ -4,14 +4,17 @@ import nl.ronaldvandenbroek.worldgen.calculation.HeightMap;
 import nl.ronaldvandenbroek.worldgen.calculation.TemperatureMap;
 import nl.ronaldvandenbroek.worldgen.calculation.array.ITwoDimensionalArrayUtility;
 import nl.ronaldvandenbroek.worldgen.calculation.array.TwoDimensionalArrayUtility;
-import nl.ronaldvandenbroek.worldgen.gui.ControlBuilder;
-import nl.ronaldvandenbroek.worldgen.gui.ControlGui;
+import nl.ronaldvandenbroek.worldgen.calculation.noise.INoiseMapGenerator;
+import nl.ronaldvandenbroek.worldgen.processing.IProcessingImageDrawer;
 import nl.ronaldvandenbroek.worldgen.processing.ProcessingImageDrawer;
-import nl.ronaldvandenbroek.worldgen.processing.ProcessingPerlinNoise;
+import nl.ronaldvandenbroek.worldgen.processing.ProcessingPerlinINoise;
+import nl.ronaldvandenbroek.worldgen.processing.gui.ControlBuilder;
+import nl.ronaldvandenbroek.worldgen.processing.gui.ControlGui;
 import nl.ronaldvandenbroek.worldgen.properties.Config;
 import nl.ronaldvandenbroek.worldgen.properties.Preset;
 import nl.ronaldvandenbroek.worldgen.properties.PropertyLoader;
-import nl.ronaldvandenbroek.worldgen.utility.CodeTimer;
+import nl.ronaldvandenbroek.worldgen.utility.codetimer.CodeTimer;
+import nl.ronaldvandenbroek.worldgen.utility.codetimer.ICodeTimer;
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -24,11 +27,11 @@ public class WorldGen extends PApplet {
     private boolean passTime;
 
     // Utilities
-    private NoiseMapGenerator noiseMapGenerator;
-    private ProcessingImageDrawer processingImageDrawer;
+    private INoiseMapGenerator noiseMapGenerator;
+    private IProcessingImageDrawer processingImageDrawer;
     private ITwoDimensionalArrayUtility mapUtil;
     private ControlGui controlGui;
-    private CodeTimer codeTimer;
+    private ICodeTimer codeTimer;
 
     // Generated maps
     private List<HeightMap> heightMapLayers;
@@ -57,7 +60,7 @@ public class WorldGen extends PApplet {
 
         // Setup utilities
         codeTimer = new CodeTimer("TickSpeed");
-        noiseMapGenerator = new ProcessingPerlinNoise(this);
+        noiseMapGenerator = new ProcessingPerlinINoise(this);
         processingImageDrawer = new ProcessingImageDrawer(this);
         mapUtil = new TwoDimensionalArrayUtility();
 
