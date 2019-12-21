@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="178580e6-910f-4a4c-bcbe-8af7d74bac55" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/calculation/WorldGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/utility/codetimer/CodeTimer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/utility/codetimer/CodeTimer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/WorldGen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/WorldGen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/processing/gui/ControlBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/processing/gui/ControlBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/preset.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/preset.properties" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,8 +17,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -99,7 +102,7 @@
       <workItem from="1575730040427" duration="4657000" />
       <workItem from="1575811680298" duration="5117000" />
       <workItem from="1576139511056" duration="936000" />
-      <workItem from="1576929088143" duration="2079000" />
+      <workItem from="1576929088143" duration="5497000" />
     </task>
     <servers />
   </component>
@@ -118,5 +121,19 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/nl/ronaldvandenbroek/worldgen/calculation/WorldGenerator.java</url>
+          <line>70</line>
+          <properties class="nl.ronaldvandenbroek.worldgen.calculation.WorldGenerator" method="finalizeSelectedMap">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
