@@ -78,24 +78,24 @@ void drawMap() {
 
 
   //Mountainside test
-  if (displayType == 4 || displayType == 0) {
-    for (int h = 5; h < height - 5; h++) {
-      for (int w = 5; w < width - 5; w++) {
-        if (abs(terrainMap[h][w][0] - terrainMap[h+4][w][0]) > 0.08 || 
-          abs(terrainMap[h][w][0] - terrainMap[h-4][w][0]) > 0.08 || 
-          abs(terrainMap[h][w][0] - terrainMap[h][w+4][0]) > 0.08 || 
-          abs(terrainMap[h][w][0] - terrainMap[h][w-4][0]) > 0.08) {
-          pixels[h * width + w] = getMountainBiome();
-        }
-      }
-    }
-  }
+  //if (displayType == 4 || displayType == 0) {
+  //  for (int h = 5; h < height - 5; h++) {
+  //    for (int w = 5; w < width - 5; w++) {
+  //      if (abs(terrainMap[h][w][0] - terrainMap[h+4][w][0]) > 0.08 || 
+  //        abs(terrainMap[h][w][0] - terrainMap[h-4][w][0]) > 0.08 || 
+  //        abs(terrainMap[h][w][0] - terrainMap[h][w+4][0]) > 0.08 || 
+  //        abs(terrainMap[h][w][0] - terrainMap[h][w-4][0]) > 0.08) {
+  //        pixels[h * width + w] = getMountainBiome();
+  //      }
+  //    }
+  //  }
+  //}
   updatePixels();
 
   //After generation if heightmap save to file
-  if (displayType == 1) {
+  if (displayType == 1 && saveMap) {
     save(saveLocation + seed + "heightmap.bmp");
-  } else if (displayType == 0) {
+  } else if (displayType == 0 && saveMap) {
     save(saveLocation + seed + "texturemap.bmp");
   }
 }

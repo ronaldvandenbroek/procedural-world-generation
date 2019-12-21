@@ -9,11 +9,12 @@ color seaC = color(85, 155, 168);
 color textC = color(0);
 
 color getColorHeight(float z) {
-  if (greyScale) {
-    return color(map(z, 0, 1, 0, 255));
-  } else {
-    return lerpColor(baseHeight, topHeight, z);
-  }
+  //if (greyScale) {
+  //  return color(map(z, 0, 1, 0, 255));
+  //} else {
+  //  return lerpColor(baseHeight, topHeight, z);
+  //}
+  return color(map(z, 0, 1, 0, 255));
 }
 
 color getColorTemp(float z) {
