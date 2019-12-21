@@ -20,9 +20,9 @@ PImage blendBiomes;
 PImage biomeMap;
 
 //Default starting values
-int intensity = 3;
-int octaves = 8;
-int falloff = 5;
+int intensity = 7; //3
+int octaves = 9; //8
+int falloff = 6; //5
 int baseFalloffHeight = 5;
 int intensityRidge = 3;
 int octavesRidge = 3;
@@ -40,9 +40,9 @@ String saveLocation = "C:/Users/ronald/Pictures/Terrain/Generated/";
 //int displayType = 0;
 //long seed = 4648; //Default seed
 //For demo set greyscale to false and displaytype to 0
-boolean greyScale = true;
-boolean terrainCurving = true;
-int displayType = 4;
+boolean greyScale = false;
+boolean terrainCurving = false; //true
+int displayType = 0;
 long seed = 2980; //VCC seed //3033 //1065
 
 boolean edge = true;
@@ -50,6 +50,7 @@ boolean debug = false;
 boolean rainSmoothing = false;
 boolean runOnce = true;
 boolean shaderHeight = true;
+boolean tooltip = false;
 
 //0 = complete map
 //1 = heightmap
@@ -102,7 +103,7 @@ public void keyPressed() {
 void refresh() {
   generate();
   drawMap();
-  if (displayType != 0) {
+  if (displayType != 0 && tooltip) {
     information();
   }
 }
