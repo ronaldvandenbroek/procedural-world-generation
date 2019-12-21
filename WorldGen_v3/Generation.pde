@@ -109,11 +109,11 @@ public void simulateRain(int dir, int pass) {
     terrainMap[h][width-1][7] = 1.00;
   }
   for (int w = 0; w < (width); w++) {
-    terrainMap[0]  [w][5] = 1.00;
+    terrainMap[0][w][5] = 1.00;
     terrainMap[height-1][w][5] = 1.00;
-    terrainMap[0]  [w][6] = 1.00;
+    terrainMap[0][w][6] = 1.00;
     terrainMap[height-1][w][6] = 1.00;
-    terrainMap[0]  [w][7] = 1.00;
+    terrainMap[0][w][7] = 1.00;
     terrainMap[height-1][w][7] = 1.00;
   }
 
@@ -173,9 +173,7 @@ public void simulateRain(int dir, int pass) {
 
   //Move humidity from left to right
   for (int h = hStart; isAtEndHeight(h, hStart); h = h + hCount) {
-    //println("h = " + h);
     for (int w = wStart; isAtEndWidth(w, wStart); w = w + wCount) {
-      //println("w = " + w);
       if (terrainMap[h][w][0] <= (cutoff / 100.0f)) {//If is water and humidity isn't already max
         if (terrainMap[h][w][pass] < (1.00f)) {
           terrainMap[h + hDir][w + wDir][pass] = terrainMap[h][w][pass] + (0.0005f); //Increase humidty in the tile to the right
