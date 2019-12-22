@@ -2,7 +2,7 @@
 int scale = 5;
 int w = 1000;
 int h = 1000;
-int renderMode = 1; // 1:2d, 2:3d
+int renderMode = 2; // 1:2d, 2:3d
 float intensity = 0.04;
 boolean wireFrame = false;
 int waterlvl = 70;

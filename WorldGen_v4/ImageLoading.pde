@@ -1,3 +1,3 @@
 void loadImages() {
-  biomes = loadImage("Color\\BiomesV3.bmp");
+  biomes = loadImage("resources\\color\\biome_map_v3.bmp");
 }

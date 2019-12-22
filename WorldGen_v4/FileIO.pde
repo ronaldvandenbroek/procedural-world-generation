@@ -8,5 +8,5 @@ void export() {
 void saveMap(int value, String name) {
   PImage image = createImage(width, height, RGB);
   image = drawMap(value, image);
-  image.save("Exports/" + seed + " " + name + ".bmp");
+  image.save("exports/" + seed + " " + name + ".bmp");
 }
