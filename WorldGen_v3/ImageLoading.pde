@@ -1,29 +1,32 @@
 void loadImages() {
-  biomeIcons[0] = loadImage("Icons\\Grass.png");
-  biomeIcons[1] = loadImage("Icons\\Dune.png");
-  biomeIcons[2] = loadImage("Icons\\Savanna_Tree.png");
-  biomeIcons[3] = loadImage("Icons\\Temperate_Tree.png");
-  biomeIcons[4] = loadImage("Icons\\Boreal_Tree.png");
-  biomeIcons[5] = loadImage("Icons\\Jungle_Tree.png");
-  biomeIcons[6] = loadImage("Icons\\Mediteranian_Tree.png");
-  biomeIcons[7] = loadImage("Icons\\Cactus.png");
+  String iconPath = "resources\\icons\\";
+  biomeIcons[0] = loadImage(iconPath + "grass.png");
+  biomeIcons[1] = loadImage(iconPath + "dune.png");
+  biomeIcons[2] = loadImage(iconPath + "savanna_tree.png");
+  biomeIcons[3] = loadImage(iconPath + "temperate_tree.png");
+  biomeIcons[4] = loadImage(iconPath + "boreal_tree.png");
+  biomeIcons[5] = loadImage(iconPath + "jungle_tree.png");
+  biomeIcons[6] = loadImage(iconPath + "mediteranian_tree.png");
+  biomeIcons[7] = loadImage(iconPath + "cactus.png");
 
-  biomeBlends[0] = createBaseTileFloor(loadImage("Blend\\Water.png"));
-  biomeBlends[1] = createBaseTileFloor(loadImage("Blend\\Gravel.png"));
-  biomeBlends[2] = createBaseTileFloor(loadImage("Blend\\Savanna.png"));
-  biomeBlends[3] = createBaseTileFloor(loadImage("Blend\\TempJungle.png"));
-  biomeBlends[4] = createBaseTileFloor(loadImage("Blend\\Jungle.png"));
-  biomeBlends[5] = createBaseTileFloor(loadImage("Blend\\Dryland.png"));
-  biomeBlends[6] = createBaseTileFloor(loadImage("Blend\\Grass.png"));
-  biomeBlends[7] = createBaseTileFloor(loadImage("Blend\\Bush.png"));
-  biomeBlends[8] = createBaseTileFloor(loadImage("Blend\\TempForest.png"));
-  biomeBlends[9] = createBaseTileFloor(loadImage("Blend\\BorealForest.png"));
-  biomeBlends[10] = createBaseTileFloor(loadImage("Blend\\WetBorealForest.png"));
-  biomeBlends[11] = createBaseTileFloor(loadImage("Blend\\Tundra.png"));
+  String blendPath = "resources\\blend\\";
+  biomeBlends[0] = createBaseTileFloor(loadImage(blendPath + "water.png"));
+  biomeBlends[1] = createBaseTileFloor(loadImage(blendPath + "gravel.png"));
+  biomeBlends[2] = createBaseTileFloor(loadImage(blendPath + "savanna.png"));
+  biomeBlends[3] = createBaseTileFloor(loadImage(blendPath + "temperate_jungle.png"));
+  biomeBlends[4] = createBaseTileFloor(loadImage(blendPath + "jungle.png"));
+  biomeBlends[5] = createBaseTileFloor(loadImage(blendPath + "dryland.png"));
+  biomeBlends[6] = createBaseTileFloor(loadImage(blendPath + "grass.png"));
+  biomeBlends[7] = createBaseTileFloor(loadImage(blendPath + "bush.png"));
+  biomeBlends[8] = createBaseTileFloor(loadImage(blendPath + "temperate_forest.png"));
+  biomeBlends[9] = createBaseTileFloor(loadImage(blendPath + "boreal_forest.png"));
+  biomeBlends[10] = createBaseTileFloor(loadImage(blendPath + "wet_boreal_forest.png"));
+  biomeBlends[11] = createBaseTileFloor(loadImage(blendPath + "tundra.png"));
 
-  //biomes = loadImage("Color\\BiomesV2.bmp");
-  biomes = loadImage("Color\\BiomesV3.bmp");
-  biomesShader = loadImage("Color\\BiomesMapShade.bmp");
+  String colorPath = "resources\\color\\";
+  //biomes = loadImage(colorPath + "biome_map_v2.bmp");
+  biomes = loadImage(colorPath + "biome_map_v3.bmp");
+  biomesShader = loadImage(colorPath + "biome_map_greyscale.bmp");
 }
 
 PImage createBaseTileFloor(PImage img) {
