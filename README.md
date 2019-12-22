@@ -1,4 +1,4 @@
-# Processing-WorldGeneration
+# Processing WorldGeneration
 Procedural World Generation using Processing and Java
 
 Personal project capable of generating continents with a height, temperature, rainfall and biomes. 
