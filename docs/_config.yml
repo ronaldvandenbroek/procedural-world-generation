@@ -1,5 +1,5 @@
 title: Processing World Generation
-logo: /docs/images/v3_textured_end_result.png
+logo: images/v3_textured_end_result.png
 description: Perlin Noise based Procedural World Generation using Processing and Java
 show_downloads: true
 google_analytics:
