@@ -24,9 +24,11 @@ public class WorldGen extends PApplet {
     private WorldGenerator worldGenerator;
 
     public static void main(String[] args) {
+        // Load config en preset properties
         PropertyLoader.load(Config.class, "config.properties");
         PropertyLoader.load(Preset.class, "preset.properties");
 
+        // Start the processing library
         PApplet.main("nl.ronaldvandenbroek.worldgen.WorldGen", args);
     }
 
