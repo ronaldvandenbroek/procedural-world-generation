@@ -1,5 +1,5 @@
-# Processing World Generation
-[Github Page](https://ronaldvandenbroek.github.io/processing-world-generation/)
+# Procedural World Generation
+[Github Page](https://ronaldvandenbroek.github.io/procedural-world-generation/)
 
 Procedural World Generation using Processing and Java
 
