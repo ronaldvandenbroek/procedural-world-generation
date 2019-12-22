@@ -19,7 +19,7 @@ These libraries can be obtained by downloading the latest Processing and install
 
 | v3 WorldGen Examples  | Click on image for full size |
 | :---: | :---: |
-| <img src=".github/v3BiomeMap.png" style="width: 50%;" /><br />Biome Map | <img src=".github/v3TexturedEndResult.png" style="width: 50%;" /><br />Textured End Result |
-| <img src=".github/v3HeightMap.png"  style="width: 50%" /><br />Height Map | <img src=".github/v3TemperatureMap.png"  style="width: 50%" /><br />Temperature Map |
-| <img src=".github/v3RainMap1.png"  style="width: 50%" /><br />Rain Map 1 | <img src=".github/v3RainMap2.png"  style="width: 50%" /><br />Rain Map 2 |
-| <img src=".github/v3RainMap3.png"  style="width: 50%" /><br />Rain Map 3 | <img src=".github/v3CombinedRainMap.png"  style="width: 50%" /><br />Combined Rain Map |
+| <img src="docs/images/v3_biome_map.png" style="width: 50%;" /><br />Biome Map | <img src="docs/images/v3_textured_end_result.png" style="width: 50%;" /><br />Textured End Result |
+| <img src="docs/images/v3_height_map.png"  style="width: 50%" /><br />Height Map | <img src="docs/images/v3_temperature_map.png"  style="width: 50%" /><br />Temperature Map |
+| <img src="docs/images/v3_rain_map1.png"  style="width: 50%" /><br />Rain Map 1 | <img src="docs/images/v3_rain_map2.png"  style="width: 50%" /><br />Rain Map 2 |
+| <img src="docs/images/v3_rain_map3.png"  style="width: 50%" /><br />Rain Map 3 | <img src="docs/images/v3_combined_rain_map.png"  style="width: 50%" /><br />Combined Rain Map |
