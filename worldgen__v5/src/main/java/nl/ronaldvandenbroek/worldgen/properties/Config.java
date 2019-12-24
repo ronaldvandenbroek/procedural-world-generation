@@ -2,8 +2,10 @@ package nl.ronaldvandenbroek.worldgen.properties;
 
 public class Config {
     public static float DEFAULT_MAP;
-    public static int WIDTH;
-    public static int HEIGHT;
+    public static int WINDOW_WIDTH;
+    public static int WINDOW_HEIGHT;
+    public static int IMAGE_WIDTH;
+    public static int IMAGE_HEIGHT;
     public static float TIME;
     public static boolean ENABLE_TIME_LAPSE;
     public static boolean ENABLE_CONTROLS;

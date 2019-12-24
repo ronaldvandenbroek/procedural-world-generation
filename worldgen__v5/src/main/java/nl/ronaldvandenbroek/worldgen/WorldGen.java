@@ -34,7 +34,7 @@ public class WorldGen extends PApplet {
 
     @Override
     public void settings() {
-        size(Config.WIDTH, Config.HEIGHT);
+        size(Config.WINDOW_WIDTH, Config.WINDOW_HEIGHT);
     }
 
     @Override
