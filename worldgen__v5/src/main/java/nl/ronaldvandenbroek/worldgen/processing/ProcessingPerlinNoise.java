@@ -4,10 +4,10 @@ import nl.ronaldvandenbroek.worldgen.calculation.noise.INoiseMapGenerator;
 import nl.ronaldvandenbroek.worldgen.properties.Config;
 import processing.core.PApplet;
 
-public class ProcessingPerlinINoise implements INoiseMapGenerator {
+public class ProcessingPerlinNoise implements INoiseMapGenerator {
     private PApplet processing;
 
-    public ProcessingPerlinINoise(PApplet processing) {
+    public ProcessingPerlinNoise(PApplet processing) {
         this.processing = processing;
     }
 
