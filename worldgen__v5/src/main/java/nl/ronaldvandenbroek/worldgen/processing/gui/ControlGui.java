@@ -32,7 +32,7 @@ public class ControlGui {
 
     public void createGUIMapButton(ControlElementButton controlElement) {
         gui.addButton(controlElement.getName())
-                .setPosition(Config.WIDTH - 80f, buttonPosition)
+                .setPosition(Config.WINDOW_WIDTH - 80f, buttonPosition)
                 .setValue(controlElement.getValue())
                 .onRelease(controlElement.getControlListener());
         buttonPosition += 20;
