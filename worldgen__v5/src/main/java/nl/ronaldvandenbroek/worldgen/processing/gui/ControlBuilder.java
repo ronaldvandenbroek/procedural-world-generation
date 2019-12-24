@@ -7,14 +7,17 @@ import nl.ronaldvandenbroek.worldgen.calculation.WorldGenerator;
 import nl.ronaldvandenbroek.worldgen.properties.Config;
 
 public class ControlBuilder {
-    public static void WorldGenControls(ControlGui controlGui, WorldGenerator worldGenerator) {
-        for (HeightMap heightMap : worldGenerator.getHeightMapLayers()) {
-            ControlBuilder.HeightMap(controlGui, heightMap);
-        }
-        ControlBuilder.TemperatureMap(controlGui, worldGenerator.getTemperatureMap());
+    private ControlBuilder() {
     }
 
-    private static void HeightMap(ControlGui controlGui, HeightMap heightMap) {
+    public static void worldGenControls(ControlGui controlGui, WorldGenerator worldGenerator) {
+        for (HeightMap heightMap : worldGenerator.getHeightMapLayers()) {
+            ControlBuilder.heightMap(controlGui, heightMap);
+        }
+        ControlBuilder.temperatureMap(controlGui, worldGenerator.getTemperatureMap());
+    }
+
+    private static void heightMap(ControlGui controlGui, HeightMap heightMap) {
         controlGui.createGUISliderTitle(heightMap.getName() + "HeightMap", false);
         controlGui.createGUISlider(new ControlElementSlider(
                 heightMap.getName() + " Seed",
@@ -74,7 +77,7 @@ public class ControlBuilder {
         );
     }
 
-    private static void TemperatureMap(ControlGui controlGui, TemperatureMap temperatureMap) {
+    private static void temperatureMap(ControlGui controlGui, TemperatureMap temperatureMap) {
         controlGui.createGUISliderTitle("TemperatureMap", false);
         controlGui.createGUISlider(new ControlElementSlider(
                 "Equator Offset",
@@ -110,7 +113,7 @@ public class ControlBuilder {
         );
     }
 
-    public static void Menu(ControlGui controlGui, WorldGen worldGen) {
+    public static void menu(ControlGui controlGui, WorldGen worldGen) {
         controlGui.createGUIMapButton(new ControlElementButton(
                 "0 HeightMap",
                 worldGen,

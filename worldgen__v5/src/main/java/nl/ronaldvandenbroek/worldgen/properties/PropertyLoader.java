@@ -8,6 +8,9 @@ import java.nio.file.Paths;
 import java.util.Properties;
 
 public class PropertyLoader {
+    private PropertyLoader() {
+    }
+
     public static void load(Class<?> configClass, String fileName) {
         try {
             URL resource = PropertyLoader.class.getResource("/" + fileName);

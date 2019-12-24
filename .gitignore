@@ -110,3 +110,4 @@ fabric.properties
 */.idea/caches/build_file_checksums.ser
 worldgen_v4/exports/*
 *.pdn
+worldgen__v5/.idea/sonarlint/issuestore/*

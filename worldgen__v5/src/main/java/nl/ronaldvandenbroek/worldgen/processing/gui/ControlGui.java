@@ -5,17 +5,15 @@ import nl.ronaldvandenbroek.worldgen.properties.Config;
 import processing.core.PApplet;
 
 public class ControlGui {
-    public static ControlP5 gui;
+    private ControlP5 gui;
     private int sliderPosition = 0;
     private int buttonPosition = 0;
-    private PApplet processing;
 
     public ControlGui(PApplet processing) {
-        this.processing = processing;
         gui = new ControlP5(processing);
     }
 
-    public void createGUISliderTitle(String name, Boolean first) {
+    public void createGUISliderTitle(String name, boolean first) {
         if (!first) {
             sliderPosition += 10;
         }
@@ -34,7 +32,7 @@ public class ControlGui {
 
     public void createGUIMapButton(ControlElementButton controlElement) {
         gui.addButton(controlElement.getName())
-                .setPosition(Config.WIDTH - 80, buttonPosition)
+                .setPosition(Config.WIDTH - 80f, buttonPosition)
                 .setValue(controlElement.getValue())
                 .onRelease(controlElement.getControlListener());
         buttonPosition += 20;

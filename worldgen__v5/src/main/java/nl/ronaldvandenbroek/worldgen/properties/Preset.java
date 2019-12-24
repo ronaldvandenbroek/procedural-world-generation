@@ -1,6 +1,9 @@
 package nl.ronaldvandenbroek.worldgen.properties;
 
 public class Preset {
+    private Preset() {
+    }
+
     public static String HEIGHT_MAP_BASE_NAME;
     public static int HEIGHT_MAP_BASE_SEED;
     public static int HEIGHT_MAP_BASE_OCTAVE;

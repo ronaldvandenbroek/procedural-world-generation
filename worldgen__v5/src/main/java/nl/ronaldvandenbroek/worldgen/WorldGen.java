@@ -32,10 +32,12 @@ public class WorldGen extends PApplet {
         PApplet.main("nl.ronaldvandenbroek.worldgen.WorldGen", args);
     }
 
+    @Override
     public void settings() {
         size(Config.WIDTH, Config.HEIGHT);
     }
 
+    @Override
     public void setup() {
         // Setup exit handler
         Runtime.getRuntime().addShutdownHook(new Thread(this::stop));
@@ -51,9 +53,9 @@ public class WorldGen extends PApplet {
         // Setup GUI
         ControlGui controlGui = new ControlGui(this);
         controlGui.createGUISliderTitle("WorldGen Configuration", true);
-        ControlBuilder.Menu(controlGui, this);
+        ControlBuilder.menu(controlGui, this);
         if (Config.ENABLE_CONTROLS) {
-            ControlBuilder.WorldGenControls(controlGui, worldGenerator);
+            ControlBuilder.worldGenControls(controlGui, worldGenerator);
         }
 
         // Generate the preset map
@@ -62,6 +64,7 @@ public class WorldGen extends PApplet {
         drawMaps();
     }
 
+    @Override
     public void draw() {
         if (passTime) {
             codeTimer.round();
@@ -71,10 +74,12 @@ public class WorldGen extends PApplet {
         }
     }
 
+    @Override
     public void stop() {
         codeTimer.end();
     }
 
+    @Override
     public void mouseReleased() {
         worldGenerator.generateMaps();
         drawMaps();
