@@ -20,7 +20,11 @@ public class ProcessingImageDrawer implements IProcessingImageDrawer {
         PImage image = processing.createImage(arrayHeight, arrayWidth, PConstants.RGB);
         for (int h = 0; h < arrayHeight; h++) {
             for (int w = 0; w < arrayWidth; w++) {
-                image.pixels[h * arrayWidth + w] = processing.color(array[h][w]);
+                if (array[h][w] < 120) {
+                    image.pixels[h * arrayWidth + w] = processing.color(0, 0, 255);
+                } else {
+                    image.pixels[h * arrayWidth + w] = processing.color(array[h][w]);
+                }
             }
         }
         image.resize(Config.WINDOW_WIDTH,Config.WINDOW_HEIGHT);

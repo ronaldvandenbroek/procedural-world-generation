@@ -97,22 +97,22 @@ public class WorldGenerator {
                 Preset.HEIGHT_MAP_BASE_CIRCULAR_FALLOFF,
                 Preset.HEIGHT_MAP_BASE_WEIGHT)
         );
-        heightMapLayers.add(new HeightMap(
-                Preset.HEIGHT_MAP_RIDGE_NAME,
-                noiseMapGenerator,
-                mapUtil,
-                Config.IMAGE_HEIGHT,
-                Config.IMAGE_WIDTH,
-                Preset.HEIGHT_MAP_RIDGE_SEED,
-                Config.TIME,
-                Preset.HEIGHT_MAP_RIDGE_OCTAVE,
-                Preset.HEIGHT_MAP_RIDGE_NOISE_FALLOFF,
-                Preset.HEIGHT_MAP_RIDGE_INTENSITY,
-                Preset.HEIGHT_MAP_RIDGE_RIDGE,
-                Preset.HEIGHT_MAP_RIDGE_POWER,
-                Preset.HEIGHT_MAP_RIDGE_CIRCULAR_FALLOFF,
-                Preset.HEIGHT_MAP_RIDGE_WEIGHT)
-        );
+//        heightMapLayers.add(new HeightMap(
+//                Preset.HEIGHT_MAP_RIDGE_NAME,
+//                noiseMapGenerator,
+//                mapUtil,
+//                Config.IMAGE_HEIGHT,
+//                Config.IMAGE_WIDTH,
+//                Preset.HEIGHT_MAP_RIDGE_SEED,
+//                Config.TIME,
+//                Preset.HEIGHT_MAP_RIDGE_OCTAVE,
+//                Preset.HEIGHT_MAP_RIDGE_NOISE_FALLOFF,
+//                Preset.HEIGHT_MAP_RIDGE_INTENSITY,
+//                Preset.HEIGHT_MAP_RIDGE_RIDGE,
+//                Preset.HEIGHT_MAP_RIDGE_POWER,
+//                Preset.HEIGHT_MAP_RIDGE_CIRCULAR_FALLOFF,
+//                Preset.HEIGHT_MAP_RIDGE_WEIGHT)
+//        );
         temperatureMap = new TemperatureMap(
                 mapUtil,
                 Preset.TEMPERATURE_MAP_EQUATOR_OFFSET,

@@ -161,7 +161,7 @@ public class TwoDimensionalArrayUtility implements ITwoDimensionalArrayUtility {
 
         for (int h = 0; h < arrayHeight; h++) {
             for (int w = 0; w < arrayWidth; w++) {
-                falloffArray[h][w] -= array[h][w] * calculateDistancePercentage(h, w, centerHeight, centerWidth, falloffStrength);
+                falloffArray[h][w] = array[h][w] - array[h][w] * (float) calculateDistancePercentage(h, w, centerHeight, centerWidth, falloffStrength);
             }
         }
         return falloffArray;

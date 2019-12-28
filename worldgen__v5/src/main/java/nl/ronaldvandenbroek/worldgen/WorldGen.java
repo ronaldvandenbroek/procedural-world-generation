@@ -2,9 +2,9 @@ package nl.ronaldvandenbroek.worldgen;
 
 import nl.ronaldvandenbroek.worldgen.calculation.WorldGenerator;
 import nl.ronaldvandenbroek.worldgen.calculation.array.TwoDimensionalArrayUtility;
+import nl.ronaldvandenbroek.worldgen.calculation.noise.simplex.SimplexNoise;
 import nl.ronaldvandenbroek.worldgen.processing.IProcessingImageDrawer;
 import nl.ronaldvandenbroek.worldgen.processing.ProcessingImageDrawer;
-import nl.ronaldvandenbroek.worldgen.processing.ProcessingPerlinNoise;
 import nl.ronaldvandenbroek.worldgen.processing.gui.ControlBuilder;
 import nl.ronaldvandenbroek.worldgen.processing.gui.ControlGui;
 import nl.ronaldvandenbroek.worldgen.properties.Config;
@@ -47,7 +47,7 @@ public class WorldGen extends PApplet {
 
         // Setup utilities
         codeTimer = new CodeTimer("TickSpeed");
-        worldGenerator = new WorldGenerator(new ProcessingPerlinNoise(this), new TwoDimensionalArrayUtility());
+        worldGenerator = new WorldGenerator(new SimplexNoise(), new TwoDimensionalArrayUtility());
         processingImageDrawer = new ProcessingImageDrawer(this);
 
         // Setup GUI
