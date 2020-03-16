@@ -1,4 +1,6 @@
 # Procedural World Generation
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fronaldvandenbroek%2Fprocedural-world-generation.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fronaldvandenbroek%2Fprocedural-world-generation?ref=badge_shield)
+
 [Github Page](https://ronaldvandenbroek.github.io/procedural-world-generation/)
 
 Procedural World Generation using Processing and Java
@@ -25,3 +27,7 @@ These libraries can be obtained by downloading the latest Processing and install
 | <img src="docs/images/v3_height_map.png"  style="width: 50%" /><br />Height Map | <img src="docs/images/v3_temperature_map.png"  style="width: 50%" /><br />Temperature Map |
 | <img src="docs/images/v3_rain_map1.png"  style="width: 50%" /><br />Rain Map 1 | <img src="docs/images/v3_rain_map2.png"  style="width: 50%" /><br />Rain Map 2 |
 | <img src="docs/images/v3_rain_map3.png"  style="width: 50%" /><br />Rain Map 3 | <img src="docs/images/v3_combined_rain_map.png"  style="width: 50%" /><br />Combined Rain Map |
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fronaldvandenbroek%2Fprocedural-world-generation.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fronaldvandenbroek%2Fprocedural-world-generation?ref=badge_large)
